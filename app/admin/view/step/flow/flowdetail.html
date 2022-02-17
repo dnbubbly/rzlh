@@ -1,0 +1,22 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form layui-form-pane">
+        
+        <div class="layui-field-box">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 0;">
+				<legend>审批记录</legend>
+			</fieldset> 
+	  		<ul class="layui-timeline">
+	  			{foreach $flowdetil as $re}
+	  			<li class="layui-timeline-item">
+				   	<i class="layui-icon layui-timeline-axis"></i>
+    				<div class="layui-timeline-content layui-text">
+      					<h3 class="layui-timeline-title">{:date("Y-m-d H:i:s",$re.date)}</h3>
+      					<p>{$re.systemAdmin.username}：{$re.replay}</p>
+    				</div>
+				</li>
+				{/foreach}
+			</ul>
+	  	</div>
+
+    </form>
+</div>

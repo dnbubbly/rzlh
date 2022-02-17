@@ -1,0 +1,66 @@
+{"time":"2022-01-22 16:07:59","type":"requestDebugInfo","msg":"array (\n  'url' => '/',\n  'method' => 'get',\n  'params' => \n  array (\n  ),\n)"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"CONNECT:[ UseTime:0.005280s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.005942s ]"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000836s ]"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.002452s ]"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000681s ]"}
+{"time":"2022-01-22 16:07:59","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL  AND `status` = 1 LIMIT 1 [ RunTime:0.000524s ]"}
+{"time":"2022-01-22 16:07:59","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rlzy\\app\\common\\tpl\\dispatch_jump.tpl [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'code',\n  9 => 'msg',\n  10 => 'data',\n  11 => 'url',\n  12 => 'wait',\n) ]"}
+{"time":"2022-01-22 16:08:00","type":"requestDebugInfo","msg":"array (\n  'url' => '/admin/login/index.html',\n  'method' => 'get',\n  'params' => \n  array (\n    '/admin/login/index_html' => '',\n  ),\n)"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"CONNECT:[ UseTime:0.017204s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.002085s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000577s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001925s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000871s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL  AND `status` = 1 LIMIT 1 [ RunTime:0.000643s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_config` [ RunTime:0.003250s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT `value` FROM `ea_system_config` WHERE  `group` = 'site'  AND `name` = 'site_name' LIMIT 1 [ RunTime:0.000556s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT `value` FROM `ea_system_config` WHERE  `group` = 'site'  AND `name` = 'site_copyright' LIMIT 1 [ RunTime:0.000805s ]"}
+{"time":"2022-01-22 16:08:00","type":"sql","msg":"SELECT `value` FROM `ea_system_config` WHERE  `group` = 'site'  AND `name` = 'site_beian' LIMIT 1 [ RunTime:0.000656s ]"}
+{"time":"2022-01-22 16:08:00","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rlzy\\app\\admin\\view\\login\\index.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'captcha',\n  9 => 'demo',\n) ]"}
+{"time":"2022-01-22 16:08:04","type":"requestDebugInfo","msg":"array (\n  'url' => '/admin/login/index.html',\n  'method' => 'post',\n  'params' => \n  array (\n    '/admin/login/index_html' => '',\n    'useraccount' => 'admin',\n    'password' => '***********',\n    'keep_login' => '0',\n  ),\n)"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"CONNECT:[ UseTime:0.001579s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"show tables like 'ea_system_log_202201' [ RunTime:0.001220s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_log_202201` [ RunTime:0.004362s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"INSERT INTO `ea_system_log_202201` SET `admin_id` = NULL , `url` = '/admin/login/index.html' , `method` = 'post' , `ip` = '127.0.0.1' , `content` = '{\\\"\\\\/admin\\\\/login\\\\/index_html\\\":\\\"\\\",\\\"useraccount\\\":\\\"admin\\\",\\\"password\\\":\\\"***********\\\",\\\"keep_login\\\":\\\"0\\\"}' , `useragent` = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36' , `create_time` = 1642838884 [ RunTime:0.000894s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001621s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000491s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001723s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000985s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL  AND `status` = 1 LIMIT 1 [ RunTime:0.000546s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE (  `useraccount` = 'admin' ) AND `ea_system_admin`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000845s ]"}
+{"time":"2022-01-22 16:08:04","type":"sql","msg":"UPDATE `ea_system_admin`  SET `login_num` = 52 , `update_time` = 1642838884  WHERE (  `id` = 1 ) AND `ea_system_admin`.`delete_time` IS NULL [ RunTime:0.000694s ]"}
+{"time":"2022-01-22 16:08:06","type":"requestDebugInfo","msg":"array (\n  'url' => '/admin/index',\n  'method' => 'get',\n  'params' => \n  array (\n  ),\n)"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"CONNECT:[ UseTime:0.020896s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.002055s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000888s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.002011s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000975s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000730s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.002498s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.003369s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001327s ]"}
+{"time":"2022-01-22 16:08:06","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rlzy\\app\\admin\\view\\index\\index.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'admin',\n) ]"}
+{"time":"2022-01-22 16:08:06","type":"requestDebugInfo","msg":"array (\n  'url' => '/admin/ajax/initAdmin',\n  'method' => 'get',\n  'params' => \n  array (\n  ),\n)"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"CONNECT:[ UseTime:0.017032s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.002456s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000757s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001433s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000657s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000580s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.001390s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.001199s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001001s ]"}
+{"time":"2022-01-22 16:08:06","type":"requestDebugInfo","msg":"array (\n  'url' => '/admin/index/welcome.html',\n  'method' => 'get',\n  'params' => \n  array (\n    '/admin/index/welcome_html' => '',\n  ),\n)"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"CONNECT:[ UseTime:0.021860s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.002343s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000701s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001886s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000860s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000649s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.003484s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.001968s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001038s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_quick` [ RunTime:0.003129s ]"}
+{"time":"2022-01-22 16:08:06","type":"sql","msg":"SELECT `id`,`title`,`icon`,`href` FROM `ea_system_quick` WHERE (  `status` = 1 ) AND `ea_system_quick`.`delete_time` IS NULL ORDER BY `sort` DESC LIMIT 8 [ RunTime:0.000913s ]"}
+{"time":"2022-01-22 16:08:06","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rlzy\\app\\admin\\view\\index\\welcome.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'quicks',\n) ]"}

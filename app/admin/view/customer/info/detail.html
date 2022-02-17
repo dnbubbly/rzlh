@@ -1,0 +1,99 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form layui-form-pane">
+        <div class="layui-row layui-col-space5">
+            <div class="layui-col-md6">
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">编号</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="code" class="layui-input" lay-verify="required" placeholder="请输入编号" value="{$row.code|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">法定代表人</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="legal" class="layui-input"  placeholder="请输入法人" value="{$row.legal|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">授权委托人人</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="director" class="layui-input"  placeholder="请输入负责人" value="{$row.director|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">单位地址</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="address" class="layui-input"  placeholder="请输入单位地址" value="{$row.address|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">开户银行</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="bank" class="layui-input"  placeholder="请输入开户银行" value="{$row.bank|default=''}">
+		            </div>
+		        </div>
+			</div>
+			<div class="layui-col-md6">
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">客户全称</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入客户全称" value="{$row.name|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">客户简称</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="simple_name" class="layui-input"  placeholder="请输入客户简称" value="{$row.simple_name|default=''}">
+		            </div>
+		        </div>
+				<div class="layui-form-item">
+		            <label class="layui-form-label">纳税人识别号</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="idnumber" class="layui-input"  placeholder="请输入纳税人识别号" value="{$row.idnumber|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">电话</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="tel" class="layui-input"  placeholder="请输入电话" value="{$row.tel|default=''}">
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">银行账户</label>
+		            <div class="layui-input-block">
+		                <input type="text" name="account" class="layui-input"  placeholder="请输入银行账户" value="{$row.account|default=''}">
+		            </div>
+		        </div>
+			</div>
+		</div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">客户资质</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="file" class="layui-input layui-col-xs6"   placeholder="请上传客户资质" value="{$row.file|default=''}">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="file" data-upload-number="one" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_file" data-upload-select="file" data-upload-number="one" data-upload-mimetype="*"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="text" name="status" class="layui-input"  placeholder="请输入状态" value="{$row.status|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加人</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="add_id" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.id')}">
+               	<input type="text" name="" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.username')}">
+            </div>
+        </div>
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

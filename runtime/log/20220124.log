@@ -1,0 +1,6 @@
+{"time":"2022-01-24 11:45:57","type":"sql","msg":"CONNECT:[ UseTime:0.001383s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-24 11:45:57","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_customer_info [ RunTime:0.001013s ]"}
+{"time":"2022-01-24 11:45:57","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_customer_info' [ RunTime:0.000420s ]"}
+{"time":"2022-01-24 13:46:01","type":"sql","msg":"CONNECT:[ UseTime:0.001470s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-01-24 13:46:01","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_customer_score [ RunTime:0.000998s ]"}
+{"time":"2022-01-24 13:46:01","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_customer_score' [ RunTime:0.000411s ]"}

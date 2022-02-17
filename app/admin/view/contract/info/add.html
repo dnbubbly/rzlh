@@ -1,0 +1,220 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">合同类型</label>
+            <div class="layui-input-block">
+                <input type="text" name="type" class="layui-input" lay-verify="required" placeholder="请输入合同类型" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">起草类型</label>
+            <div class="layui-input-block">
+                {foreach $getDraftList as $k=>$v}
+                <input type="radio" name="draft" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">主导类型</label>
+            <div class="layui-input-block">
+                {foreach $getLeadList as $k=>$v}
+                <input type="radio" name="lead" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">销方</label>
+            <div class="layui-input-block">
+                <input type="text" name="seller" class="layui-input" lay-verify="required" placeholder="请输入销方" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">购方</label>
+            <div class="layui-input-block">
+                <input type="text" name="buyer" class="layui-input" lay-verify="required" placeholder="请输入购方" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">合同编号</label>
+            <div class="layui-input-block">
+                <input type="text" name="number" class="layui-input" lay-verify="required" placeholder="请输入合同编号" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">签订地点</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" class="layui-input" lay-verify="required" placeholder="请输入签订地点" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">起草日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="date" data-date="" data-date-type="datetime" class="layui-input" lay-verify="required" placeholder="请输入起草日期" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货单位</label>
+            <div class="layui-input-block">
+                <input type="text" name="receiving" class="layui-input" lay-verify="required" placeholder="请输入收货单位" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结算单位</label>
+            <div class="layui-input-block">
+                <input type="text" name="settlement" class="layui-input" lay-verify="required" placeholder="请输入结算单位" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">执行期起</label>
+            <div class="layui-input-block">
+                <input type="text" name="startdate" class="layui-input" lay-verify="required" placeholder="请输入执行期起" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">执行期止</label>
+            <div class="layui-input-block">
+                <input type="text" name="enddate" class="layui-input" lay-verify="required" placeholder="请输入执行期止" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">物流方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="road" class="layui-input" lay-verify="required" placeholder="请输入物流方式" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发站</label>
+            <div class="layui-input-block">
+                <input type="text" name="start_station" class="layui-input" lay-verify="required" placeholder="请输入发站" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">到站</label>
+            <div class="layui-input-block">
+                <input type="text" name="end_station" class="layui-input" lay-verify="required" placeholder="请输入到站" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">交货方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="delivery" class="layui-input" lay-verify="required" placeholder="请输入交货方式" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">交货地点</label>
+            <div class="layui-input-block">
+                <input type="text" name="delivery_address" class="layui-input" lay-verify="required" placeholder="请输入交货地点" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">质量验收</label>
+            <div class="layui-input-block">
+                {foreach $getCheckTypeList as $k=>$v}
+                <input type="radio" name="check_type" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">发票</label>
+            <div class="layui-input-block">
+                {foreach $getTaxList as $k=>$v}
+                <input type="radio" name="tax" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">运费</label>
+            <div class="layui-input-block">
+                {foreach $getFreightList as $k=>$v}
+                <input type="radio" name="freight" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">承兑加价</label>
+            <div class="layui-input-block">
+                {foreach $getMarkupList as $k=>$v}
+                <input type="radio" name="markup" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">承兑加价数量</label>
+            <div class="layui-input-block">
+                <input type="text" name="markupnum" class="layui-input" lay-verify="required" placeholder="请输入承兑加价数量" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预付款比例</label>
+            <div class="layui-input-block">
+                <input type="text" name="advance" class="layui-input" lay-verify="required" placeholder="请输入预付款比例" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预付款比例说明</label>
+            <div class="layui-input-block">
+                <input type="text" name="advance_remark" class="layui-input"  placeholder="请输入预付款比例说明" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结算方式</label>
+            <div class="layui-input-block">
+                {foreach $getSettleList as $k=>$v}
+                <input type="radio" name="settle" value="{$k}" title="{$v}" {in name="k" value=""}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">法律条款</label>
+            <div class="layui-input-block">
+                <textarea name="law" rows="20" class="layui-textarea editor" 法律条款 placeholder="请输入法律条款"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea"  placeholder="请输入备注"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">谈判纪要</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="file" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="file" data-upload-number="more" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_file" data-upload-select="file" data-upload-number="more" data-upload-mimetype="*" data-upload-sign=";"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">电子合同</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="elefile" class="layui-input layui-col-xs6"   placeholder="请上传电子合同" value="">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="elefile" data-upload-number="one" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_elefile" data-upload-select="elefile" data-upload-number="one" data-upload-mimetype="*"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加人</label>
+            <div class="layui-input-block">
+                <input type="text" name="add_id" class="layui-input"  placeholder="请输入添加人" value="">
+            </div>
+        </div>
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

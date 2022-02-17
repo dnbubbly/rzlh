@@ -1,0 +1,6 @@
+{"time":"2022-02-15 11:01:30","type":"sql","msg":"CONNECT:[ UseTime:0.001855s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-15 11:01:30","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_customer_credit [ RunTime:0.001027s ]"}
+{"time":"2022-02-15 11:01:30","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_customer_credit' [ RunTime:0.000510s ]"}
+{"time":"2022-02-15 16:33:00","type":"sql","msg":"CONNECT:[ UseTime:0.001609s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-15 16:33:00","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_type [ RunTime:0.001211s ]"}
+{"time":"2022-02-15 16:33:00","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_type' [ RunTime:0.000533s ]"}
