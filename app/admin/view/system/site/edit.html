@@ -1,0 +1,72 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form layui-form-pane">
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label required">发站</label>
+            <div class="layui-input-block">
+                <input type="text" name="origin" class="layui-input" lay-verify="required" placeholder="请输入发站" placeholder="请输入发站" value="{$row.origin|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">到站</label>
+            <div class="layui-input-block">
+                <input type="text" name="end" class="layui-input" lay-verify="required" placeholder="请输入到站" placeholder="请输入到站" value="{$row.end|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">省市</label>
+            <div class="layui-input-block">
+                <input type="text" name="provinces" class="layui-input" lay-verify="required" placeholder="请输入省市" placeholder="请输入省市" value="{$row.provinces|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">所属局</label>
+            <div class="layui-input-block">
+                <input type="text" name="bureau" class="layui-input" lay-verify="required" placeholder="请输入所属局" placeholder="请输入所属局" value="{$row.bureau|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">里程</label>
+            <div class="layui-input-block">
+                <input type="text" name="mileage" class="layui-input" lay-verify="required" placeholder="请输入里程" placeholder="请输入里程" value="{$row.mileage|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">运费</label>
+            <div class="layui-input-block">
+                <input type="text" name="freight" class="layui-input" lay-verify="required" placeholder="请输入运费" value="{$row.freight|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">取送车费</label>
+            <div class="layui-input-block">
+                <input type="text" name="carcost" class="layui-input" lay-verify="required" placeholder="请输入取送车费" value="{$row.carcost|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">保费</label>
+            <div class="layui-input-block">
+                <input type="text" name="premium" class="layui-input" lay-verify="required" placeholder="请输入保费"  placeholder="请输入保费" value="{$row.premium|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+            	<textarea name="remark" rows="10" class="layui-textarea editor" placeholder="请输入备注">{$row.remark|raw|default=''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加人</label>
+            <div class="layui-input-block">
+               <input type="hidden" name="add_id" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.id')}">
+               <input type="text" name="" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.username')}">
+            </div>
+        </div>
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

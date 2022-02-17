@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="__STATIC__/plugs/element-ui/element-ui.css?v={$version}" media="all">
+<link rel="stylesheet" href="__STATIC__/admin/css/workflow.css?v={$version}" media="all">
+<div id="app">
+	<div>
+		<div class="fd-nav">
+			<div class="fd-nav-left">
+				
+			</div>
+			<div class="fd-nav-right">
+				
+			</div>
+		</div>
+		<div class="fd-nav-content">
+			<section class="dingflow-design">
+				<div class="zoom">
+					<div :class="'zoom-out'+ (nowVal==50?' disabled':'')" @click="zoomSize(1)"></div>
+					<span>{{nowVal}}%</span>
+					<div :class="'zoom-in'+ (nowVal==300?' disabled':'')" @click="zoomSize(2)"></div>
+				</div>
+				<div class="box-scale" id="box-scale" :style="'transform: scale('+nowVal/100+'); transform-origin: 50% 0px 0px;'">
+					<nodewrap :nodeconfig.sync="nodeConfig" :flowpermission.sync="flowPermission" :istried.sync="isTried" :tableid="tableId"></nodewrap>
+					<div class="end-node">
+						<div class="end-node-circle"></div>
+						<div class="end-node-text">流程结束</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<errordialog :visible.sync="tipVisible" :list="tipList"	></errordialog>
+		<promoterdrawer></promoterdrawer>
+		<approverdrawer  :directormaxlevel="directorMaxLevel" ></approverdrawer>
+		<copyerdrawer></copyerdrawer>
+		<conditiondrawer :tableid="tableId"></conditiondrawer>
+	</div>
+</div>
+
+<template id="nodewrap">
+    <div>
+        <div class="node-wrap" v-if="nodeconfig.type!=4">
+            <div class="node-wrap-box" :class="(nodeconfig.type==0?'start-node ':'')+(istried&&nodeconfig.error?'active error':'')">
+                <div>
+                    <div class="title" :style="'background: rgb('+ ['87, 106, 149','255, 148, 62','50, 150, 250'][nodeconfig.type] +');'">
+                        <span class="iconfont" v-show="nodeconfig.type==1"></span>
+                        <span class="iconfont" v-show="nodeconfig.type==2"></span>
+                        <span v-if="nodeconfig.type==0">{{nodeconfig.nodeName}}</span>
+                        <span class="editable-title" >{{nodeconfig.nodeName}}</span>
+                    </div>
+                    <div class="content">
+                        <div class="text" v-if="nodeconfig.type==0">{{arrToStr(flowpermission)?arrToStr(flowpermission):'所有人'}}</div>
+                        <div class="text" v-if="nodeconfig.type==1">
+                            <span class="placeholder" v-if="!setApproverStr(nodeconfig)">请选择{{placeholderList[nodeconfig.type]}}</span>
+                            {{setApproverStr(nodeconfig)}}
+                        </div>
+                        <div class="text" v-if="nodeconfig.type==2">
+                            <span class="placeholder" v-if="!copyerStr(nodeconfig)">请选择{{placeholderList[nodeconfig.type]}}</span>
+                            {{copyerStr(nodeconfig)}}
+                        </div>
+                        <i class="anticon anticon-right arrow"></i>
+                    </div>
+                    <div class="error_tip" v-if="istried&&nodeconfig.error">
+                        <i class="anticon anticon-exclamation-circle" style="color: rgb(242, 86, 67);"></i>
+                    </div>
+                </div>
+            </div>
+            <addnode :childnodep.sync="nodeconfig.childNode"></addnode>
+        </div>
+        <div class="branch-wrap" v-if="nodeconfig.type==4">
+            <div class="branch-box-wrap">
+                <div class="branch-box">
+                    <button class="add-branch">条件</button>
+                    <div class="col-box" v-for="(item,index) in nodeconfig.conditionNodes" :key="index">
+                        <div class="condition-node">
+                            <div class="condition-node-box">
+                                <div class="auto-judge" :class="istried&&item.error?'error active':''">
+                                    <div class="title-wrapper">
+                                        <span class="editable-title">{{item.nodeName}}</span>
+                                        <span class="priority-title">优先级{{item.priorityLevel}}</span>
+                                    </div>
+                                    <div class="content">{{conditionStr(nodeconfig,index)}}</div>
+                                    <div class="error_tip" v-if="istried&&item.error">
+                                        <i class="anticon anticon-exclamation-circle" style="color: rgb(242, 86, 67);"></i>
+                                    </div>
+                                </div>
+                                <addnode :childNodeP.sync="item.childNode"></addnode>
+                            </div>
+                        </div>
+                        <nodewrap v-if="item.childNode && item.childNode" :nodeconfig.sync="item.childNode" :tableid="tableid" :istried.sync="istried"></nodewrap>
+                        <div class="top-left-cover-line" v-if="index==0"></div>
+                        <div class="bottom-left-cover-line" v-if="index==0"></div>
+                        <div class="top-right-cover-line" v-if="index==nodeconfig.conditionNodes.length-1"></div>
+                        <div class="bottom-right-cover-line" v-if="index==nodeconfig.conditionNodes.length-1"></div>
+                    </div>
+                </div>
+                <addnode :childnodep.sync="nodeconfig.childNode"></addnode>
+            </div>
+        </div>
+        <nodewrap v-if="nodeconfig.childNode && nodeconfig.childNode" :nodeconfig.sync="nodeconfig.childNode" :istried.sync="istried" :tableid="tableid"></nodewrap>
+    </div>
+</template>
+<template id="add-node">
+	<div class="add-node-btn-box">
+        <div class="add-node-btn">
+        </div>
+    </div>
+</template>
