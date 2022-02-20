@@ -8,11 +8,10 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
+            <label class="layui-form-label">添加人</label>
             <div class="layui-input-block">
-                {foreach $getStatusList as $k=>$v}
-                <input type="radio" name="status" value="{$k}" title="{$v}" {in name="k" value="1"}checked=""{/in}>
-                {/foreach}
+                <input type="hidden" name="add_id" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.id')}">
+               	<input type="text" name="" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{:session('admin.username')}">
             </div>
         </div>
 

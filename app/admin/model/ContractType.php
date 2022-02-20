@@ -17,6 +17,10 @@ class ContractType extends TimeModel
     {
         return ['0'=>'禁用','1'=>'启用',];
     }
-
+    
+    public function systemAdmin()
+    {
+        return $this->belongsTo('\app\admin\model\SystemAdmin', 'add_id', 'id');
+    }
 
 }

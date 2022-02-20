@@ -26,6 +26,37 @@ class Type extends AdminController
     }
     
     /**
+     * @NodeAnotation(title="列表")
+     */
+    public function index()
+    {
+        if ($this->request->isAjax()) {
+            if (input('selectFields')) {
+                return $this->selectList();
+            }
+            list($page, $limit, $where) = $this->buildTableParames();
+            $count = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->count();
+            $list = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->page($page, $limit)
+            ->order($this->sort)
+            ->select();
+            $data = [
+                'code'  => 0,
+                'msg'   => '',
+                'count' => $count,
+                'data'  => $list,
+            ];
+            return json($data);
+        }
+        return $this->fetch();
+    }
+    
+    /**
      * @NodeAnotation(title="添加")
      */
     public function add()

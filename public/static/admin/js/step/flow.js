@@ -22,6 +22,7 @@ define(["jquery", "easy-admin", "vue", "axios", "vuex", "ELEMENT", "autocomplete
             ea.table.render({
                 init: init,
                 skin: 'row ',
+                toolbar: ['refresh','export'],
                 cols: [[
                     {type: 'checkbox'},                    {field: 'id', width: 60, title: 'id'},
                     {field: 'title', width: 300, title: '标题'},                    {field: 'model', width: 300, title: '应用模块'},                    {field: 'a_id', width: 80, title: '关联id'},

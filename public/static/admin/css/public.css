@@ -51,7 +51,9 @@ html, body {
     height: 100%;
     max-width: 100%;
 }
-
+.layui-form-item .layui-inline{
+	margin-bottom: 0;
+}
 /**数据表格-搜索表单样式*/
 .layuimini-container .table-search-fieldset {
     margin: 0;

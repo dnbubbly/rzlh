@@ -487,6 +487,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 operat.icon = operat.icon || '';
                 operat.auth = operat.auth || '';
                 operat.url = operat.url || '';
+                operat.width = operat.width || '';
+                operat.height = operat.height || '';
                 operat.extend = operat.extend || '';
                 operat.method = operat.method || 'open';
                 operat.field = operat.field || 'id';
@@ -494,6 +496,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 operat.text = operat.text || operat.title;
 
                 var formatOperat = operat;
+                formatOperat.width = formatOperat.width !== '' ? 'data-width="' + formatOperat.width + 'px"' : '';
+                formatOperat.height = formatOperat.height !== '' ? 'data-height="' + formatOperat.height + 'px"' : '';
                 formatOperat.icon = formatOperat.icon !== '' ? '<i class="' + formatOperat.icon + '"></i> ' : '';
                 formatOperat.class = formatOperat.class !== '' ? 'class="' + formatOperat.class + '" ' : '';
                 if (operat.method === 'open') {
@@ -503,7 +507,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 } else {
                     formatOperat.method = formatOperat.method !== '' ? 'data-request="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 }
-                html = '<a ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon + formatOperat.text + '</a>';
+                html = '<a ' + formatOperat.class + formatOperat.method + formatOperat.extend + formatOperat.width + formatOperat.height + '>' + formatOperat.icon + formatOperat.text + '</a>';
 
                 return html;
             },

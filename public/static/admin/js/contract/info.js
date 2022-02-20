@@ -1,5 +1,8 @@
-define(["jquery", "easy-admin"], function ($, ea) {
+define(["jquery", "easy-admin", "tableSelect"], function ($, ea, tableSelect) {
 
+	var tableSelect = layui.tableSelect;
+	var form = layui.form;
+	
     var init = {
         table_elem: '#currentTable',
         table_render_id: 'currentTableRenderId',
@@ -25,9 +28,10 @@ define(["jquery", "easy-admin"], function ($, ea) {
                         method: 'open',
                         auth: 'add',
                         width: 500,
-                        height: 270,
+                        height: 323,
                         class: 'layui-btn layui-btn-normal layui-btn-sm',
                         icon: 'fa fa-plus ',
+                        extend: 'data-full="true"',
                     }],
                     'delete'],
                 cols: [[
@@ -38,17 +42,210 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         },
         addone: function () {
-        	$('input:radio[name=cus_id]')[0].attr("selected",true);
         	$('input:radio[name=draft]')[0].checked = true;
         	$('input:radio[name=lead]')[0].checked = true;
         	layui.form.render();
-            ea.listen();
+            ea.listen(function (data) {
+                return data;
+            }, function (res) {
+            	window.location.href = "/"+init.add_url+'?cus_id='+res.data.cus_id+'&draft='+res.data.draft+'&lead='+res.data.lead;
+            });
         },
         add: function () {
+        	form.on('select(road)', function(data){
+				if(data.value == 1){
+					$("#rail1").hide();
+					$("#rail1").find('select').attr('lay-verify','');
+	        		$("#rail2").hide();
+	        		$("#rail2").find('select').attr('lay-verify','');
+	        		$("#hight1").show();
+	        		$("#rail2").find('select').attr('lay-verify','required');
+	        		$("#hight2").show();
+	        		$("#hight2").find('select').attr('lay-verify','required');
+					form.render('select');
+				}else if(data.value == 2){
+					$("#rail1").show();
+	        		$("#rail2").show();
+	        		$("#rail1").find('select').attr('lay-verify','required');
+	        		$("#rail2").find('select').attr('lay-verify','required');
+	        		$("#hight1").hide();
+	        		$("#hight2").hide();
+	        		$("#hight1").find('select').attr('lay-verify','');
+	        		$("#hight2").find('select').attr('lay-verify','');
+					form.render('select');//select是固定写法 不是选择器
+				}
+			});
+        	$("body").on("click", ".addt", function() {
+        		var length = $("#td tr").length;
+        		$(this).parent().html('<i class="layui-icon delt">&#xe640;</i>');
+        		var i = parseInt($("#td tr").eq(length-1).find("td").eq(0).html())+1;
+            	$("#td tr").eq(-1).after('<tr><td style="text-align: center;">'+i+'</td>'
+        				+'<td><select id="coal'+i+'" name="coal['+(i-1)+'][type]" lay-verify="required" lay-search="" data-select="/contract.coaltype/index" data-fields="id,name" data-value=""></select></td>'
+        				+'<td><input class="layui-input" name="coal['+(i-1)+'][num]" value=""></td>'
+        				+'<td><input class="layui-input" name="coal['+(i-1)+'][price]" value=""></td>'
+        				+'<td style="text-align: center;"><i class="layui-icon addt">&#xe61f;</i></td>'
+        				+'<td style="text-align: center;"><i data-index="'+(i-1)+'" class="layui-icon qualityt">&#xe659;</i><input type="hidden" name="coal['+(i-1)+'][json]" value=""></td></tr>')
+
+        		var url = $("#coal"+i).attr('data-select'),
+                selectFields = $("#coal"+i).attr('data-fields'),
+                value = $("#coal"+i).attr('data-value'),
+                that = "#coal"+i,
+                html = '<option value=""></option>';
+                    var fields = selectFields.replace(/\s/g, "").split(',');
+                    if (fields.length !== 2) {
+                        return admin.msg.error('下拉选择字段有误');
+                    }
+                    ea.request.get(
+                        {
+                            url: url,
+                            data: {
+                                selectFields: selectFields
+                            },
+                        }, function (res) {
+                            var list = res.data;
+                            list.forEach(val => {
+                                var key = val[fields[0]];
+                                if (value !== undefined && key.toString() === value) {
+                                    html += '<option value="' + key + '" selected="">' + val[fields[1]] + '</option>';
+                                } else {
+                                    html += '<option value="' + key + '">' + val[fields[1]] + '</option>';
+                                }
+                            });
+                            $(that).html(html);
+                            form.render();
+                        }
+                    );
+            });
+        	$("body").on("click", ".qualityt", function() {
+        		var index = $(this).data('index');
+        		ea.open("质量奖惩","/contract.info/quality?index="+index,"80%","600px");
+        	});
+        	$("body").on("click", ".delt", function() {
+        		$(this).parent().parent().remove();
+        	});
+        	tableSelect.render({
+                elem: '#buyer',	//定义输入框input对象 必填
+                checkedKey: 'id', //表格的唯一建值，非常重要，影响到选中状态 必填
+                searchKey: 'name',	//搜索输入框的name值 默认keyword
+                searchPlaceholder: '关键词搜索',	//搜索输入框的提示文字 默认关键词搜索
+                height:'400',  //自定义高度
+                width:'900',  //自定义宽度
+                table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                    url:'/customer.info/index',
+                    cols: [[
+                    	{ type: 'radio' },
+                    	{field: 'code', width: 100,  title: '编号'},
+                        {field: 'name', title: '客户全称'},
+                        {field: 'simple_name', width: 100, title: '简称', search: false},
+                        {field: 'systemAdmin.username', width: 120, title: '添加人'},
+                    ]]
+                },
+                done: function (elem, data) {
+                	var NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.name)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
+            tableSelect.render({
+                elem: '#seller',	//定义输入框input对象 必填
+                checkedKey: 'id', //表格的唯一建值，非常重要，影响到选中状态 必填
+                searchKey: 'name',	//搜索输入框的name值 默认keyword
+                searchPlaceholder: '关键词搜索',	//搜索输入框的提示文字 默认关键词搜索
+                height:'400',  //自定义高度
+                width:'900',  //自定义宽度
+                table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                    url:'/customer.info/index',
+                    cols: [[
+                    	{ type: 'radio' },
+                    	{field: 'code', width: 100,  title: '编号'},
+                        {field: 'name', title: '客户全称'},
+                        {field: 'simple_name', width: 100, title: '简称', search: false},
+                        {field: 'systemAdmin.username', width: 120, title: '添加人'},
+                    ]]
+                },
+                done: function (elem, data) {
+                	var NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.name)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
+            tableSelect.render({
+                elem: '#receiving',	//定义输入框input对象 必填
+                checkedKey: 'id', //表格的唯一建值，非常重要，影响到选中状态 必填
+                searchKey: 'name',	//搜索输入框的name值 默认keyword
+                searchPlaceholder: '关键词搜索',	//搜索输入框的提示文字 默认关键词搜索
+                height:'400',  //自定义高度
+                width:'900',  //自定义宽度
+                table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                    url:'/customer.info/index',
+                    cols: [[
+                    	{ type: 'radio' },
+                    	{field: 'code', width: 100,  title: '编号'},
+                        {field: 'name', title: '客户全称'},
+                        {field: 'simple_name', width: 100, title: '简称', search: false},
+                        {field: 'systemAdmin.username', width: 120, title: '添加人'},
+                    ]]
+                },
+                done: function (elem, data) {
+                	var NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.name)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
+            tableSelect.render({
+                elem: '#settlement',	//定义输入框input对象 必填
+                checkedKey: 'id', //表格的唯一建值，非常重要，影响到选中状态 必填
+                searchKey: 'name',	//搜索输入框的name值 默认keyword
+                searchPlaceholder: '关键词搜索',	//搜索输入框的提示文字 默认关键词搜索
+                height:'400',  //自定义高度
+                width:'900',  //自定义宽度
+                table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                    url:'/customer.info/index',
+                    cols: [[
+                    	{ type: 'radio' },
+                    	{field: 'code', width: 100,  title: '编号'},
+                        {field: 'name', title: '客户全称'},
+                        {field: 'simple_name', width: 100, title: '简称', search: false},
+                        {field: 'systemAdmin.username', width: 120, title: '添加人'},
+                    ]]
+                },
+                done: function (elem, data) {
+                	var NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.name)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
             ea.listen();
         },
         edit: function () {
             ea.listen();
+        },
+        quality: function () {
+        	$("body").on("click", ".addqt", function() {
+        		var html = $(this).parent().parent().parent().prop("outerHTML");
+        		$(this).parent().parent().parent().after(html);
+        		$(this).parent().html('<i class="layui-icon delqt" style="font-size: 20px;line-height: 38px;"></i>');
+
+            	form.render('select');
+        	})
+        	$("body").on("click", ".delqt", function() {
+        		$(this).parent().parent().parent().remove();
+        	})
+        	ea.listen(function (data) {
+                return data;
+            }, function (res) {
+            	var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                $('input[name="coal['+res.data.index+'][json]"]',window.parent.document).val(JSON.stringify(res.data.data));
+            });
         },
     };
     return Controller;

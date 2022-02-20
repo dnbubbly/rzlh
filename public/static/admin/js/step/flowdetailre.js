@@ -20,6 +20,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.table.render({
                 init: init,
                 skin: 'row ',
+                toolbar: ['refresh','export'],
                 cols: [[
                     {type: 'checkbox'},                    {field: 'id', width: 60, title: 'id', search: false},                    {field: 'stepFlow.title', width: 300, title: '审批记录', search: false},
                     {field: 'type', title: '类型', width: 95, search: 'select', selectList: {1: '审批', 2: '抄送'}},

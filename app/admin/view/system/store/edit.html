@@ -40,8 +40,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">添加人</label>
             <div class="layui-input-block" readonly="true">
-            	<input type="hidden" name="add_id" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{$row.add_id|default=''}">
-               	<input type="text" name="" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{$row.add_name|default=''}">
+            	<input type="hidden" name="add_id" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{$row.systemAdmin.id}">
+               	<input type="text" name="" class="layui-input" readonly="true" style="background:#f1f1f1"  value="{$row.systemAdmin.username}">
             </div>
         </div>
         <div class="hr-line"></div>

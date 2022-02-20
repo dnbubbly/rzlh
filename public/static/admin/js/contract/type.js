@@ -30,7 +30,21 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     }],
                     'delete'],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'id', width: 120, title: 'id', search: false},                    {field: 'name', title: '名称'},                    {field: 'status', width: 120, search: 'select', selectList: ["禁用","启用"], title: '状态', templet: ea.table.switch},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},                    {field: 'id', width: 120, title: 'id', search: false},                    {field: 'name', title: '名称'},                    {field: 'status', width: 120, search: 'select', selectList: ["禁用","启用"], title: '状态', templet: ea.table.switch},
+                    {field: 'create_time', width: 200, title: '创建时间', search: false},
+                    {field: 'systemAdmin.username', width: 120, title: '添加人', search: false},                    {width: 250, title: '操作', templet: ea.table.tool,
+                    	operat: [
+                            [{
+                                text: '编辑',
+                                url: init.edit_url,
+                                method: 'open',
+                                width: 500,
+                                height: 270,
+                                auth: 'edit',
+                                class: 'layui-btn layui-btn-xs layui-btn-success',
+                            }],
+                            'delete']
+                    }
                 ]],
             });
 
