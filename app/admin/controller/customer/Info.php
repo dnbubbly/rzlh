@@ -195,7 +195,6 @@ class Info extends AdminController
             ->page($page, $limit)
             ->order("name asc")
             ->select();
-            var_dump($this->model->getLastSql());
             $data = [
                 'code'  => 0,
                 'msg'   => '',
