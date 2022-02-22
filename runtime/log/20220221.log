@@ -1,0 +1,9 @@
+{"time":"2022-02-21 11:42:49","type":"sql","msg":"CONNECT:[ UseTime:0.003390s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-21 11:42:49","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_qualitydetail [ RunTime:0.000872s ]"}
+{"time":"2022-02-21 11:42:49","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_qualitydetail' [ RunTime:0.000575s ]"}
+{"time":"2022-02-21 11:42:57","type":"sql","msg":"CONNECT:[ UseTime:0.001440s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-21 11:42:57","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_qualitylevel [ RunTime:0.001191s ]"}
+{"time":"2022-02-21 11:42:57","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_qualitylevel' [ RunTime:0.000576s ]"}
+{"time":"2022-02-21 11:44:05","type":"sql","msg":"CONNECT:[ UseTime:0.001813s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-21 11:44:05","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_detail [ RunTime:0.000935s ]"}
+{"time":"2022-02-21 11:44:05","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_detail' [ RunTime:0.000611s ]"}

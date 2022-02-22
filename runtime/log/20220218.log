@@ -1,0 +1,24 @@
+{"time":"2022-02-18 10:23:35","type":"sql","msg":"CONNECT:[ UseTime:0.001783s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 10:23:35","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_ship [ RunTime:0.000922s ]"}
+{"time":"2022-02-18 10:23:35","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_ship' [ RunTime:0.000450s ]"}
+{"time":"2022-02-18 11:00:17","type":"sql","msg":"CONNECT:[ UseTime:0.001451s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 11:00:17","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_coaltype [ RunTime:0.001203s ]"}
+{"time":"2022-02-18 11:00:17","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_coaltype' [ RunTime:0.000582s ]"}
+{"time":"2022-02-18 11:10:50","type":"sql","msg":"CONNECT:[ UseTime:0.011257s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 11:10:50","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_delivery [ RunTime:0.001169s ]"}
+{"time":"2022-02-18 11:10:50","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_delivery' [ RunTime:0.000538s ]"}
+{"time":"2022-02-18 11:21:40","type":"sql","msg":"CONNECT:[ UseTime:0.001420s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 11:21:40","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_railwaysite [ RunTime:0.001108s ]"}
+{"time":"2022-02-18 11:21:40","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_railwaysite' [ RunTime:0.000486s ]"}
+{"time":"2022-02-18 11:21:48","type":"sql","msg":"CONNECT:[ UseTime:0.001249s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 11:21:48","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_railwaysite [ RunTime:0.000830s ]"}
+{"time":"2022-02-18 11:21:48","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_railwaysite' [ RunTime:0.000413s ]"}
+{"time":"2022-02-18 11:22:09","type":"sql","msg":"CONNECT:[ UseTime:0.001482s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 11:22:09","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_highwaysite [ RunTime:0.001165s ]"}
+{"time":"2022-02-18 11:22:09","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_highwaysite' [ RunTime:0.000547s ]"}
+{"time":"2022-02-18 15:04:35","type":"sql","msg":"CONNECT:[ UseTime:0.001862s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 15:04:35","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_address [ RunTime:0.001196s ]"}
+{"time":"2022-02-18 15:04:35","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_address' [ RunTime:0.000569s ]"}
+{"time":"2022-02-18 15:18:59","type":"sql","msg":"CONNECT:[ UseTime:0.001480s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-18 15:18:59","type":"sql","msg":"SHOW FULL COLUMNS FROM ea_contract_quality [ RunTime:0.001118s ]"}
+{"time":"2022-02-18 15:18:59","type":"sql","msg":"SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'ea_contract_quality' [ RunTime:0.000437s ]"}
