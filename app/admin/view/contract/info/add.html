@@ -6,20 +6,22 @@
         <div class="layui-form-item">
             <label class="layui-form-label">销方</label>
             <div class="layui-input-block">
-                <input type="text" name="seller" class="layui-input" lay-verify="required" {if $Request.param.cus_id==1} readonly="true" {else} id="seller" {/if} placeholder="请输入销方" value="{$seller|default=''}">
+                <input type="text" name="sellername" class="layui-input" lay-verify="required" {if $Request.param.cus_id==1} readonly="true" {else} id="sellername" {/if} placeholder="请输入销方" value="{$seller|default=''}">
+            	<input type="hidden" name="seller" class="layui-input" {if $Request.param.cus_id==1} value="0" {else} id="sellerid" {/if}>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">购方</label>
             <div class="layui-input-block">
-                <input type="text" name="buyer" class="layui-input" lay-verify="required" {if $Request.param.cus_id==2} readonly="buyer" {else} id="seller" {/if} placeholder="请输入购方" value="{$buyer|default=''}">
+                <input type="text" name="buyername" class="layui-input" lay-verify="required" {if $Request.param.cus_id==2} readonly="buyer" {else} id="buyername" {/if} placeholder="请输入购方" value="{$buyer|default=''}">
+            	<input type="hidden" name="buyer" class="layui-input" {if $Request.param.cus_id==2} value="0" {else} id="buyerid" {/if}>
             </div>
         </div>
         <div class="layui-form-item">
         	<div class="layui-inline">
 	            <label class="layui-form-label">合同编号</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="number" class="layui-input" readonly="true" style="background:#f1f1f1" placeholder="合同编号系统生成" value="">
+	                <input type="text" name="number" class="layui-input" readonly="true" style="background:#f1f1f1" placeholder="合同编号系统生成" value="{$code|default=''}">
 	            </div>
 	        </div>
 	        <div class="layui-inline">
@@ -40,13 +42,15 @@
             <div class="layui-inline">
 	            <label class="layui-form-label">收货单位</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="receiving" class="layui-input" lay-verify="required" placeholder="请输入收货单位" value="" id="receiving">
+	                <input type="text" name="receivingname" class="layui-input" lay-verify="required" placeholder="请输入收货单位" value="" id="receivingname">
+	                <input type="hidden" name="receiving" class="layui-input" id="receivingid">
 	            </div>
 	        </div>
 	        <div class="layui-inline">
 	        	<label class="layui-form-label">结算单位</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="settlement" class="layui-input" lay-verify="required" placeholder="请输入结算单位" value="" id="settlement">
+	                <input type="text" name="settlementname" class="layui-input" lay-verify="required" placeholder="请输入结算单位" value="" id="settlementname">
+	            	<input type="hidden" name="settlement" class="layui-input" id="settlementid">
 	            </div>
 	        </div>
         </div>
@@ -68,7 +72,7 @@
 		    		<tbody id="td">
 		    			<tr>
 		    				<td style="text-align: center;">1</td>
-		    				<td><select name="coal[0][type]" lay-verify="required" lay-filter="road" lay-search="" data-select="{:url('contract.coaltype/index')}" data-fields="id,name" data-value=""></select></td>
+		    				<td><select name="coal[0][type]" lay-filter="road" lay-search="" data-select="{:url('contract.coaltype/index')}" data-fields="id,name" data-value=""></select></td>
 		    				<td><input class="layui-input" name="coal[0][num]" value=""></td>
 		    				<td><input class="layui-input" name="coal[0][price]" value=""></td>
 		    				<td style="text-align: center;"><i class="layui-icon addt">&#xe61f;</i></td>
@@ -108,28 +112,28 @@
 	        <div class="layui-inline" id="rail1">
 	            <label class="layui-form-label">发站</label>
 	            <div class="layui-input-inline">
-	            	<select name="start_station" lay-verify="required" lay-search="" data-select="{:url('contract.railwaysite/index')}" data-fields="id,name" data-value="">
+	            	<select name="rstart_station" lay-verify="required" lay-search="" data-select="{:url('contract.railwaysite/index')}" data-fields="id,name" data-value="">
 		        	</select>
 	            </div>
 	        </div>
 	        <div class="layui-inline" id="rail2">
 	            <label class="layui-form-label">到站</label>
 	            <div class="layui-input-inline">
-	            	<select name="end_station" lay-verify="required" lay-search="" data-select="{:url('contract.railwaysite/index')}" data-fields="id,name" data-value="">
+	            	<select name="rend_station" lay-verify="required" lay-search="" data-select="{:url('contract.railwaysite/index')}" data-fields="id,name" data-value="">
 		        	</select>
 	            </div>
 	        </div>
 	        <div class="layui-inline" id="hight1" style="display: none;">
 	            <label class="layui-form-label">始发地</label>
 	            <div class="layui-input-inline">
-	            	<select name="start_station" lay-verify="" lay-search="" data-select="{:url('contract.highwaysite/index')}" data-fields="id,name" data-value="">
+	            	<select name="hstart_station" lay-verify="" lay-search="" data-select="{:url('contract.highwaysite/index')}" data-fields="id,name" data-value="">
 		        	</select>
 	            </div>
 	        </div>
 	        <div class="layui-inline" id="hight2" style="display: none;">
 	            <label class="layui-form-label">目的地</label>
 	            <div class="layui-input-inline">
-	            	<select name="end_station" lay-verify="" lay-search="" data-select="{:url('contract.highwaysite/index')}" data-fields="id,name" data-value="">
+	            	<select name="hend_station" lay-verify="" lay-search="" data-select="{:url('contract.highwaysite/index')}" data-fields="id,name" data-value="">
 		        	</select>
 	            </div>
 	        </div>
@@ -157,7 +161,7 @@
         	<div class="layui-inline">
 	            <label class="layui-form-label">数量验收</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="check_num" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getCheckNumList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -168,7 +172,7 @@
         	<div class="layui-inline">
 	            <label class="layui-form-label">质量验收</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="check_type" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getCheckTypeList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -185,7 +189,7 @@
         	<div class="layui-inline">
 	        	<label class="layui-form-label">发票</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="tax" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getTaxList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -196,7 +200,7 @@
 	        <div class="layui-inline">
 	        	<label class="layui-form-label">运费</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="freight" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getFreightList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -209,7 +213,7 @@
         	<div class="layui-inline">
 	        	<label class="layui-form-label">承兑加价</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="markup" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getMarkupList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -218,7 +222,7 @@
 	            </div>
 	        </div>
 	        <div class="layui-inline">
-	        	<input type="text" name="markupnum" class="layui-input" lay-verify="required" placeholder="请输入承兑加价数量" value="">
+	        	<input type="text" name="markupnum" class="layui-input" placeholder="请输入承兑加价数量" value="">
 	        </div>
 	    </div>
         <div class="layui-form-item">
@@ -237,7 +241,7 @@
 	        <div class="layui-inline">
 	        	<label class="layui-form-label">结算方式</label>
 	            <div class="layui-input-block">
-	            	<select name="minunit" lay-verify="required">
+	            	<select name="settle" lay-verify="required">
 	                    <option value=''></option>
 	                    {foreach $getSettleList as $k=>$v}
 	                    <option value='{$k}' >{$v}</option>
@@ -264,12 +268,23 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">谈判纪要</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="file" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="" style="width: calc(100% - 85px);">
+                <input name="confile" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="" style="width: calc(100% - 85px);">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="file" data-upload-number="more" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
+                    <span><a class="layui-btn" data-upload="confile" data-upload-number="more" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
                 </div>
             </div>
         </div>
+        {if $Request.param.lead==2}
+        <div class="layui-form-item">
+            <label class="layui-form-label required">电子合同</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="elefile" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="" style="width: calc(100% - 85px);">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="elefile" data-upload-number="more" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
+                </div>
+            </div>
+        </div>
+        {/if}
         <div class="layui-form-item">
             <label class="layui-form-label">添加人</label>
             <div class="layui-input-block">

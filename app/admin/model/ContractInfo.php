@@ -52,6 +52,40 @@ class ContractInfo extends TimeModel
     {
         return ['1'=>'一票结算','2'=>'二票结算',];
     }
-
+    
+    public function systemAdmin()
+    {
+        return $this->belongsTo('\app\admin\model\SystemAdmin', 'add_id', 'id');
+    }
+    
+    public function customerInfo()
+    {
+        return $this->belongsTo('\app\admin\model\CustomerInfo', 'seller', 'id');
+    }
+    
+    public function customerInfoBuyer()
+    {
+        return $this->belongsTo('\app\admin\model\CustomerInfo', 'buyer', 'id');
+    }
+    
+    public function customerInfoReceiving()
+    {
+        return $this->belongsTo('\app\admin\model\CustomerInfo', 'receiving', 'id');
+    }
+    
+    public function customerInfoSettlement()
+    {
+        return $this->belongsTo('\app\admin\model\CustomerInfo', 'settlement', 'id');
+    }
+    
+    public function contractType()
+    {
+        return $this->belongsTo('\app\admin\model\ContractType', 'type', 'id');
+    }
+    
+    public function getSystemAdminList()
+    {
+        return \app\admin\model\SystemAdmin::column('username', 'id');
+    }
 
 }

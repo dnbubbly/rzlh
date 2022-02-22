@@ -13,6 +13,9 @@ use think\facade\Request;
  */
 class Info extends AdminController
 {
+    protected $sort = [
+        'name' => 'asc',
+    ];
 
     use \app\admin\traits\Curd;
 
@@ -93,7 +96,7 @@ class Info extends AdminController
     {
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
-        $row['status'] !=0||$row['status'] !=3 && $this->error('审批中或已归档，不需要提交!');
+        $row['status'] !=1||$row['status'] !=2 && $this->error('审批中或已生效，不需要提交!');
         //查询是否设置审批流程
         $request = new Request();
         $currentController = parseNodeStr(Request::controller());
@@ -121,7 +124,6 @@ class Info extends AdminController
                 addflowDetail(json_decode($step->processConfig)->nodeConfig->childNode,$this->stepflow,$this->model);
                 
             } catch (\Exception $e) {
-                var_dump($e->getMessage());
                 $this->error('发起审批失败');
             }
             $save&&$up ? $this->success('发起审批成功') : $this->error('发起审批失败');
@@ -139,4 +141,69 @@ class Info extends AdminController
         return $this->fetch();
     }
     
+    /**
+     * @NodeAnotation(title="生效列表")
+     */
+    public function reindex()
+    {
+        if ($this->request->isAjax()) {
+            if (input('selectFields')) {
+                return $this->selectList();
+            }
+            list($page, $limit, $where) = $this->buildTableParames();
+            $where[] = ['customer_info.status','=',2];
+            $count = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->count();
+            $list = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->page($page, $limit)
+            ->order("name asc")
+            ->select();
+            $data = [
+                'code'  => 0,
+                'msg'   => '',
+                'count' => $count,
+                'data'  => $list,
+            ];
+            return json($data);
+        }
+        return $this->fetch();
+    }
+    
+    /**
+     * @NodeAnotation(title="未生效列表")
+     */
+    public function indexscore()
+    {
+        if ($this->request->isAjax()) {
+            if (input('selectFields')) {
+                $this->selectWhere[] = ['status','=',0];
+                return $this->selectList();
+            }
+            list($page, $limit, $where) = $this->buildTableParames();
+            $where[] = ['customer_info.status','=',0];
+            $count = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->count();
+            $list = $this->model
+            ->withJoin('systemAdmin', 'LEFT')
+            ->where($where)
+            ->page($page, $limit)
+            ->order("name asc")
+            ->select();
+            var_dump($this->model->getLastSql());
+            $data = [
+                'code'  => 0,
+                'msg'   => '',
+                'count' => $count,
+                'data'  => $list,
+            ];
+            return json($data);
+        }
+        return $this->fetch();
+    }
 }
