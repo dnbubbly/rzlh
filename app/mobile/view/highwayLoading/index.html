@@ -37,7 +37,7 @@
 		            url:"/Highwayloading/del/",
 		            dataType:'json',
 		            type:'post',
-		            data: {'ScID':id},
+		            data: {'id':id},
 		            success:function(t){
 		            	if(t.code==1){
 		            		window.location = '/Highwayloading';
@@ -68,9 +68,9 @@
 	                data:{'page':page,'limit':5},
 	                success:function(t){
 	                    layui.each(t.data, function(index, item){
-	                    	lis.push('<li><div class="tit"  onclick="toindex(this)" data-id="'+item.ScID+'">提货单号：'+item.ScPlan+'<p><span></span></p></div>'
-	                				+'<div class="line"></div><div class="listcar"  onclick="toindex(this)" data-id="'+item.ScID+'"><div class="ctop"><div><p>起运地：<span>'+item.ScStarName+'</span></p><p>运达地：<span>'+item.ScStopName+'</span></p><p>承运人：<span>'+item.ScDepartment+'</span></p><p>品种：<span>'+item.ScCoalType+'</span></p></div></div></div>'
-	                				+'<div class="line"></div><div class="btn"><a href="/Highwayloading/edit?ScID='+item.ScID+'" class="fc">修改</a><a onclick="todel(this)" data-id="'+item.ScID+'"  class="fc">删除</a><a onclick="toprint(this)" data-id="'+item.ScID+'"  class="fc">打印入库单</a></div></li>'
+	                    	lis.push('<li><div class="tit"  onclick="toindex(this)" data-id="'+item.id+'">提货单号：'+item.plan+'<p><span></span></p></div>'
+	                				+'<div class="line"></div><div class="listcar"  onclick="toindex(this)" data-id="'+item.id+'"><div class="ctop"><div><p>起运地：<span>'+item.start_station+'</span></p><p>运达地：<span>'+item.end_station+'</span></p><p>承运人：<span>'+item.cusname+'</span></p><p>品种：<span>'+item.coaltype+'</span></p></div></div></div>'
+	                				+'<div class="line"></div><div class="btn"><a href="/Highwayloading/edit?id='+item.id+'" class="fc">修改</a><a onclick="todel(this)" data-id="'+item.id+'"  class="fc">删除</a><a onclick="toprint(this)" data-id="'+item.id+'"  class="fc">打印入库单</a></div></li>'
 	                		);
 	
 	                    });
@@ -85,11 +85,11 @@
 	})
 	function toindex(obj){
 		var id = $(obj).data("id");
-		window.location.href='/Highwayloading/edit?ScID='+id;
+		window.location.href='/Highwayloading/edit?id='+id;
 	}
 	function toprint(obj){
 		var id = $(obj).data("id");
-		window.location.href='/Highwayloading/print?ScID='+id;
+		window.location.href='/Highwayloading/print?id='+id;
 	}
 	</script>
 	{include file="common/bot" /}

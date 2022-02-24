@@ -34,12 +34,12 @@
 			</div>
 			<div class="example">
 				{if $row.filetype}
-				<div class="file"><a href="http://yc.rizhaolanhua.com/OAFile/{$row.cFile}" >
+				<div class="file"><a href="{$row.cfile}" >
 				<img src="__STATIC__/mobile/images/type{$row.filetype}.png"></a>
 				</div>
 				{else}
-				<a href="{$row.cFile}" >
-					<img src="{$row.cFile}">
+				<a href="{$row.cfile}" >
+					<img src="{$row.cfile}">
 				</a>
 				{/if}
 			</div>
@@ -52,40 +52,40 @@
 				<i class="layui-icon"></i>
 				<p>点击上传</p>
 			</div>
-			<div class="example" onclick="showimg()"><a href="{$row.cFile2}" >
-					<img src="{$row.cFile2}">
+			<div class="example" onclick="showimg()"><a href="{$row.cfile2}" >
+					<img src="{$row.cfile2}">
 				</a></div>
 		</div>
 	</div>
 	<div class="form layui-form-pane">
 		<form id="app-form" class="layui-form layuimini-form">
-			<input type="hidden" name="ScID" value="{$row.ScID}">
-			<input type="hidden" name="cFile" value="{$row.cFile}">
-			<input type="hidden" name="cFilename" value="{$row.cFilename}">
+			<input type="hidden" name="id" value="{$row.id}">
+			<input type="hidden" name="cfile" value="{$row.cfile}">
+			<input type="hidden" name="cfile2" value="{$row.cfile2}">
 			<div class="layui-form-item">
 	            <label class="layui-form-label required">需求号</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScPlan" placeholder="请上传铁路货运单" class="layui-input"  value="{$row.ScPlan}">
+	                <input type="text" name="plan" placeholder="请上传铁路货运单" class="layui-input"  value="{$row.plan}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">发运类型</label>
 	            <div class="layui-input-block">
-	            	<select name="iszc" lay-filter="cYsType_select">
+	            	<select name="trans_type" lay-filter="cYsType_select">
 	            		<option value="">请选择</option>
-	            		<option {if $row.iszc==1} selected="" {/if} value="1">直发</option>
-	            		<option {if $row.iszc==2} selected="" {/if} value="2">转存</option>
-	            		<option {if $row.iszc==3} selected="" {/if} value="3">仓库现货发运</option>
+	            		<option {if $row.trans_type==1} selected="" {/if} value="1">直发</option>
+	            		<option {if $row.trans_type==2} selected="" {/if} value="2">转存</option>
+	            		<option {if $row.trans_type==3} selected="" {/if} value="3">仓库现货发运</option>
 	            	</select>
 	            </div>
 	        </div>
-	        <div class="layui-form-item" id="ku" {if $row.iszc==2} style="display: block;" {else} style="display: none;" {/if}>
+	        <div class="layui-form-item" id="ku" {if $row.trans_type==2} style="display: block;" {else} style="display: none;" {/if}>
 	            <label class="layui-form-label">入库仓库{$row.ScN}</label>
 	            <div class="layui-input-block">
-	            	<select name="ScN">
+	            	<select name="store">
 	            		<option value="">请选择</option>
 	            		{foreach $stocks as $k=>$v}
-	            		<option {if $row.ScN==$v.CskTypeName} selected="" {/if} value="{$v.CskTypeName}">{$v.CskTypeName}</option>
+	            		<option {if $row.store==$v.id} selected="" {/if} value="{$v.id}">{$v.name}</option>
 	            		{/foreach}
 	            	</select>
 	            </div>
@@ -93,49 +93,59 @@
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">定车日期</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScCityOwned" autocomplete="off" class="layui-input" data-year="{:date('Y')}" data-month="{:date('m')}" data-day="{:date('d')}" id="ScCityOwned" placeholder="" value="{:date('Y-m-d',strtotime($row.ScCityOwned))}">
+	                <input type="text" name="setdate" autocomplete="off" class="layui-input" data-year="{:date('Y',$row.setdate)}" data-month="{:date('m',$row.setdate)}" data-day="{:date('d',$row.setdate)}" id="ScCityOwned" placeholder="" value="{:date('Y-m-d',$row.setdate)}">
 	            </div>
 	        </div>
 			<div class="layui-form-item">
 	            <label class="layui-form-label required">装车日期</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScDate" autocomplete="off" class="layui-input" data-year="{:date('Y',strtotime($row.ScDate))}" data-month="{:date('m',strtotime($row.ScDate))}" data-day="{:date('d',strtotime($row.ScDate))}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d',strtotime($row.ScDate))}">
+	                <input type="text" name="loaddate" autocomplete="off" class="layui-input" data-year="{:date('Y',$row.loaddate)}" data-month="{:date('m',$row.loaddate)}" data-day="{:date('d',$row.loaddate)}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d',$row.loaddate)}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">发站</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScStarName" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScStarName}">
+	                <input type="text" name="start_station" class="layui-input" placeholder="请上传铁路货运单" value="{$row.start_station}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">到站</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScStopName" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScStopName}">
+	                <input type="text" name="end_station" class="layui-input" placeholder="请上传铁路货运单" value="{$row.end_station}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">收货单位</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScDepartment" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScDepartment}">
+	                <input type="text" name="cusname" class="layui-input" placeholder="请上传铁路货运单" value="{$row.cusname}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">品种</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScCoalType" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScCoalType}">
+	                <input type="text" name="coaltype" class="layui-input" placeholder="请上传铁路货运单" value="{$row.coaltype}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">物流方式</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="YsType" class="layui-input" placeholder="请上传铁路货运单" value="{$row.YsType}">
+	            	<select name="road">
+	            		<option value="">请选择</option>
+	            		{foreach $ship as $k=>$v}
+	            		<option {if $row.road==$v.id} selected="" {/if} value="{$v.id}">{$v.name}</option>
+	            		{/foreach}
+	            	</select>
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">矿点</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="scZhuangH" class="layui-input" placeholder="请上传铁路货运单" value="{$row.scZhuangH}">
+	                <select name="mini">
+	            		<option value="">请选择</option>
+	            		{foreach $colliery as $k=>$v}
+	            		<option {if $row.mini==$v.id} selected="" {/if} value="{$v.id}">{$v.name}</option>
+	            		{/foreach}
+	            	</select>
 	            </div>
 	        </div>
 	        <div style="overflow-x: auto;">
@@ -155,21 +165,21 @@
 		    			{foreach $saleCoalDetail as $k=>$v}
 		    				<tr>
 		    					<td>{$k+1}</td>
-		    					<td><input type="hidden" name="sale[{$k}][ScdID]" value="{$v.ScdID}"><input class="layui-input layui-table-edit" name="sale[{$k}][ScdDep]" value="{$v.ScdDep}"></td>
-		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdCarType]" value="{$v.ScdCarType}"></td>
-		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdCarCode]" value="{$v.ScdCarCode}"></td>
-		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{$k}][ScdWeight]" value="{:floatval($v.ScdWeight)}"></td>
-		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{$k}][ScdWeight2]" value="{:floatval($v.ScdWeight2)}"></td>
+		    					<td><input type="hidden" name="sale[{$k}][sc_id]" value="{$v.sc_id}"><input class="layui-input layui-table-edit" name="sale[{$k}][plan]" value="{$v.plan}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][cartype]" value="{$v.cartype}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][carcode]" value="{$v.carcode}"></td>
+		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{$k}][sweight]" value="{:floatval($v.sweight)}"></td>
+		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{$k}][fweight]" value="{:floatval($v.fweight)}"></td>
 		    					<td><i class="layui-icon" onclick="del(this)">&#xe640;</i></td>
 		    				</tr>
 		    			{/foreach}
 		    			<tr>
 		    					<td>{:count($saleCoalDetail)+1}</td>
-		    					<td><input type="hidden" name="sale[{:count($saleCoalDetail)}][ScdID]" value=""><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][ScdDep]" value=""></td>
-		    					<td><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][ScdCarType]" value=""></td>
-		    					<td><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][ScdCarCode]" value=""></td>
-		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{:count($saleCoalDetail)}][ScdWeight]" value=""></td>
-		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{:count($saleCoalDetail)}][ScdWeight2]" value=""></td>
+		    					<td><input type="hidden" name="sale[{:count($saleCoalDetail)}][sc_id]" value=""><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][plan]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][cartype]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{:count($saleCoalDetail)}][carcode]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{:count($saleCoalDetail)}][sweight]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{:count($saleCoalDetail)}][fweight" value=""></td>
 		    					<td><i class="layui-icon" onclick="add(this)">&#xe61f;</i></td>
 		    				</tr>
 		    			<tr>
@@ -241,11 +251,11 @@
 		$(obj).parent().html('<i class="layui-icon" onclick="del(this)">&#xe640;</i>');
 		var i = parseInt($("#td tr").eq(length-2).find("td").eq(0).html())+1;
     	$("#td tr").eq(-2).after('<tr><td>'+i+'</td>'
-				+'<td><input type="hidden" name="sale['+(i-1)+'][ScdID]" value=""><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdDep]" value=""></td>'
-				+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdCarType]" value=""></td>'
-				+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdCarCode]" value=""></td>'
-				+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight]" value=""></td>'
-				+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight2]" value=""></td>'
+				+'<td><input type="hidden" name="sale['+(i-1)+'][sc_id]" value=""><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][plan]" value=""></td>'
+				+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][cartype]" value=""></td>'
+				+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][carcode]" value=""></td>'
+				+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][sweight]" value=""></td>'
+				+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][fweight]" value=""></td>'
 				+'<td><i class="layui-icon" onclick="add(this)">&#xe61f;</i></td></tr>')
 		totalSouFund();
 	}
@@ -289,6 +299,9 @@
 	    var upload = layui.upload;
 	    var form = layui.form;
 	    var tishi;
+	    $("select[name='road']").val(2);//铁路
+		$("select[name='road']").attr('disabled','disabled');
+		layui.form.render();
 	    form.on('select(cYsType_select)', function(data) {
             //发运类型，采购入库显示入库仓库
             if (data.value == "2") {
@@ -301,9 +314,8 @@
         });
 	    upload.render({
 	        elem: '#office1',
-	        url: '/RailwayLoading/upload',
+	        url: '/RailwayLoading/detailupload',
 	        accept: 'file', //普通文件
-	        exts: 'pdf', //只允许上传压缩文件
 	        before: function(obj){
 	        	tishi = layer.msg('文档识别中..', {
 	        	    icon: 16
@@ -316,22 +328,43 @@
 	        	if(res.code==1){
 	        		$("#office1").parent().find(".example").show();
 		        	$("#office1").parent().find(".example").html('<img src="'+res.file+'">');
-		        	layui.each(res.rel, function(index, item){
-		        		$("#td").append('<tr><td>'+item[0]+'<input type="hidden" name="sale['+(item[0]-1)+'][ScdID]" value="'+item[0]+'"></td>'
-		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdDep]" value="'+item[1]+'"></td>'
-		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdCarType]" value="'+item[2]+'"></td>'
-		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdCarCode]" value="'+item[3]+'"></td>'
-		        		+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(item[0]-1)+'][ScdWeight]" value="'+item[4]+'"></td>'
-		        		+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(item[0]-1)+'][ScdWeight2]" value="'+item[5]+'"></td>'
-		        		+'<td><i class="layui-icon" onclick="add(this)">&#xe61f;</i></td></tr>')
+		        	$("#td tr").eq(-2).remove();
+		        	$("#td tr").eq(-1).remove();
+		        	if($("input[name='cfile2']").val()!=''){
+		        		$("input[name='cfile2']").val($("input[name='cfile2']").val()+";"+res.file);
+		        	}else{
+		        		$("input[name='cfile2']").val(res.file);
+		        	}
+		        	
+		        	var count1 = 0;
+		        	var count2 = 0;
+		        	var num = $("#td tr").length+1;
+	        		layui.each(res.data, function(index, item){
+		        		$("#td").append('<tr><td>'+num+'<input type="hidden" name="sale['+(item[0]-1)+'][sc_id]" value="'+num+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][plan]" value="'+item[1]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][cartype]" value="'+item[2]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][carcode]" value="'+item[3]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][sweight]" value="'+item[4]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][fweight]" value="'+item[5]+'"></td>'
+		        		+'<td><i class="layui-icon" onclick="del(this)">&#xe640;</i></td></tr>');
+		        		count1 = count1+parseFloat(item[4]);
+		        		count2 = count1+parseFloat(item[5]);
+		        		num = num+1;
 		        	})
+		        	$("#td").append('<tr><td>'+num+'<input type="hidden" name="sale['+num+'][sc_id]" value=""></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+num+'][plan]" value=""></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+num+'][cartype]" value=""></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+num+'][carcode]" value=""></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+num+'][sweight]" value=""></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+num+'][fweight]" value=""></td>'
+		        		+'<td><i class="layui-icon" onclick="add(this)">&#xe61f;</i></td></tr>');
 		        	$("#td").append('<tr>'
 		    				+'<td><span style="color: red">合计</span></td>'
 		    				+'<td></td>'
 		    				+'<td></td>'
 		    				+'<td></td>'
-		    				+'<td><span style="color: red">'+res.count1+'</span></td>'
-		    				+'<td><span style="color: red">'+res.count2+'</span></td>'
+		    				+'<td><span style="color: red">'+count1+'</span></td>'
+		    				+'<td><span style="color: red">'+count2+'</span></td>'
 		    				+'<td></td></tr>');
 	        	}else{
 	        		layer.msg(res.msg);
@@ -356,16 +389,15 @@
 	        done: function(res){
 	        	layer.close(tishi);
 	        	if(res.code==1){
-	        		$("input[name='ScPlan']").val(res.data[0].words);
-			        $("input[name='ScStarName']").val(res.data[1].words);
-			        $("input[name='ScStopName']").val(res.data[2].words);
-		        	$("input[name='ScDepartment']").val(res.data[3].words);
-		        	$("input[name='ScCoalType']").val(res.data[4].words);
-		        	$("input[name='YsType']").val("铁路");
-		        	$("input[name='cFile']").val(res.file);
+	        		$("input[name='plan']").val(res.data[0].words);
+			        $("input[name='start_station']").val(res.data[1].words);
+			        $("input[name='end_station']").val(res.data[2].words);
+		        	$("input[name='cusname']").val(res.data[3].words);
+		        	$("input[name='coaltype']").val(res.data[4].words);
+		        	$("select[name='road']").val(2);//铁路
+		        	$("input[name='cfile']").val(res.file);
 		        	$("#office").parent().find(".example").show();
 		        	$("#office").parent().find(".example").html('<img src="'+res.file+'">');
-		        	$("input[name='cFilename']").val(res.filename);
 	        	}else{
 	        		layer.msg(res.msg);
 	        	}
@@ -377,20 +409,20 @@
 	        }
 		});
 	    form.on('submit(demo1)', function(data){
-	    	if(!$("input[name='cFile']").val()){
+	    	if(!$("input[name='cfile']").val()){
 	    		layer.msg("请先上传铁路货运单！");
 	    		return false;
 	    	}
-	    	if(!$("input[name='ScCityOwned']").val()){
+	    	if(!$("input[name='setdate']").val()){
 	    		layer.msg("请选择定车日期！");
 	    		return false;
 	    	}
-	    	if(!$("select[name='iszc']").val()){
+	    	if(!$("select[name='trans_type']").val()){
 	    		layer.msg("请选择发运类型！");
 	    		return false;
 	    	}
-	    	if($("select[name='iszc']").val()=="2"){
-	    		if(!$("select[name='ScN']").val()){
+	    	if($("select[name='trans_type']").val()=="2"){
+	    		if(!$("select[name='store']").val()){
 		    		layer.msg("请选择入库仓库！");
 		    		return false;
 		    	}

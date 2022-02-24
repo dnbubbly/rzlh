@@ -240,7 +240,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
             });
         	$("body").on("click", ".qualityt", function() {
         		var index = $(this).data('index');
-        		ea.open("质量奖惩","/contract.info/quality?index="+index,"80%","600px");
+        		ea.open("质量奖惩","../contract.info/quality?index="+index,"80%","600px");
         	});
         	$("body").on("click", ".delt", function() {
         		$(this).parent().parent().remove();
@@ -253,7 +253,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -281,7 +281,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -309,7 +309,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -337,7 +337,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -428,7 +428,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
             });
         	$("body").on("click", ".qualityt", function() {
         		var index = $(this).data('index');
-        		ea.open("质量奖惩","/contract.info/quality?index="+index,"80%","600px");
+        		ea.open("质量奖惩","../contract.info/quality?index="+index,"80%","600px");
         	});
         	$("body").on("click", ".delt", function() {
         		$(this).parent().parent().remove();
@@ -441,7 +441,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -469,7 +469,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -497,7 +497,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -525,7 +525,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                 height:'400',  //自定义高度
                 width:'900',  //自定义宽度
                 table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                    url:'/customer.info/reindex',
+                    url:'../customer.info/reindex',
                     cols: [[
                     	{ type: 'radio' },
                     	{field: 'code', width: 100,  title: '编号'},
@@ -550,7 +550,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
         detail: function(){
         	$("body").on("click", ".qualityt", function() {
         		var index = $(this).data('index');
-        		ea.open("质量奖惩","/contract.info/qualitydetail?index="+index,"80%","600px");
+        		ea.open("质量奖惩","../contract.info/qualitydetail?index="+index,"80%","600px");
         	});
         	ea.listen();
         },

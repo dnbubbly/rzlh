@@ -1,4 +1,4 @@
-<?php /*a:2:{s:48:"E:\wamp64\www\rzlh\app\mobile\view\my\index.html";i:1645670901;s:50:"E:\wamp64\www\rzlh\app\mobile\view\common\bot.html";i:1640934938;}*/ ?>
+<?php /*a:2:{s:48:"E:\wamp64\www\rzlh\app\mobile\view\my\index.html";i:1645705614;s:50:"E:\wamp64\www\rzlh\app\mobile\view\common\bot.html";i:1640934938;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,33 +39,19 @@
 	<div class="user_menu">
 		<ul>
 			<li>
-				<a href="/Railwayloading/">
+				<a href="/Railwayloading/add">
 					<img src="/static/mobile/images/memicon1.png" class="icon">
-                	<h4 class="left">铁路装车入库</h4>
+                	<h4 class="left">铁路装车</h4>
                 	<p class="right"><span></span><img src="/static/mobile/images/next1.png" class="next"></p>
                 </a>
             </li>
 			<li>
-				<a href="/Highwayloading/">
+				<a href="/Highwayloading/add">
 					<img src="/static/mobile/images/memicon3.png" class="icon">
-                	<h4 class="left">公路装车入库</h4>
+                	<h4 class="left">公路装车</h4>
                 	<p class="right"><span></span><img src="/static/mobile/images/next1.png" class="next"></p>
                 </a>
             </li>
-            <!-- <li>
-				<a href="/Railwayloadingsale/">
-					<img src="/static/mobile/images/memicon2.png" class="icon">
-                	<h4 class="left">销售铁路装车</h4>
-                	<p class="right"><span></span><img src="/static/mobile/images/next1.png" class="next"></p>
-                </a>
-            </li>
-			<li>
-				<a href="/Highwayloadingsale/">
-					<img src="/static/mobile/images/memicon4.png" class="icon">
-                	<h4 class="left">销售公路装车</h4>
-                	<p class="right"><span></span><img src="/static/mobile/images/next1.png" class="next"></p>
-                </a>
-            </li> -->
             <li onclick="out()">
 				<a href="javascript:void(0)">
 					<img src="/static/mobile/images/memicon7.png" class="icon">

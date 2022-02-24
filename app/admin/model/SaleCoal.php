@@ -11,7 +11,14 @@ class SaleCoal extends TimeModel
 
     protected $deleteTime = "delete_time";
 
+    public function getContractHighwaysiteList()
+    {
+        return \app\admin\model\ContractHighwaysite::column('name', 'id');
+    }
     
-    
+    public function getContractCoaltypeList()
+    {
+        return \app\admin\model\ContractCoaltype::column('name', 'id');
+    }
 
 }

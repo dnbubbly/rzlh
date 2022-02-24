@@ -1,4 +1,4 @@
-<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\mobile\view\railwayloading\add.html";i:1645685318;s:50:"E:\wamp64\www\rzlh\app\mobile\view\common\bot.html";i:1640934938;}*/ ?>
+<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\mobile\view\railwayloading\add.html";i:1645701266;s:50:"E:\wamp64\www\rzlh\app\mobile\view\common\bot.html";i:1640934938;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,9 +53,8 @@
 	</div>
 	<div class="form layui-form-pane">
 		<form id="app-form" class="layui-form layuimini-form">
-			<input type="hidden" name="cFile" value="">
-			<input type="hidden" name="cFilename" value="">
-			<input type="hidden" name="cFile2" value="">
+			<input type="hidden" name="cfile" value="">
+			<input type="hidden" name="cfile2" value="">
 			<div class="layui-form-item">
 	            <label class="layui-form-label required">需求号</label>
 	            <div class="layui-input-block">
@@ -65,7 +64,7 @@
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">发运类型</label>
 	            <div class="layui-input-block">
-	            	<select name="trans_type" lay-filter="trans_type">
+	            	<select name="trans_type" lay-filter="cYsType_select">
 	            		<option value="">请选择</option>
 	            		<option value="1">直发</option>
 	            		<option value="2">转存</option>
@@ -270,6 +269,10 @@
 	    var upload = layui.upload;
 	    var form = layui.form;
 	    var tishi;
+
+		$("select[name='road']").val(2);//铁路
+		$("select[name='road']").attr('disabled','disabled');
+		layui.form.render();
 	    form.on('select(cYsType_select)', function(data) {
             //发运类型，采购入库显示入库仓库
             if (data.value == "2") {
@@ -297,10 +300,10 @@
 		        	$("#office1").parent().find(".example").html('<img src="'+res.file+'">');
 		        	$("#td tr").eq(-2).remove();
 		        	$("#td tr").eq(-1).remove();
-		        	if($("input[name='cFile2']").val()!=''){
-		        		$("input[name='cFile2']").val($("input[name='cFile2']").val()+";"+res.file);
+		        	if($("input[name='cfile2']").val()!=''){
+		        		$("input[name='cfile2']").val($("input[name='cfile2']").val()+";"+res.file);
 		        	}else{
-		        		$("input[name='cFile2']").val(res.file);
+		        		$("input[name='cfile2']").val(res.file);
 		        	}
 		        	
 		        	var count1 = 0;
@@ -359,7 +362,7 @@
 		        	$("input[name='cusname']").val(res.data[3].words);
 		        	$("input[name='coaltype']").val(res.data[4].words);
 		        	$("select[name='road']").val(2);//铁路
-		        	$("input[name='cFile']").val(res.file);
+		        	$("input[name='cfile']").val(res.file);
 		        	$("#office").parent().find(".example").show();
 		        	$("#office").parent().find(".example").html('<img src="'+res.file+'">');
 		        	layui.form.render();
@@ -374,7 +377,7 @@
 	        }
 		});
 	    form.on('submit(demo1)', function(data){
-	    	if(!$("input[name='cFile']").val()){
+	    	if(!$("input[name='cfile']").val()){
 	    		layer.msg("请先上传铁路货运单！");
 	    		return false;
 	    	}

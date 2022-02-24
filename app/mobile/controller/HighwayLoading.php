@@ -3,14 +3,14 @@
 namespace app\mobile\controller;
 
 
-use app\common\controller\AdminController;
+use app\common\controller\MobileController;
 use think\facade\Filesystem;
 use think\File;
 use think\App;
 use think\Image;
 require_once '../vendor/baiduocr/AipOcr.php';
 
-class HighwayLoading extends AdminController
+class HighwayLoading extends MobileController
 {
     protected $layout = FALSE;
     
@@ -19,14 +19,12 @@ class HighwayLoading extends AdminController
         parent::__construct($app);
         
         $this->model = new \app\admin\model\SaleCoal();
-        $this->salesOrder = new \app\admin\model\SalesOrder();
-        $this->saleCoalDetail = new \app\admin\model\SaleCoalDetail();
-        $this->saleRoadG = new \app\admin\model\SaleRoadG();
-        $this->coalStocksG = new \app\admin\model\CoalStocksG();
-        $this->CoalStocks = new \app\admin\model\CoalStocks();
-        $this->cstarz = new \app\admin\model\Cstarz();
-        $this->cstopz = new \app\admin\model\Cstopz();
-        $this->ccoalType = new \app\admin\model\CcoalType();
+        $this->salecoaldetail = new \app\admin\model\SaleCoaldetail();
+        $this->systemStore =  new \app\admin\model\SystemStore();
+        $this->contractColliery =  new \app\admin\model\ContractColliery();
+        $this->ship = new \app\admin\model\ContractShip();
+        $this->coaltype= new \app\admin\model\ContractCoaltype();
+        $this->highwaysite= new \app\admin\model\ContractHighwaysite();
     }
     
     public function index()
@@ -36,27 +34,30 @@ class HighwayLoading extends AdminController
             $page = isset($post['page']) && !empty($post['page']) ? $post['page'] : 1;
             $limit = isset($post['limit']) && !empty($post['limit']) ? $post['limit'] : 15;
             $list= array();
-            $where[] = ['ScPeople','=',session('admin.userCode')];
-            $where[] = ['ischeck','=',1];
-            $where[] = ['ScType','=',2];
+            $where[] = ['add_id','=',session('admin.id')];
+            $where[] = ['road','=',1];//公路
             $count = $this->model
             ->where($where)
             ->count();
             $list = $this->model
             ->where($where)
             ->page($page, $limit)
-            ->order('ScDate desc')
+            ->order('loaddate desc')
             ->select();
+            foreach ($list as $li){
+                $li->start_station = $this->model->getContractHighwaysiteList()[$li->start_station];
+                $li->end_station = $this->model->getContractHighwaysiteList()[$li->end_station];
+                $li->coaltype= $this->model->getContractCoaltypeList()[$li->coaltype];
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
                 'count' => $count,
                 'data'  => $list,
             ];
-            return json($data);
-        }
+            return json($data);}
         $this->assign('menu',2);
-        $this->assign('title',"采购公路装车");
+        $this->assign('title',"公路装车");
         return $this->fetch();
     }
     
@@ -153,72 +154,42 @@ class HighwayLoading extends AdminController
     public function add(){
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            $s = $this->model->where('ScPlan',$post['ScPlan'])->count();
+            $s = $this->model->where('plan',$post['plan'])->count();
             if($s>0){
                 $this->error("该提货单号的公路装车已添加");
             }
             if(count($post['sale'])==0){
                 $this->error("请上传装车明细");
             }
-            $ad['SnID'] = 0;
-            $ad['ScType'] = 2;
-            $ad['ischeck'] = 1;
-            $ad['isjs'] = 0;
-            $ad['checkNo'] = 1;
-            $ad['ScPeople'] = session('admin.userCode');
-            $ad['ScCityOwned'] = $post['ScDate'];
-            $ad['ScPlan'] = $post['ScPlan'];
-            $ad['iszc'] = $post['iszc'];
-            $ad['ScDate'] = $post['ScDate'];
-            $ad['ScStarName'] = $post['ScStarName'];
-            $ad['ScStopName'] = $post['ScStopName'];
-            $ad['ScCoalType'] = $post['ScCoalType'];
-            $ad['scZhuangH'] = $post['scZhuangH'];
-            $ad['ScDepartment'] = $post['ScDepartment'];
-            $ad['YsType'] = $post['YsType'];
-            $ad['ScN'] = $post['ScN'];
+            
+            $add['plan'] = $post['plan'];
+            $add['trans_type'] = $post['trans_type'];
+            $add['loaddate'] = strtotime($post['loaddate']);
+            $add['start_station'] = $post['start_station'];
+            $add['end_station'] = $post['end_station'];
+            $add['cusname'] = $post['cusname'];
+            $add['coaltype'] = $post['coaltype'];
+            $add['mini'] = $post['mini'];
+            $add['road'] = $post['road'];
+            $add['store'] = $post['store'];
+            $add['create_time'] = time();//装车类型
+            $add['add_id'] = session('admin.id');
             try {
-                $save = $this->model->insert($ad);
+                $save = $this->model->insert($add);
                 $scid = $this->model->getLastInsID();
                 //保存明细
                 $arr = $post['sale'];
-                $SdDepartment = $post['ScN']?$post['ScN']:"虚拟库";
                 foreach ($arr as $a){
-                    if($a['ScdDep']){
-                        $in['ScID'] = $scid;
-                        $in['ScdDep'] = $a['ScdDep'];
-                        $in['ScdCarType'] = '';
-                        $in['ScdCarCode'] = '';
-                        $in['ScdWeight'] = $a['ScdWeight'];
-                        $in['ScdWeight2'] = $a['ScdWeight2'];
-                        $in['ScdCoal'] = 0;
-                        $in['isdh'] = 0;
-                        $in['ScdDate'] = date("Y-m-d");
-                        $in['ScdOperate'] = session('admin.userCode');
-                        $this->saleCoalDetail->insert($in);
-                        //保存入库更新库存
-                        $saleCoal = $this->model->where('ScID',$scid)->find();
-                        $this->saleRoadG->saveStore($saleCoal, $a['ScdWeight2'],$SdDepartment);
+                    if($a['plan']){
+                        $in['sc_id'] = $scid;
+                        $in['plan'] = $a['plan'];
+                        $in['sweight'] = $a['sweight'];
+                        $in['fweight'] = $a['fweight'];
+                        $in['create_time'] = time();
+                        $in['add_id'] = session('admin.id');
+                        $this->salecoaldetail->insert($in);
                     }
                     
-                }
-                //保存起运地
-                $cstarz = $this->cstarz->where("mname",$ad['ScStarName'])->select();
-                if(!count($cstarz)>0){
-                    $cstarzarr['mname'] = $ad['ScStarName'];
-                    $this->cstarz->insert($cstarzarr);
-                }
-                //保存运达地
-                $cstopz = $this->cstopz->where("mname",$ad['ScStopName'])->select();
-                if(!count($cstopz)>0){
-                    $cstopzarr['mname'] = $ad['ScStopName'];
-                    $this->cstopz->insert($cstopzarr);
-                }
-                //保存品种
-                $ccoalType = $this->ccoalType->where("mname",$ad['ScCoalType'])->select();
-                if(!count($ccoalType)>0){
-                    $ccoalTypearr['mname'] = $ad['ScCoalType'];
-                    $this->ccoalType->insert($ccoalTypearr);
                 }
                 if($save){
                     $data = [
@@ -243,110 +214,67 @@ class HighwayLoading extends AdminController
             return json($data);
         }
         //库存仓库
-        $stocks = $this->CoalStocks->order('CskTypeName asc')->select();
-        //起运地
-        $cstarz = $this->cstarz->select();
-        //运达地
-        $cstopz = $this->cstopz->select();
-        //品种
-        $ccoalType = $this->ccoalType->select();
+        $stocks = $this->systemStore->where('status',2)->order('name asc')->select();
         $this->assign('stocks',$stocks);
-        $this->assign('cstarz',$cstarz);
-        $this->assign('cstopz',$cstopz);
-        $this->assign('ccoalType',$ccoalType);
+        $colliery = $this->contractColliery->where('status',1)->order("name asc")->select();
+        $this->assign('colliery',$colliery);
+        $ship = $this->ship->where('status',1)->order("name asc")->select();
+        $this->assign('ship',$ship);
+        //起运地
+        $highwaysite = $this->highwaysite->where('status',1)->select();
+        $this->assign('highwaysite',$highwaysite);
+        //品种
+        $coaltype= $this->coaltype->where('status',1)->select();
+        $this->assign('coaltype',$coaltype);
         $this->assign('menu',2);
-        $this->assign('title',"添加公路装车入库");
+        $this->assign('title',"添加公路装车");
         return $this->fetch();
     }
     
-    public function edit($ScID){
-        $row = $this->model->where('ScID',$ScID)->find();
+    public function edit($id){
+        $row = $this->model->where('id',$id)->find();
         empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            if($post['ScPlan']!=$row['ScPlan']){
-                $s = $this->model->where('ScPlan',$post['ScPlan'])->count();
+            if($post['plan']!=$row['plan']){
+                $s = $this->model->where('plan',$post['plan'])->count();
                 if($s>0){
                     $this->error("该提货单号的公路装车已添加");
                 }
             }
-            $ad['SnID'] = 0;
-            $ad['ScType'] = 2;
-            $ad['ischeck'] = 1;
-            $ad['isjs'] = 0;
-            $ad['checkNo'] = 1;
-            $ad['ScPeople'] = session('admin.userCode');
-            $ad['ScCityOwned'] = $post['ScDate'];
-            $ad['ScPlan'] = $post['ScPlan'];
-            $ad['iszc'] = $post['iszc'];
-            $ad['ScDate'] = $post['ScDate'];
-            $ad['ScStarName'] = $post['ScStarName'];
-            $ad['ScStopName'] = $post['ScStopName'];
-            $ad['ScCoalType'] = $post['ScCoalType'];
-            $ad['ScDepartment'] = $post['ScDepartment'];
-            $ad['scZhuangH'] = $post['scZhuangH'];
-            $ad['YsType'] = $post['YsType'];
-            $ad['ScN'] = $post['ScN'];
+            $add['plan'] = $post['plan'];
+            $add['trans_type'] = $post['trans_type'];
+            $add['start_station'] = $post['start_station'];
+            $add['end_station'] = $post['end_station'];
+            $add['cusname'] = $post['cusname'];
+            $add['coaltype'] = $post['coaltype'];
+            $add['mini'] = $post['mini'];
+            $add['road'] = $post['road'];
+            $add['store'] = $post['store'];
+            $add['create_time'] = time();//装车类型
+            $add['add_id'] = session('admin.id');
             $arr = $post['sale'];
             try {
-                $saleCoalD = $this->saleCoalDetail->where('ScID',$ScID)->select();
-                //删除装车明细
-                $this->saleCoalDetail->where('ScID',$ScID)->delete();
-                $saleCoal = $this->model->where('ScID',$post['ScID'])->find();
-                $salesOrder= $this->salesOrder->where('sid',$saleCoal->sid)->find();
-                //删除原先库存数量
-                $saleRoadG= $this->saleRoadG->where('ScID',$ScID)->select();
-                $prevm = date('ym',strtotime('-1 month'));//上月
-                $nextm = date("ym");//本月
-                $SdDepartment = $post['ScN']?$post['ScN']:"虚拟库";
-                foreach ($saleRoadG as $v){
-                    $coal = $this->coalStocksG ->where(['CsGangkou'=>$SdDepartment,'CsTypeName'=>$saleCoal->ScCoalType])->find();
-                    $csgup['RKSL'.$nextm] = $coal->{'RKSL'.$nextm}-$v->SdWeight;
-                    $csgup['JCSL'.$nextm] = $coal->{'JCSL'.$nextm}-$v->SdWeight;
-                    $this->coalStocksG->where('CsID',$coal->CsID)->update($csgup);
-                }
-                $this->saleRoadG->where('ScID',$ScID)->delete();
+                $save = $this->model->where('id',$id)->update($add);
+                $salecoaldetail= $this->salecoaldetail->where('sc_id',$id)->select();
+                $del = $salecoaldetail->delete();
                 foreach ($arr as $a){
-                    if($a['ScdDep']){
-                        $in['ScID'] = $ScID;
-                        $in['ScdDep'] = $a['ScdDep'];
-                        $in['ScdCarType'] = '';
-                        $in['ScdCarCode'] = '';
-                        $in['ScdWeight'] = $a['ScdWeight'];
-                        $in['ScdWeight2'] = $a['ScdWeight2'];
-                        $in['ScdCoal'] = 0;
-                        $in['ScdDate'] = date("Y-m-d");
-                        $in['ScdOperate'] = session('admin.userCode');
-                        $this->saleCoalDetail->insert($in);
-                        //保存入库更新库存
-                        $saleCoal = $this->model->where('ScID',$ScID)->find();
-                        $this->saleRoadG->updateStore($saleCoal, $a['ScdWeight2'],$SdDepartment);
+                    if($a['plan']){
+                        $in['sc_id'] = $id;
+                        $in['plan'] = $a['plan'];
+                        $in['sweight'] = $a['sweight'];
+                        $in['fweight'] = $a['fweight'];
+                        $in['create_time'] = time();
+                        $in['add_id'] = session('admin.id');
+                        $this->salecoaldetail->insert($in);
+                       
                     }
                 }
-                //保存起运地
-                $cstarz = $this->cstarz->where("mname",$ad['ScStarName'])->select();
-                if(!count($cstarz)>0){
-                    $cstarzarr['mname'] = $ad['ScStarName'];
-                    $this->cstarz->insert($cstarzarr);
-                }
-                //保存运达地
-                $cstopz = $this->cstopz->where("mname",$ad['ScStopName'])->select();
-                if(!count($cstopz)>0){
-                    $cstopzarr['mname'] = $ad['ScStopName'];
-                    $this->cstopz->insert($cstopzarr);
-                }
-                //保存品种
-                $ccoalType = $this->ccoalType->where("mname",$ad['ScCoalType'])->select();
-                if(!count($ccoalType)>0){
-                    $ccoalTypearr['mname'] = $ad['ScCoalType'];
-                    $this->ccoalType->insert($ccoalTypearr);
-                }
-                $save = $this->model->where('ScID',$ScID)->update($ad);
                 if($save){
                     $data = [
                         'code'  => 1,
                         'msg'   => '提交成功',
-                        'data'  => $ScID,
+                        'data'  => $id,
                     ];
                 }else{
                     $data = [
@@ -365,63 +293,61 @@ class HighwayLoading extends AdminController
             }
             return json($data);
         }
-        //查询销售采购单编号
-        $row->cg = $this->salesOrder->where('sid',$row->sid)->find();
-        //库存仓库
-        $stocks = $this->CoalStocks->order('CskTypeName asc')->select();
-        //起运地
-        $cstarz = $this->cstarz->select();
-        //运达地
-        $cstopz = $this->cstopz->select();
-        //品种
-        $ccoalType = $this->ccoalType->select();
-        $saleCoalDetail = $this->saleCoalDetail->where('ScID',$ScID)->select();
+        $saleCoalDetail = $this->salecoaldetail->where('sc_id',$id)->select();
         $count1 = 0;$count2 = 0;
         foreach ($saleCoalDetail as $saleD){
-            $count1 +=$saleD->ScdWeight;
-            $count2 +=$saleD->ScdWeight2;
+            $count1 +=$saleD->sweight;
+            $count2 +=$saleD->fweight;
         }
         $this->assign('count1',$count1);
         $this->assign('count2',$count2);
         $this->assign('saleCoalDetail',$saleCoalDetail);
         $this->assign('cou',count($saleCoalDetail));
+        //库存仓库
+        $stocks = $this->systemStore->where('status',2)->order('name asc')->select();
         $this->assign('stocks',$stocks);
-        $this->assign('cstarz',$cstarz);
-        $this->assign('cstopz',$cstopz);
-        $this->assign('ccoalType',$ccoalType);
+        $colliery = $this->contractColliery->where('status',1)->order("name asc")->select();
+        $this->assign('colliery',$colliery);
+        $ship = $this->ship->where('status',1)->order("name asc")->select();
+        $this->assign('ship',$ship);
+        //起运地
+        $highwaysite = $this->highwaysite->where('status',1)->select();
+        $this->assign('highwaysite',$highwaysite);
+        //品种
+        $coaltype= $this->coaltype->where('status',1)->select();
+        $this->assign('coaltype',$coaltype);
         $this->assign('row', $row);
         $this->assign('menu',2);
-        $this->assign('title',"修改公路装车入库");
+        $this->assign('title',"修改公路装车");
         return $this->fetch();
     }
-    public function del($ScID){
-        $row = $this->model->where('ScID', $ScID)->select();
+    public function del($id){
+        $row = $this->model->where('id', $id)->select();
         $row->isEmpty() && $this->error('数据不存在');
         try {
             //删除装车明细
-            $saleCoalD = $this->saleCoalDetail->where('ScID',$ScID)->select();
+            $saleCoalD = $this->salecoaldetail->where('sc_id',$id)->select();
             if(count($saleCoalD)>0){
-                $this->saleCoalDetail->where('ScID',$ScID)->delete();
-                $this->saleRoadG->delStore($ScID);
+                $row->delete();
             }
-            $save = $this->model->where('ScID',$ScID)->delete();
+            $save = $saleCoalD->delete();
         } catch (\Exception $e) {
             $this->error('删除失败');
         }
         $save ? $this->success('删除成功') : $this->error('删除失败');
     }
-    public function print($ScID){
-        $row = $this->model->where('ScID',$ScID)->find();
+    public function print($id){
+        $row = $this->model->where('id',$id)->find();
         empty($row) && $this->error('数据不存在');
         //防伪码
         require "../vendor/phpqrcode/phpqrcode.php";
         $qRcode = new \QRcode();
         $server_url = $_SERVER['SERVER_NAME']?"http://".$_SERVER['SERVER_NAME']:"http://".$_SERVER['HTTP_HOST'];
         //var_dump($server_url.'/Highwayloading/pass?id='.$ScID);//http://wap.rizhaolanhua.com/Highwayloading/pass?id=217
-        $data = $server_url."/Highwayloading/pass?code=".encrypt('id='.$ScID);
+        $data = $server_url."/Highwayloading/pass?code=".encrypt('id='.$id);
         //var_dump($data);
         
-        $file ="upload/highway/".$ScID.".jpg";
+        $file ="upload/highway/".$id.".jpg";
         // 纠错级别：L、M、Q、H
         $level = 'Q';
         // 点的大小：1到10,用于手机端4就可以了
@@ -434,32 +360,36 @@ class HighwayLoading extends AdminController
         if(file_exists($file)){
             $this->assign('file', $file);
         }
-        $saleCoalDetail = $this->saleCoalDetail->where('ScID',$ScID)->select();
+        $saleCoalDetail = $this->salecoaldetail->where('sc_id',$id)->select();
         $count1 = 0;$count2 = 0;
         foreach ($saleCoalDetail as $saleD){
-            $count1 +=$saleD->ScdWeight;
-            $count2 +=$saleD->ScdWeight2;
+            $count1 +=$saleD->sweight;
+            $count2 +=$saleD->fweight;
         }
         $this->assign('count1',$count1);
         $this->assign('count2',$count2);
         $this->assign('count',count($saleCoalDetail));
         $this->assign('saleCoalDetail',$saleCoalDetail);
         
+        $row->start_station = $this->model->getContractHighwaysiteList()[$row->start_station];
+        $row->end_station = $this->model->getContractHighwaysiteList()[$row->end_station];
+        $row->coaltype= $this->model->getContractCoaltypeList()[$row->coaltype];
+        
         $this->assign('row', $row);
         $this->assign('menu',2);
-        $this->assign('title',"打印入库单");
+        $this->assign('title',"打印装车单");
         return $this->fetch();
     }
     public function pass($code){
         $code = decrypt($code);
         $arr = convertUrlQuery($code);
-        $row = $this->model->where('ScID',$arr['id'])->find();
+        $row = $this->model->where('id',$arr['id'])->find();
         empty($row) && $this->error('数据不存在');
-        $saleCoalDetail = $this->saleCoalDetail->where('ScID',$arr['id'])->select();
+        $saleCoalDetail = $this->salecoaldetail->where('sc_id',$arr['id'])->select();
         $count1 = 0;$count2 = 0;
         foreach ($saleCoalDetail as $saleD){
-            $count1 +=$saleD->ScdWeight;
-            $count2 +=$saleD->ScdWeight2;
+            $count1 +=$saleD->sweight;
+            $count2 +=$saleD->fweight;
         }
         $this->assign('count1',$count1);
         $this->assign('count2',$count2);
@@ -468,7 +398,7 @@ class HighwayLoading extends AdminController
         
         $this->assign('row', $row);
         $this->assign('menu',2);
-        $this->assign('title',"公路入库单");
+        $this->assign('title',"公路装车单");
         return $this->fetch();
     }
     public function resort($arr){

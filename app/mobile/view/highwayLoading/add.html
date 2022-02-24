@@ -42,18 +42,16 @@
 	<form id="app-form" class="layui-form layuimini-form">
 		<div class="form layui-form-pane">
 			<div class="tit">装车信息</div>
-			<input type="hidden" name="cFile" value="">
-			<input type="hidden" name="cFilename" value="">
 			<div class="layui-form-item">
 	            <label class="layui-form-label">入库单号</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScPlan" class="layui-input"  value="" placeholder="请输入入库单号">
+	                <input type="text" name="plan" class="layui-input"  value="" placeholder="请输入入库单号">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label">发运类型</label>
 	            <div class="layui-input-block">
-	            	<select name="iszc" lay-filter="cYsType_select">
+	            	<select name="trans_type" lay-filter="cYsType_select">
 	            		<option value="">请选择发运类型</option>
 	            		<option value="1">直发</option>
 	            		<option value="2">转存</option>
@@ -64,10 +62,10 @@
 	        <div class="layui-form-item" id="ku" style="display: none;">
 	            <label class="layui-form-label">入库仓库</label>
 	            <div class="layui-input-block">
-	            	<select name="ScN">
+	            	<select name="store">
 	            		<option value="">请选择</option>
 	            		{foreach $stocks as $k=>$v}
-	            		<option value="{$v.CskTypeName}">{$v.CskTypeName}</option>
+	            		<option value="{$v.id}">{$v.name}</option>
 	            		{/foreach}
 	            	</select>
 	            </div>
@@ -75,17 +73,16 @@
 			<div class="layui-form-item">
 	            <label class="layui-form-label">装车日期</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScDate" autocomplete="off" class="layui-input" data-year="{:date('Y')}" data-month="{:date('m')}" data-day="{:date('d')}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d')}">
+	                <input type="text" name="loaddate" autocomplete="off" class="layui-input" data-year="{:date('Y')}" data-month="{:date('m')}" data-day="{:date('d')}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d')}">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label">起运地</label>
 	            <div class="layui-input-block">
-	            	<input type="text" id="ScStarName" name="ScStarName" class="layui-input" placeholder="直接选择或搜索选择" value="" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show()" onkeyup="search()" autocomplete="off">
-	            	<select id="ScStarName_select" lay-filter="ScStarName_select" autocomplete="off" lay-search="">
+	            	<select name="start_station" lay-filter="ScStarName_select" autocomplete="off" lay-search="">
 	            		<option value="">直接选择或搜索选择</option>
-	            		{foreach $cstarz as $v}
-          				<option value="{$v.mname}">{$v.mname}</option>
+	            		{foreach $highwaysite as $v}
+          				<option value="{$v.id}">{$v.name}</option>
           				{/foreach}
 	            	</select>
 	            </div>
@@ -93,11 +90,10 @@
 	        <div class="layui-form-item">
 	            <label class="layui-form-label">运达地</label>
 	            <div class="layui-input-block">
-	            	<input type="text" id="ScStopName" name="ScStopName" class="layui-input" placeholder="直接选择或搜索选择" value="" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show1()" onkeyup="search1()" autocomplete="off">
-	            	<select id="ScStopName_select" lay-filter="ScStopName_select" autocomplete="off" lay-search="">
+	            	<select name="end_station" lay-filter="ScStopName_select" autocomplete="off" lay-search="">
 	            		<option value="">直接选择或搜索选择</option>
-	            		{foreach $cstopz as $v}
-          				<option value="{$v.mname}">{$v.mname}</option>
+	            		{foreach $highwaysite as $v}
+          				<option value="{$v.id}">{$v.name}</option>
           				{/foreach}
 	            	</select>
 	            </div>
@@ -105,17 +101,16 @@
 	        <div class="layui-form-item">
 	            <label class="layui-form-label">承运结算人</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="ScDepartment" class="layui-input" placeholder="请填写承运结算人" value="">
+	                <input type="text" name="cusname" class="layui-input" placeholder="请填写承运结算人" value="">
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label">品种</label>
 	            <div class="layui-input-block">
-	            	<input type="text" id="ScCoalType" name="ScCoalType" class="layui-input" placeholder="直接选择或搜索选择" value="" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show2()" onkeyup="search2()" autocomplete="off">
-	            	<select id="ScCoalType_select" lay-filter="ScCoalType_select" autocomplete="off" lay-search="">
+	            	<select name="coaltype" lay-filter="ScCoalType_select" autocomplete="off" lay-search="">
 	            		<option value="">直接选择或搜索选择</option>
-	            		{foreach $ccoalType as $v}
-          				<option value="{$v.mname}">{$v.mname}</option>
+	            		{foreach $coaltype as $v}
+          				<option value="{$v.id}">{$v.name}</option>
           				{/foreach}
 	            	</select>
 	            </div>
@@ -123,13 +118,23 @@
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">矿(库)点</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="scZhuangH" class="layui-input" placeholder="请上传铁路货运单" value="">
+	                <select name="mini">
+	            		<option value="">请选择</option>
+	            		{foreach $colliery as $k=>$v}
+	            		<option value="{$v.id}">{$v.name}</option>
+	            		{/foreach}
+	            	</select>
 	            </div>
 	        </div>
 	        <div class="layui-form-item">
 	            <label class="layui-form-label required">物流方式</label>
 	            <div class="layui-input-block">
-	                <input type="text" name="YsType" class="layui-input" placeholder="请上传铁路货运单" value="公路">
+	                <select name="road">
+	            		<option value="">请选择</option>
+	            		{foreach $ship as $k=>$v}
+	            		<option value="{$v.id}">{$v.name}</option>
+	            		{/foreach}
+	            	</select>
 	            </div>
 	        </div>
 		</div>
@@ -148,10 +153,10 @@
 				    </thead>
 		    		<tbody id="td">
 		    			<tr>
-		    				<td>1<input type="hidden" name="sale[0][ScdID]" value=""></td>
-		    				<td><input class="layui-input layui-table-edit" name="sale[0][ScdDep]" value=""></td>
-		    				<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[0][ScdWeight]" value=""></td>
-		    				<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[0][ScdWeight2]" value=""></td>
+		    				<td>1<input type="hidden" name="sale[0][sc_id]" value=""></td>
+		    				<td><input class="layui-input layui-table-edit" name="sale[0][plan]" value=""></td>
+		    				<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[0][sweight]" value=""></td>
+		    				<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[0][fweight]" value=""></td>
 		    				<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td>
 		    			</tr>	
 		    			<tr>
@@ -184,9 +189,9 @@
 	    </div>
 	</form>
 	<div class="biaoform" id="biaoform" style="display: none;">
-		<input type="text" name="ScdDep" class="layui-input" autocomplete="off" placeholder="请填写车牌号" value="">
-		<input type="text" name="ScdWeight" class="layui-input" autocomplete="off" placeholder="请填写矿发吨数" value="">
-		<input type="text" name="ScdWeight2" class="layui-input" autocomplete="off" placeholder="请填写净重" value="" style="margin-bottom: 0;">
+		<input type="text" name="plan" class="layui-input" autocomplete="off" placeholder="请填写车牌号" value="">
+		<input type="text" name="sweight" class="layui-input" autocomplete="off" placeholder="请填写矿发吨数" value="">
+		<input type="text" name="fweight" class="layui-input" autocomplete="off" placeholder="请填写净重" value="" style="margin-bottom: 0;">
 	</div>
 	<script>
 	totalSouFund();
@@ -259,9 +264,9 @@
 		    content: $("#biaoform"),
 		    btn: ['确定', '不要'],
 		    yes: function(index,layero){
-		    	var ScdDep = layero.find("input[name='ScdDep']").val()
-		    	var ScdWeight = layero.find("input[name='ScdWeight']").val()
-		    	var ScdWeight2 = layero.find("input[name='ScdWeight2']").val()
+		    	var ScdDep = layero.find("input[name='plan']").val()
+		    	var ScdWeight = layero.find("input[name='sweight']").val()
+		    	var ScdWeight2 = layero.find("input[name='fweight']").val()
 		    	if(!ScdDep){
 		    		layer.msg("请填写车牌号！");
 		    		return false;
@@ -277,13 +282,13 @@
 		    	$("#td tr").eq(-2).find("td:eq(1) input").val(ScdDep);
 		    	$("#td tr").eq(-2).find("td:eq(2) input").val(ScdWeight);
 		    	$("#td tr").eq(-2).find("td:eq(3) input").val(ScdWeight2);
-		    	layero.find("input[name='ScdDep']").val('');
-		    	layero.find("input[name='ScdWeight']").val('');
-		    	layero.find("input[name='ScdWeight2']").val('');
-		    	$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][ScdID]" value=""></td>'
-    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdDep]" value=""></td>'
-    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight]" value=""></td>'
-    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight2]" value=""></td>'
+		    	layero.find("input[name='plan']").val('');
+		    	layero.find("input[name='sweight']").val('');
+		    	layero.find("input[name='fweight']").val('');
+		    	$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][sc_id]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][plan]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][sweight]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][fweight]" value=""></td>'
     					+'<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td></tr>')
     			totalSouFund();
 		    	layer.close(index);
@@ -295,6 +300,9 @@
 	    var upload = layui.upload;
 	    var form = layui.form;
 	    var tishi;
+	    $("select[name='road']").val(1);//铁路
+		$("select[name='road']").attr('disabled','disabled');
+		layui.form.render();
 	    form.on('select(cYsType_select)', function(data) {
             //发运类型，采购入库显示入库仓库
             if (data.value == "2") {
@@ -327,10 +335,10 @@
 	        		}else{
 	        			$("#td tr").eq(-2).find("td:eq(2) input").val(res.data[2].words);
 	        		}
-	        		$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][ScdID]" value=""></td>'
-	    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdDep]" value=""></td>'
-	    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight]" value=""></td>'
-	    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][ScdWeight2]" value=""></td>'
+	        		$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][sc_id]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][plan]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][sweight]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale['+(i-1)+'][fweight]" value=""></td>'
 	    					+'<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td></tr>')
 	    			totalSouFund();
 	        	}else{
@@ -343,171 +351,35 @@
 	        	layer.msg(res.msg);
 	        }
 		});
-	    //起运地
-        var flag = false;
-	    form.on('select(ScStarName_select)', function (data) {   //选择移交单位 赋值给input框
-	    	console.info(data.value);
-	    	flag = false;
-            $("#ScStarName").val(data.value);
-            $("#ScStarName_select").next().find("dl").css({ "display": "none" });
-            form.render();
-        });
-        window.search = function () {
-            var value = $("#ScStarName").val();
-            $("#ScStarName_select").val(value);
-            form.render();
-            $("#ScStarName_select").next().find("dl").css({ "display": "block" });
-            var dl = $("#ScStarName_select").next().find("dl").children();
-            var j = -1;
-            for (var i = 0; i < dl.length; i++) {
-                if (dl[i].innerHTML.indexOf(value) <= -1) {
-                    dl[i].style.display = "none";
-                    j++;
-                }
-                if (j == dl.length-1) {
-                    $("#ScStarName_select").next().find("dl").css({ "display": "none" });
-                }
-            }
-            
-        }
-        window.show = function () {
-        	if(flag1){
-        		flag = false;
-        	}
-        	if(flag2){
-        		flag2 = false;
-        	}
-        	if(flag){
-        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
-        		$("#ScStarName_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
-        		flag = false;
-        	}else{
-        		$("#ScStarName_select").next().find("dl").css({ "display": "block" });
-        		$("#ScStarName_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
-        		flag = true;
-        	}
-        	
-        }
-        //运达地
-        var flag1 = false;
-        form.on('select(ScStopName_select)', function (data) {   //选择移交单位 赋值给input框
-        	flag1 = false;
-            $("#ScStopName").val(data.value);
-            $("#ScStopName_select").next().find("dl").css({ "display": "none" });
-            form.render();
-        });
-        window.search1 = function () {
-            var value = $("#ScStopName").val();
-            $("#ScStopName_select").val(value);
-            form.render();
-            $("#ScStopName_select").next().find("dl").css({ "display": "block" });
-            var dl = $("#ScStopName_select").next().find("dl").children();
-            var j = -1;
-            for (var i = 0; i < dl.length; i++) {
-                if (dl[i].innerHTML.indexOf(value) <= -1) {
-                    dl[i].style.display = "none";
-                    j++;
-                }
-                if (j == dl.length-1) {
-                    $("#ScStopName_select").next().find("dl").css({ "display": "none" });
-                }
-            }
-            
-        }
-        window.show1 = function () {
-        	if(flag){
-        		flag = false;
-        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
-        	}
-        	if(flag2){
-        		flag2 = false;
-        		$("#ScCoalType_select").next().find("dl").css({ "display": "none" });
-        	}
-        	if(flag1){
-        		$("#ScStopName_select").next().find("dl").css({ "display": "none" });
-        		$("#ScStopName_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
-        		flag1 = false;
-        	}else{
-        		$("#ScStopName_select").next().find("dl").css({ "display": "block" });
-        		$("#ScStopName_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
-        		flag1 = true;
-        	}
-        	
-        }
-        //品种
-        var flag2 = false;
-        form.on('select(ScCoalType_select)', function (data) {   //选择移交单位 赋值给input框
-        	flag2 = false;
-            $("#ScCoalType").val(data.value);
-            $("#ScCoalType_select").next().find("dl").css({ "display": "none" });
-            form.render();
-        });
-        window.search2 = function () {
-            var value = $("#ScCoalType").val();
-            $("#ScCoalType_select").val(value);
-            form.render();
-            $("#ScCoalType_select").next().find("dl").css({ "display": "block" });
-            var dl = $("#ScCoalType_select").next().find("dl").children();
-            var j = -1;
-            for (var i = 0; i < dl.length; i++) {
-                if (dl[i].innerHTML.indexOf(value) <= -1) {
-                    dl[i].style.display = "none";
-                    j++;
-                }
-                if (j == dl.length-1) {
-                    $("#ScCoalType_select").next().find("dl").css({ "display": "none" });
-                }
-            }
-            
-        }
-        window.show2 = function () {
-        	if(flag){
-        		flag = false;
-        		$("#ScStopName_select").next().find("dl").css({ "display": "none" });
-        	}
-        	if(flag1){
-        		flag1 = false;
-        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
-        	}
-        	if(flag2){
-        		$("#ScCoalType_select").next().find("dl").css({ "display": "none" });
-        		$("#ScCoalType_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
-        		flag2 = false;
-        	}else{
-        		$("#ScCoalType_select").next().find("dl").css({ "display": "block" });
-        		$("#ScCoalType_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
-        		flag2 = true;
-        	}
-        	
-        }
+        
         //表单提交
 	    form.on('submit(demo1)', function(data){
-	    	if(!$("input[name='ScPlan']").val()){
+	    	if(!$("input[name='plan']").val()){
 	    		layer.msg("请填写入库单号！");
 	    		return false;
 	    	}
-	    	if(!$("select[name='iszc']").val()){
+	    	if(!$("select[name='trans_type']").val()){
 	    		layer.msg("请选择发运类型！");
 	    		return false;
 	    	}
-	    	if(!$("input[name='ScStarName']").val()){
-	    		layer.msg("请填写或选择起运地！");
+	    	if(!$("select[name='start_station']").val()){
+	    		layer.msg("请选择起运地！");
 	    		return false;
 	    	}
-	    	if(!$("input[name='ScStopName']").val()){
-	    		layer.msg("请填写或选择运达地！");
+	    	if(!$("select[name='end_station']").val()){
+	    		layer.msg("请选择运达地！");
 	    		return false;
 	    	}
-	    	if(!$("input[name='ScDepartment']").val()){
+	    	if(!$("input[name='cusname']").val()){
 	    		layer.msg("请填写承运结算人！");
 	    		return false;
 	    	}
-	    	if(!$("input[name='ScCoalType']").val()){
+	    	if(!$("select[name='coaltype']").val()){
 	    		layer.msg("请选择品种！");
 	    		return false;
 	    	}
-	    	if($("select[name='iszc']").val()=="2"){
-	    		if(!$("select[name='ScN']").val()){
+	    	if($("select[name='trans_type']").val()=="2"){
+	    		if(!$("select[name='store']").val()){
 		    		layer.msg("请选择入库仓库！");
 		    		return false;
 		    	}

@@ -33,7 +33,7 @@ class RailwayLoading extends MobileController
             $limit = isset($post['limit']) && !empty($post['limit']) ? $post['limit'] : 15;
             $list= array();
             $where[] = ['add_id','=',session('admin.id')];
-            $where[] = ['type','=',1];//销售
+            $where[] = ['road','=',2];//铁路
             $count = $this->model
             ->where($where)
             ->count();
@@ -207,47 +207,37 @@ class RailwayLoading extends MobileController
             if($s>0){
                 $this->error("该需求号铁路装车已添加");
             }
-            $add['cFile'] = $post['cFile'];
-            $add['cFile2'] = $post['cFile2'];
-            $add['cFilename'] = $post['cFilename'];
-            $add['ScPlan'] = $post['ScPlan'];
-            $add['iszc'] = $post['iszc'];
-            $add['ScCityOwned'] = $post['ScCityOwned'];
-            $add['ScDate'] = $post['ScDate'];
-            $add['ScStarName'] = $post['ScStarName'];
-            $add['ScStopName'] = $post['ScStopName'];
-            $add['ScDepartment'] = $post['ScDepartment'];
-            $add['ScCoalType'] = $post['ScCoalType'];
-            $add['scZhuangH'] = $post['scZhuangH'];
-            $add['YsType'] = $post['YsType'];
-            $add['ScN'] = $post['ScN'];
-            $add['SnID'] = 0;
-            $add['ScType'] = 1;
-            $add['ischeck'] = 1;
-            $add['isjs'] = 0;
-            $add['checkNo'] = 1;
-            $add['ScPeople'] = session('admin.userCode');
+            $add['cfile'] = $post['cfile'];
+            $add['cfile2'] = $post['cfile2'];
+            $add['plan'] = $post['plan'];
+            $add['trans_type'] = $post['trans_type'];
+            $add['setdate'] = strtotime($post['setdate']);
+            $add['loaddate'] = strtotime($post['loaddate']);
+            $add['start_station'] = $post['start_station'];
+            $add['end_station'] = $post['end_station'];
+            $add['cusname'] = $post['cusname'];
+            $add['coaltype'] = $post['coaltype'];
+            $add['mini'] = $post['mini'];
+            $add['road'] = $post['road'];
+            $add['store'] = $post['store'];
+            $add['create_time'] = time();//装车类型
+            $add['add_id'] = session('admin.id');
             try {
                 $save = $this->model->insert($add);
                 $scid = $this->model->getLastInsID();
                 $arr = $post['sale'];
-                $SdDepartment = $post['ScN']?$post['ScN']:"虚拟库";
+                $store = $post['store']?$post['store']:"虚拟库";
                 foreach ($arr as $a){
-                    $in['ScID'] = $scid;
-                    $in['ScdDep'] = $a['ScdDep'];
-                    $in['ScdCarType'] = $a['ScdCarType'];
-                    $in['ScdCarCode'] = $a['ScdCarCode'];
-                    $in['ScdWeight'] = $a['ScdWeight'];
-                    $in['ScdWeight2'] = $a['ScdWeight2'];
-                    $in['ScdCoal'] = 0;
-                    $in['isdh'] = 0;
-                    $in['ScdDate'] = date("Y-m-d");
-                    $in['ScdOperate'] = session('admin.userCode');
-                    if( $in['ScdDep']){
-                        $this->saleCoalDetail->insert($in);
-                        //保存入库更新库存
-                        $saleCoal = $this->model->where('ScID',$scid)->find();
-                        $this->saleRoadG->saveStore($saleCoal, $a['ScdWeight2'],$SdDepartment);
+                    $in['sc_id'] = $scid;
+                    $in['plan'] = $a['plan'];
+                    $in['cartype'] = $a['cartype'];
+                    $in['carcode'] = $a['carcode'];
+                    $in['sweight'] = $a['sweight'];
+                    $in['fweight'] = $a['fweight'];
+                    $in['create_time'] = time();
+                    $in['add_id'] = session('admin.id');
+                    if( $in['plan']){
+                        $this->salecoaldetail->insert($in);
                     }
                     
                 }
@@ -274,7 +264,7 @@ class RailwayLoading extends MobileController
             return json($data);
         }
         //库存仓库
-        $stocks = $this->systemStore->where('status',1)->order('name asc')->select();
+        $stocks = $this->systemStore->where('status',2)->order('name asc')->select();
         $this->assign('stocks',$stocks);
         $colliery = $this->contractColliery->where('status',1)->order("name asc")->select();
         $this->assign('colliery',$colliery);
@@ -285,65 +275,46 @@ class RailwayLoading extends MobileController
         return $this->fetch();
     }
     
-    public function edit($ScID){
-        $row = $this->model->where('ScID',$ScID)->find();
+    public function edit($id){
+        $row = $this->model->where('id',$id)->find();
         empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            $add['cFile'] = $post['cFile'];
-            $add['cFilename'] = $post['cFilename'];
-            $add['cFile2'] = $post['cFile2'];
-            $add['ScPlan'] = $post['ScPlan'];
-            $add['iszc'] = $post['iszc'];
-            $add['ScCityOwned'] = $post['ScCityOwned'];
-            $add['ScDate'] = $post['ScDate'];
-            $add['ScStarName'] = $post['ScStarName'];
-            $add['ScStopName'] = $post['ScStopName'];
-            $add['ScDepartment'] = $post['ScDepartment'];
-            $add['ScCoalType'] = $post['ScCoalType'];
-            $add['scZhuangH'] = $post['scZhuangH'];
-            $add['YsType'] = $post['YsType'];
-            $add['ScN'] = $post['ScN'];
-            $add['SnID'] = 0;
-            $add['ScType'] = 1;
-            $add['isjs'] = 0;
-            $add['ScPeople'] = session('admin.userCode');
+            $add['cfile'] = $post['cfile'];
+            $add['cfile2'] = $post['cfile2'];
+            $add['plan'] = $post['plan'];
+            $add['trans_type'] = $post['trans_type'];
+            $add['setdate'] = strtotime($post['setdate']);
+            $add['loaddate'] = strtotime($post['loaddate']);
+            $add['start_station'] = $post['start_station'];
+            $add['end_station'] = $post['end_station'];
+            $add['cusname'] = $post['cusname'];
+            $add['coaltype'] = $post['coaltype'];
+            $add['mini'] = $post['mini'];
+            $add['road'] = $post['road'];
+            $add['store'] = $post['store'];
+            $add['update_time'] = time();//装车类型
+            $add['add_id'] = session('admin.id');
             unset($post['ScID']);
             try {
-                $save = $this->model->where('ScID',$ScID)->update($add);
+                $save = $this->model->where('id',$id)->update($add);
                 //删除装车明细
                 $arr = $post['sale'];
-                $this->saleCoalDetail->where('ScID',$ScID)->delete();
-                $saleCoal = $this->model->where('ScID',$ScID)->find();
-                $salesOrder= $this->salesOrder->where('sid',$saleCoal->sid)->find();
-                //删除原先库存数量
-                $saleRoadG= $this->saleRoadG->where('ScID',$ScID)->select();
-                $prevm = date('ym',strtotime('-1 month'));//上月
-                $nextm = date("ym");//本月
-                $SdDepartment = $post['ScN']?$post['ScN']:"虚拟库";
-                foreach ($saleRoadG as $v){
-                    $coal = $this->coalStocksG ->where(['CsGangkou'=>$SdDepartment,'CsTypeName'=>$saleCoal->ScCoalType])->find();
-                    $csgup['RKSL'.$nextm] = $coal->{'RKSL'.$nextm}-$v->SdWeight;
-                    $csgup['JCSL'.$nextm] = $coal->{'JCSL'.$nextm}-$v->SdWeight;
-                    $this->coalStocksG->where('CsID',$coal->CsID)->update($csgup);
-                }
-                $this->saleRoadG->where('ScID',$ScID)->delete();
+                $salecoaldetail = $this->salecoaldetail->where('sc_id',$id)->select();
+                $del = $salecoaldetail->delete();
                 foreach ($arr as $a){
-                    $in['ScID'] = $ScID;
-                    $in['ScdDep'] = $a['ScdDep'];
-                    $in['ScdCarType'] = $a['ScdCarType'];
-                    $in['ScdCarCode'] = $a['ScdCarCode'];
-                    $in['ScdWeight'] = $a['ScdWeight'];
-                    $in['ScdWeight2'] = $a['ScdWeight2'];
-                    $in['ScdCoal'] = '';
-                    $in['ScdDate'] = date("Y-m-d");
-                    $in['ScdOperate'] = session('admin.userCode');
-                    if( $in['ScdDep']){
-                        $this->saleCoalDetail->insert($in);
+                    $in['sc_id'] = $id;
+                    $in['plan'] = $a['plan'];
+                    $in['cartype'] = $a['cartype'];
+                    $in['carcode'] = $a['carcode'];
+                    $in['sweight'] = $a['sweight'];
+                    $in['fweight'] = $a['fweight'];
+                    $in['create_time'] = time();
+                    $in['update_time'] = time();
+                    $in['add_id'] = session('admin.id');
+                    if( $in['plan']){
+                        $this->salecoaldetail->insert($in);
                     }
-                    //保存入库更新库存
-                    $saleCoal = $this->model->where('ScID',$ScID)->find();
-                    $this->saleRoadG->updateStore($saleCoal, $a['ScdWeight2'],$SdDepartment);
                 }
                 if($save){
                     $data = [
@@ -373,9 +344,7 @@ class RailwayLoading extends MobileController
             $row->filetype = getfiletype($row->cFile);
         }
         $row->cFile2 = explode(";",$row->cFile2)[0];
-        //查询销售采购单编号
-        $row->cg = $this->salesOrder->where('sid',$row->sid)->find();
-        $saleCoalDetail = $this->saleCoalDetail->where('ScID',$ScID)->select();
+        $saleCoalDetail = $this->salecoaldetail->where('sc_id',$id)->select();
         $count1 = 0;$count2 = 0;
         foreach ($saleCoalDetail as $saleD){
             $count1 +=$saleD->ScdWeight;
@@ -385,11 +354,16 @@ class RailwayLoading extends MobileController
         $this->assign('count2',$count2);
         $this->assign('saleCoalDetail',$saleCoalDetail);
         //库存仓库
-        $stocks = $this->CoalStocks->order('CskTypeName asc')->select();
+        $stocks = $this->systemStore->where('status',2)->order('name asc')->select();
         $this->assign('stocks',$stocks);
+        $colliery = $this->contractColliery->where('status',1)->order("name asc")->select();
+        $this->assign('colliery',$colliery);
+        $ship = $this->ship->where('status',1)->order("name asc")->select();
+        $this->assign('ship',$ship);
+        $row->cfile2 = explode(";",$row->cfile2)[0];
         $this->assign('row', $row);
         $this->assign('menu',2);
-        $this->assign('title',"修改铁路装车入库");
+        $this->assign('title',"修改铁路装车");
         return $this->fetch();
     }
     /**
@@ -614,19 +588,15 @@ class RailwayLoading extends MobileController
             return json($data);
         }
     }
-    public function del($ScID){
-        $row = $this->model->where('ScID', $ScID)->select();
+    public function del($id){
+        $row = $this->model->where('id', $id)->select();
         $row->isEmpty() && $this->error('数据不存在');
         try {
-            //删除装车明细
-            $saleCoalD = $this->saleCoalDetail->where('ScID',$ScID)->select();
-            if(count($saleCoalD)>0){
-                $this->saleCoalDetail->where('ScID',$ScID)->delete();
-                $this->saleRoadG->delStore($ScID);
-            }
-            $save = $this->model->where('ScID',$ScID)->delete();
+            $saleCoalD = $this->salecoaldetail->where('sc_id',$id)->select();
+            $saleCoalD->delete();
+            $save = $row->delete();
         } catch (\Exception $e) {
-            $this->error('删除失败');
+            $this->error('删除失败'.$e->getMessage());
         }
         $save ? $this->success('删除成功') : $this->error('删除失败');
     }
