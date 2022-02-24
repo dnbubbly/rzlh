@@ -98,7 +98,7 @@ class Image
         if (is_string($file)) {
             $file = new \SplFileInfo($file);
         }
-        if (!$file->isFile()){
+        if (!$file->isFile()) {
             throw new ImageException('image file not exist');
         }
         return new self($file);

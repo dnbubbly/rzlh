@@ -80,9 +80,9 @@ return array(
     '65fec9ebcfbb3cbb4fd0d519687aea01' => $vendorDir . '/danielstjules/stringy/src/Create.php',
     'b067bc7112e384b61c701452d53a14a8' => $vendorDir . '/mtdowling/jmespath.php/src/JmesPath.php',
     '66453932bc1be9fb2f910a27947d11b6' => $vendorDir . '/alibabacloud/client/src/Functions.php',
+    'f0e7e63bbb278a92db02393536748c5f' => $vendorDir . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
+    '6747f579ad6817f318cc3a7e7a0abb93' => $vendorDir . '/overtrue/wechat/src/Kernel/Helpers.php',
     '841780ea2e1d6545ea3a253239d59c05' => $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
     '1cfd2761b63b0a29ed23657ea394cb2d' => $vendorDir . '/topthink/think-captcha/src/helper.php',
     'cc56288302d9df745d97c934d6a6e5f0' => $vendorDir . '/topthink/think-queue/src/common.php',
-    'f0e7e63bbb278a92db02393536748c5f' => $vendorDir . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
-    '6747f579ad6817f318cc3a7e7a0abb93' => $vendorDir . '/overtrue/wechat/src/Kernel/Helpers.php',
 );

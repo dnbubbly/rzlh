@@ -81,11 +81,11 @@ class ComposerStaticInit9fd8dcb9275c64fc940a4d86e473b9d2
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
+        'f0e7e63bbb278a92db02393536748c5f' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
+        '6747f579ad6817f318cc3a7e7a0abb93' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Helpers.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
-        'f0e7e63bbb278a92db02393536748c5f' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
-        '6747f579ad6817f318cc3a7e7a0abb93' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -224,6 +224,7 @@ class ComposerStaticInit9fd8dcb9275c64fc940a4d86e473b9d2
             2 => __DIR__ . '/..' . '/topthink/think-orm/src',
             3 => __DIR__ . '/..' . '/topthink/think-queue/src',
             4 => __DIR__ . '/..' . '/topthink/think-template/src',
+            5 => __DIR__ . '/..' . '/topthink/think-image/src',
         ),
         'jianyan\\excel\\' => 
         array (

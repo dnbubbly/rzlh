@@ -1395,3 +1395,241 @@
 {"time":"2022-02-24 14:17:42","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000625s ]"}
 {"time":"2022-02-24 14:17:42","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000338s ]"}
 {"time":"2022-02-24 14:17:42","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'menu',\n  10 => 'title',\n) ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"CONNECT:[ UseTime:0.024024s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000947s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000689s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000656s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000696s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000606s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000758s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000898s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000950s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000914s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000416s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000629s ]"}
+{"time":"2022-02-24 14:27:02","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000517s ]"}
+{"time":"2022-02-24 14:27:02","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"CONNECT:[ UseTime:0.023684s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001061s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000696s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000976s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000641s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000649s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000873s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.001054s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000997s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.001005s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000476s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000697s ]"}
+{"time":"2022-02-24 14:29:48","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000449s ]"}
+{"time":"2022-02-24 14:29:48","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"CONNECT:[ UseTime:0.016800s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000949s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000795s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000869s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000727s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000696s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000765s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000630s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000932s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000868s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000449s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.001146s ]"}
+{"time":"2022-02-24 14:30:30","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000412s ]"}
+{"time":"2022-02-24 14:30:30","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"CONNECT:[ UseTime:0.014405s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001035s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000995s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000833s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000659s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000478s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000610s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000570s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000927s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.001003s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000454s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000600s ]"}
+{"time":"2022-02-24 14:34:33","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000442s ]"}
+{"time":"2022-02-24 14:34:33","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"CONNECT:[ UseTime:0.020244s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001496s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000612s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001006s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000973s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000584s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000774s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000682s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000916s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000755s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000493s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000793s ]"}
+{"time":"2022-02-24 14:34:34","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000509s ]"}
+{"time":"2022-02-24 14:34:34","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"CONNECT:[ UseTime:0.025459s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000835s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000564s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000509s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000398s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000253s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000373s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000318s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000725s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000385s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000214s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000512s ]"}
+{"time":"2022-02-24 14:38:57","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000414s ]"}
+{"time":"2022-02-24 14:38:57","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"CONNECT:[ UseTime:0.013358s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001094s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000899s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000911s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000746s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000771s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000798s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000626s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000964s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000645s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000410s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000698s ]"}
+{"time":"2022-02-24 14:42:21","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000486s ]"}
+{"time":"2022-02-24 14:42:21","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"CONNECT:[ UseTime:0.022187s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000895s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000457s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000501s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000592s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000373s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.001199s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000889s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000936s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000754s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000336s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000545s ]"}
+{"time":"2022-02-24 14:42:22","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000374s ]"}
+{"time":"2022-02-24 14:42:22","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"CONNECT:[ UseTime:0.001756s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000639s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000270s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000341s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000392s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000206s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000357s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000313s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001175s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000560s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000223s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000603s ]"}
+{"time":"2022-02-24 14:42:23","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000355s ]"}
+{"time":"2022-02-24 14:42:23","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"CONNECT:[ UseTime:0.018527s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001071s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000561s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000565s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000602s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000395s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000552s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000457s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000805s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000574s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000347s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000460s ]"}
+{"time":"2022-02-24 14:42:29","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000316s ]"}
+{"time":"2022-02-24 14:42:29","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"CONNECT:[ UseTime:0.016765s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000863s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000404s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000500s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000562s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000358s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000480s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000442s ]"}
+{"time":"2022-02-24 14:42:38","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000814s ]"}
+{"time":"2022-02-24 14:42:38","type":"error","msg":"[0]Class 'think\\Image' not found[E:\\wamp64\\www\\rzlh\\app\\mobile\\controller\\RailwayLoading.php:90]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"CONNECT:[ UseTime:0.001023s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001006s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000738s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000929s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000670s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000569s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000657s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000652s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000960s ]"}
+{"time":"2022-02-24 14:43:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_sale_coal` [ RunTime:0.001185s ]"}
+{"time":"2022-02-24 14:43:40","type":"error","msg":"[10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ScPlan' in 'where clause'[E:\\wamp64\\www\\rzlh\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php:713]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"CONNECT:[ UseTime:0.001550s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001712s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001877s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001304s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000634s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000521s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000791s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000652s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001540s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.001207s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000618s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.001013s ]"}
+{"time":"2022-02-24 14:44:22","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000448s ]"}
+{"time":"2022-02-24 14:44:22","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'menu',\n  11 => 'title',\n) ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"CONNECT:[ UseTime:0.018634s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001001s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000678s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001165s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000663s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000466s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000632s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000562s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000995s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_sale_coal` [ RunTime:0.001533s ]"}
+{"time":"2022-02-24 14:44:27","type":"sql","msg":"SELECT COUNT(*) AS think_count FROM `ea_sale_coal` WHERE (  `plan` = '202201FY5426090053' ) AND `ea_sale_coal`.`delete_time` IS NULL [ RunTime:0.000607s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"CONNECT:[ UseTime:0.019650s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001148s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000489s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000590s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000641s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000757s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000677s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000492s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.000931s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000532s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE (  `status` = 1 ) AND `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000353s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000485s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE (  `status` = 1 ) AND `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000372s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_ship` [ RunTime:0.000797s ]"}
+{"time":"2022-02-24 14:47:18","type":"sql","msg":"SELECT * FROM `ea_contract_ship` WHERE (  `status` = 1 ) AND `ea_contract_ship`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000543s ]"}
+{"time":"2022-02-24 14:47:18","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'ship',\n  11 => 'menu',\n  12 => 'title',\n) ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"CONNECT:[ UseTime:0.001100s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.001074s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000652s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.001241s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000763s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000552s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000865s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000781s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001074s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_store` [ RunTime:0.000882s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT * FROM `ea_system_store` WHERE (  `status` = 1 ) AND `ea_system_store`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000688s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_colliery` [ RunTime:0.000690s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT * FROM `ea_contract_colliery` WHERE (  `status` = 1 ) AND `ea_contract_colliery`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000474s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_contract_ship` [ RunTime:0.000989s ]"}
+{"time":"2022-02-24 14:48:40","type":"sql","msg":"SELECT * FROM `ea_contract_ship` WHERE (  `status` = 1 ) AND `ea_contract_ship`.`delete_time` IS NULL ORDER BY `name` ASC [ RunTime:0.000556s ]"}
+{"time":"2022-02-24 14:48:40","type":"info","msg":"[ VIEW ] E:\\wamp64\\www\\rzlh\\app\\mobile\\view\\railwayloading\\add.html [ array (\n  0 => 'adminModuleName',\n  1 => 'thisController',\n  2 => 'thisAction',\n  3 => 'thisRequest',\n  4 => 'thisControllerJsPath',\n  5 => 'autoloadJs',\n  6 => 'isSuperAdmin',\n  7 => 'version',\n  8 => 'stocks',\n  9 => 'colliery',\n  10 => 'ship',\n  11 => 'menu',\n  12 => 'title',\n) ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"CONNECT:[ UseTime:0.023822s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000925s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000521s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000737s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000615s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000431s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000684s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.001551s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001117s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_sale_coal` [ RunTime:0.001393s ]"}
+{"time":"2022-02-24 14:48:45","type":"sql","msg":"SELECT COUNT(*) AS think_count FROM `ea_sale_coal` WHERE (  `plan` = '202201FY5426090053' ) AND `ea_sale_coal`.`delete_time` IS NULL [ RunTime:0.000410s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"CONNECT:[ UseTime:0.021549s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000899s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000530s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000763s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000774s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000623s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth` [ RunTime:0.000880s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_auth_node` [ RunTime:0.000778s ]"}
+{"time":"2022-02-24 14:49:09","type":"sql","msg":"SELECT DISTINCT  `node` FROM `ea_system_node` WHERE  ( id IN ( SELECT DISTINCT  `node_id` FROM `ea_system_auth_node` WHERE  ( auth_id IN ( SELECT DISTINCT  `id` FROM `ea_system_auth` WHERE  `id` = 1 ) ) ) ) [ RunTime:0.001041s ]"}

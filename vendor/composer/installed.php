@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd74b42cd590a4e2643adbaf591a9691811fb5b90',
+        'reference' => 'de6834129f3c08fad8e07a93e88c9fa617fed88a',
         'name' => 'zhongshaofa/easyadmin',
         'dev' => true,
     ),
@@ -580,6 +580,15 @@
             'reference' => 'c28d37743bda4a0455286ca85b17b5791d626e10',
             'dev_requirement' => false,
         ),
+        'topthink/think-image' => array(
+            'pretty_version' => 'v1.0.7',
+            'version' => '1.0.7.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../topthink/think-image',
+            'aliases' => array(),
+            'reference' => '8586cf47f117481c6d415b20f7dedf62e79d5512',
+            'dev_requirement' => false,
+        ),
         'topthink/think-multi-app' => array(
             'pretty_version' => 'v1.0.11',
             'version' => '1.0.11.0',
@@ -646,7 +655,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd74b42cd590a4e2643adbaf591a9691811fb5b90',
+            'reference' => 'de6834129f3c08fad8e07a93e88c9fa617fed88a',
             'dev_requirement' => false,
         ),
         'zhongshaofa/thinkphp-log-trace' => array(

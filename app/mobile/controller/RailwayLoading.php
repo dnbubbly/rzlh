@@ -21,6 +21,8 @@ class RailwayLoading extends MobileController
         $this->model = new \app\admin\model\SaleCoal();
         $this->salecoaldetail = new \app\admin\model\SaleCoaldetail();
         $this->systemStore =  new \app\admin\model\SystemStore();
+        $this->contractColliery =  new \app\admin\model\ContractColliery();
+        $this->ship = new \app\admin\model\ContractShip();
     }
     
     public function index()
@@ -121,7 +123,7 @@ class RailwayLoading extends MobileController
                     }
                 }
                 //需求号重复
-                $xq = $this->model->where('ScPlan',$result[0]['words'])->count();
+                $xq = $this->model->where('plan',$result[0]['words'])->count();
                 if($xq>0){
                     $this->error('该需求号已添加！');
                 }
@@ -201,7 +203,7 @@ class RailwayLoading extends MobileController
     public function add(){
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            $s = $this->model->where('ScPlan',$post['ScPlan'])->count();
+            $s = $this->model->where('plan',$post['plan'])->count();
             if($s>0){
                 $this->error("该需求号铁路装车已添加");
             }
@@ -272,8 +274,12 @@ class RailwayLoading extends MobileController
             return json($data);
         }
         //库存仓库
-        $stocks = $this->systemStore->order('name asc')->select();
+        $stocks = $this->systemStore->where('status',1)->order('name asc')->select();
         $this->assign('stocks',$stocks);
+        $colliery = $this->contractColliery->where('status',1)->order("name asc")->select();
+        $this->assign('colliery',$colliery);
+        $ship = $this->ship->where('status',1)->order("name asc")->select();
+        $this->assign('ship',$ship);
         $this->assign('menu',2);
         $this->assign('title',"添加铁路装车入库");
         return $this->fetch();
