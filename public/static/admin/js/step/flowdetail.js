@@ -37,6 +37,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                                 method: 'open',
                                 auth: 'examine',
                                 class: 'layui-btn layui-btn-xs layui-btn-success',
+                                extend: 'data-full="true"',
                                 render: function (d) { return d.status === 0&&d.type === 1; }
                             }, {
                                 text: '退回',
@@ -44,12 +45,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
                                 method: 'open',
                                 auth: 'reback',
                                 class: 'layui-btn layui-btn-xs layui-btn-warm',
+                                extend: 'data-full="true"',
                                 render: function (d) { return d.status === 0&&d.type === 1; }
                             }, {
                                 text: '查看',
                                 url: init.detail_url,
                                 method: 'open',
                                 auth: 'detail',
+                                extend: 'data-full="true"',
                                 class: 'layui-btn layui-btn-xs layui-btn-normal',
                             }],
                         ]
@@ -60,9 +63,48 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         },
         examine: function () {
+        	var ifr = document.getElementById('iframepage')
+        	var b = $('#app-form').width();
+        	ifr.onload = function(){
+        	    var wd = ifr.contentWindow.document.documentElement.scrollWidth;
+        	    var ht = ifr.contentWindow.document.documentElement.scrollHeight;
+        	    var x = b / wd;
+        	    ifr.style.width = wd +'px';
+        	    ifr.style.height = ht +'px';
+        	    
+        	    $('.box').css("height",ht*x + 'px');
+        	 
+        	}
             ea.listen();
         },
         reback: function () {
+        	var ifr = document.getElementById('iframepage')
+        	var b = $('#app-form').width();
+        	ifr.onload = function(){
+        	    var wd = ifr.contentWindow.document.documentElement.scrollWidth;
+        	    var ht = ifr.contentWindow.document.documentElement.scrollHeight;
+        	    var x = b / wd;
+        	    ifr.style.width = wd +'px';
+        	    ifr.style.height = ht +'px';
+        	    
+        	    $('.box').css("height",ht*x + 'px');
+        	 
+        	}
+            ea.listen();
+        },
+        detail: function () {
+        	var ifr = document.getElementById('iframepage')
+        	var b = $('#app-form').width();
+        	ifr.onload = function(){
+        	    var wd = ifr.contentWindow.document.documentElement.scrollWidth;
+        	    var ht = ifr.contentWindow.document.documentElement.scrollHeight;
+        	    var x = b / wd;
+        	    ifr.style.width = wd +'px';
+        	    ifr.style.height = ht +'px';
+        	    
+        	    $('.box').css("height",ht*x + 'px');
+        	 
+        	}
             ea.listen();
         },
     };

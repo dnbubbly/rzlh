@@ -29,7 +29,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         add: function () {
         	form.on("select(cus)", function(data){
         		$.ajax({
-	                url:"/customer.credit/score",
+	                url:"../customer.credit/score",
 	                dataType:'json',
 	                type:'post',
 	                data:{'id':data.value},

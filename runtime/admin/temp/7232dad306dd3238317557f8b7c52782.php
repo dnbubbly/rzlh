@@ -1,4 +1,4 @@
-<?php /*a:2:{s:52:"E:\wamp64\www\rzlh\app\admin\view\index\welcome.html";i:1645080665;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:52:"E:\wamp64\www\rzlh\app\admin\view\index\welcome.html";i:1645496200;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -229,56 +229,14 @@
                 <div class="layui-card">
                     <div class="layui-card-header"><i class="fa fa-fire icon"></i>版本信息</div>
                     <div class="layui-card-body layui-text">
-                        <table class="layui-table">
-                            <colgroup>
-                                <col width="100">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <td>框架名称</td>
-                                <td>
-                                    EasyAdmin
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>当前版本</td>
-                                <td>v2.0.0</td>
-                            </tr>
-                            <tr>
-                                <td>主要特色</td>
-                                <td>零门槛 / 响应式 / 清爽 / 极简</td>
-                            </tr>
-                            <tr>
-                                <td>Gitee</td>
-                                <td style="padding-bottom: 0;">
-                                    <div class="layui-btn-container">
-                                        <a href="https://gitee.com/zhongshaofa/easyadmin" style="margin-right: 15px"><img src="https://gitee.com/zhongshaofa/easyadmin/badge/star.svg?theme=dark" alt="star"></a>
-                                        <a href="https://gitee.com/zhongshaofa/easyadmin"><img src="https://gitee.com/zhongshaofa/easyadmin/badge/fork.svg?theme=dark" alt="fork"></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Github</td>
-                                <td style="padding-bottom: 0;">
-                                    <div class="layui-btn-container">
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=easyadmin&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=easyadmin&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        
                     </div>
                 </div>
 
                 <div class="layui-card">
                     <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>作者心语</div>
                     <div class="layui-card-body layui-text layadmin-text">
-                        <p>本模板基于layui2.5.4以及font-awesome-4.7.0进行实现。layui开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://www.layui.com/doc">layui文档</a></p>
-                        <p>技术交流QQ群：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5JRGVfe"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="layuimini" title="layuimini"></a>（加群请备注来源：如gitee、github、官网等）</p>
-                        <p>喜欢此后台模板的可以给我的GitHub和Gitee加个Star支持一下</p>
-                        <p class="layui-red">备注：此后台框架永久开源，但请勿进行出售或者上传到任何素材网站，否则将追究相应的责任。</p>
+                        
                     </div>
                 </div>
 

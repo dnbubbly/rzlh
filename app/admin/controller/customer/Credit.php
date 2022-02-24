@@ -70,7 +70,7 @@ class Credit extends AdminController
             $this->validate($post, $rule);
             $post['startdate'] = strtotime($post['startdate']);
             $post['enddate'] = strtotime($post['enddate']);
-            $post['remain_money'] = strtotime($post['money']);
+            $post['remain_money'] = $post['money'];
             try {
                 $save = $this->model->save($post);
             } catch (\Exception $e) {
@@ -93,9 +93,12 @@ class Credit extends AdminController
             $rule = [];
             $this->validate($post, $rule);
             try {
+                $post['startdate'] = strtotime($post['startdate']);
+                $post['enddate'] = strtotime($post['enddate']);
+                $post['remain_money'] = $post['remain_money']+($post['money']-$row->money);
                 $save = $row->save($post);
             } catch (\Exception $e) {
-                $this->error('保存失败');
+                $this->error('保存失败'.$e->getMessage());
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }

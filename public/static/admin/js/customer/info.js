@@ -61,6 +61,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 	                            method: 'open',
 	                            auth: 'detail',
 	                            class: 'layui-btn layui-btn-xs layui-btn-success',
+	                            extend: 'data-full="true"',
 	                        }]
                         ]
                     },

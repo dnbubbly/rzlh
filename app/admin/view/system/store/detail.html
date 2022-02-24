@@ -4,37 +4,37 @@
         <div class="layui-form-item">
             <label class="layui-form-label">仓库全程</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入仓库全程" value="{$row.name|default=''}">
+                <input type="text" name="name" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库全程" value="{$row.name|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">仓库编号</label>
             <div class="layui-input-block">
-                <input type="text" name="number" class="layui-input" lay-verify="required" placeholder="请输入仓库编号" value="{$row.number|default=''}">
+                <input type="text" name="number" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库编号" value="{$row.number|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">仓库地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" class="layui-input" lay-verify="required" placeholder="请输入仓库地址" value="{$row.address|default=''}">
+                <input type="text" name="address" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库地址" value="{$row.address|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">联系人</label>
             <div class="layui-input-block">
-                <input type="text" name="contacts" class="layui-input" lay-verify="required" placeholder="请输入联系人" value="{$row.contacts|default=''}">
+                <input type="text" name="contacts" class="layui-input" readonly lay-verify="required" placeholder="请输入联系人" value="{$row.contacts|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">联系人电话</label>
             <div class="layui-input-block">
-                <input type="text" name="tel" class="layui-input" lay-verify="required" placeholder="请输入联系人电话" value="{$row.tel|default=''}">
+                <input type="text" name="tel" class="layui-input" readonly lay-verify="required" placeholder="请输入联系人电话" value="{$row.tel|default=''}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注说明</label>
             <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea"  placeholder="请输入备注说明">{$row.remark|raw|default=''}</textarea>
+                <textarea name="remark" class="layui-textarea" readonly placeholder="请输入备注说明">{$row.remark|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">

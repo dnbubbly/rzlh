@@ -7,6 +7,7 @@ use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
 use think\App;
 use app\common\constants\AdminConstant;
+use app\admin\controller\customer\Info;
 
 /**
  * @ControllerAnnotation(title="step_flowdetail")
@@ -85,32 +86,38 @@ class Flowdetail extends AdminController
             } catch (\Exception $e) {
                 $this->error('审批通过失败');
             }
-            
             //有下一步则生成下一步审批详情
             if(json_decode($row->step_json)->childNode){//有下一步
                 $stepflow = $this->stepflow->where('id',$row->f_id)->find();
                 $className = '\\app\\admin\\model\\'.parseNodeTuo($stepflow->model);
                 $model = new $className;
-                addflowDetail(json_decode($row->step_json)->childNode,$stepflow,$model);
+                if($row->examine==2){//会签所有人通过进入下一步
+                    $examine = $this->model->where(['f_id'=>$row->f_id,'type'=>$row->type,'status'=>0])->select();
+                    if(count($examine)==0){
+                        addflowDetail(json_decode($row->step_json)->childNode,$stepflow,$model);
+                    }
+                }else{
+                    addflowDetail(json_decode($row->step_json)->childNode,$stepflow,$model);
+                }
                 if(!havenextflow(json_decode($row->step_json))){
                     $stepflow = $this->stepflow->where('id',$row->f_id)->find();
                     $this->stepflow->where('id',$row->f_id)->update(['status'=>1,'date'=>time()]);
-                    $className = '\\app\\admin\\model\\'.parseNodeTuo($stepflow->model);
-                    $model = new $className;
-                    $up['status'] = 2;
-                    $save = $model->where('id',$stepflow->a_id)->update($up);
+                    $controlName = '\\app\\admin\\controller\\'.lcfirst(parseContrlTuo($stepflow->model)[0]).'\\'.parseContrlTuo($stepflow->model)[1];
+                    $control = new $controlName($this->app);
+                    $control->useful($stepflow->a_id);
                 }
             }else{//无下一步审批完成
                 $stepflow = $this->stepflow->where('id',$row->f_id)->find();
                 $this->stepflow->where('id',$row->f_id)->update(['status'=>1,'date'=>time()]);
-                $className = '\\app\\admin\\model\\'.parseNodeTuo($stepflow->model);
-                $model = new $className;
-                $up['status'] = 2;
-                $save = $model->where('id',$stepflow->a_id)->update($up);
+                $controlName = '\\app\\admin\\controller\\'.lcfirst(parseContrlTuo($stepflow->model)[0]).'\\'.parseContrlTuo($stepflow->model)[1];
+                $control = new $controlName($this->app);
+                $control->useful($stepflow->a_id);
             }
             $save ? $this->success('审批通过成功') : $this->error('审批通过失败');
         }
         $ready = $this->model->withJoin(['stepFlow','systemAdmin'], 'LEFT')->where(['f_id'=>$row->f_id,'step_flowdetail.status'=>1])->select()->order("id desc");
+        $stepflow = $this->stepflow->where('id',$row->f_id)->find();
+        $this->assign('detailurl','/'.$stepflow->model.'/detail?id='.$stepflow->a_id);
         $this->assign('ready', $ready);
         $this->assign('row', $row);
         return $this->fetch();
@@ -145,6 +152,8 @@ class Flowdetail extends AdminController
             $save ? $this->success('审批退回成功') : $this->error('审批退回失败');
         }
         $ready = $this->model->withJoin(['stepFlow','systemAdmin'], 'LEFT')->where(['f_id'=>$row->f_id,'step_flowdetail.status'=>1])->select()->order("id desc");
+        $stepflow = $this->stepflow->where('id',$row->f_id)->find();
+        $this->assign('detailurl','/'.$stepflow->model.'/detail?id='.$stepflow->a_id);
         $this->assign('ready', $ready);
         $this->assign('row', $row);
         return $this->fetch();
@@ -157,6 +166,8 @@ class Flowdetail extends AdminController
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
         $ready = $this->model->withJoin(['stepFlow','systemAdmin'], 'LEFT')->where(['f_id'=>$row->f_id,'step_flowdetail.status'=>1])->select()->order("id desc");
+        $stepflow = $this->stepflow->where('id',$row->f_id)->find();
+        $this->assign('detailurl','/'.$stepflow->model.'/detail?id='.$stepflow->a_id);
         $this->assign('ready', $ready);
         $this->assign('row', $row);
         return $this->fetch();

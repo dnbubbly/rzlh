@@ -13,7 +13,27 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
         delete_url: 'contract.info/delete',
         export_url: 'contract.info/export',
         modify_url: 'contract.info/modify',
+        detail_url: 'contract.info/detail',
+        agree_url: 'contract.info/agree',
+        sign_url: 'contract.info/sign',
+        file_url: 'contract.info/file',
     };
+    
+    var init1 = {
+            table_elem: '#currentTablefile',
+            table_render_id: 'currentTablefileRenderId',
+            index_url: 'contract.info/fileindex',
+            addone_url: 'contract.info/addone',
+            add_url: 'contract.info/add',
+            edit_url: 'contract.info/edit',
+            delete_url: 'contract.info/delete',
+            export_url: 'contract.info/export',
+            modify_url: 'contract.info/modify',
+            detail_url: 'contract.info/detail',
+            agree_url: 'contract.info/agree',
+            sign_url: 'contract.info/sign',
+            file_url: 'contract.info/file',
+        };
 
     var Controller = {
 
@@ -34,8 +54,108 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                         extend: 'data-full="true"',
                     }]],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'id', width: 60, title: 'id'},                    {field: 'contractType.name', width: 120, title: '合同类型'},                    {field: 'hezuofang', title: '合作方'},
-                    {field: 'zxq', width: 300, title: '执行期'},                    {field: 'number', width: 180, title: '合同编号'},                    {field: 'date', width: 200, title: '起草日期'},                    {field: 'systemAdmin.username', width: 80, title: '起草人'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},                    {field: 'id', width: 60, title: 'id', search: false},
+                    {field: 'number', width: 180, title: '合同编号'},                    {field: 'contractType.name', fieldAlias: 'contractType.id', width: 120, title: '合同类型', search: 'select', selectList: getContractType},                    {field: 'hezuofang', minWidth: 300, title: '合作方'},
+                    {field: 'zxq', width: 300, title: '执行期', search: false},                    {field: 'date', width: 200, title: '起草日期'},
+                    {field: 'status', width: 80,  title: '状态', search: 'select', selectList: {0: '未生效', 1: '审核中',2: '已生效',3: '已退回'}},
+                    {field: 'isfile', width: 120,  title: '是否归档', search: 'select', selectList: {0: '未归档', 1: '已归档'}},                    {field: 'systemAdmin.username', width: 80, title: '起草人', search: false},                    {
+                    	width: 350,
+                        title: '操作',
+                        templet: ea.table.tool,
+                        operat: [
+                        	[{
+	                            text: '编辑',
+	                            url: init.edit_url,
+	                            method: 'open',
+	                            auth: 'edit',
+	                            class: 'layui-btn layui-btn-xs layui-btn-success',
+	                            extend: 'data-full="true"',
+	                            render: function (d) { return d.status === 0||d.status === 3; }
+	                        }, {
+	                            text: '发起审批',
+	                            url: init.agree_url,
+	                            method: 'request',
+	                            auth: 'agree',
+	                            class: 'layui-btn layui-btn-xs layui-btn-warm',
+	                            render: function (d) { return d.status === 0; }
+	                        }, {
+	                            text: '重新审批',
+	                            url: init.agree_url,
+	                            method: 'request',
+	                            auth: 'agree',
+	                            class: 'layui-btn layui-btn-xs layui-btn-warm',
+	                            render: function (d) { return d.status === 3; }
+	                        }, {
+	                            text: '签署',
+	                            url: init.sign_url,
+	                            method: 'open',
+	                            width: 1000,
+                                height: 600,
+	                            auth: 'sign',
+	                            class: 'layui-btn layui-btn-xs',
+	                            render: function (d) { return d.isour !== 1||d.isother !== 1; }
+	                        }, {
+	                            text: '归档',
+	                            extra: '确定归档？',
+	                            url: init.file_url,
+	                            method: 'open',
+	                            auth: 'file',
+	                            class: 'layui-btn layui-btn-xs layui-btn-warm',
+	                            render: function (d) { return d.status === 2&&d.isfile === 0&&d.isour === 1&&d.isother === 1; }
+	                        }, {
+	                            text: '删除',
+	                            extra: '确定删除？',
+	                            url: init.delete_url,
+	                            method: 'request',
+	                            auth: 'delete',
+	                            class: 'layui-btn layui-btn-xs layui-btn-danger',
+	                            render: function (d) { return d.status === 0&&d.isfile === 0; }
+	                        }, {
+	                            text: '查看',
+	                            url: init.detail_url,
+	                            method: 'open',
+	                            auth: 'detail',
+	                            class: 'layui-btn layui-btn-xs layui-btn-success',
+	                            extend: 'data-full="true"',
+	                        }]
+                        ]
+                    },
+                ]],
+            });
+
+            ea.listen();
+        },
+        fileindex: function () {
+            ea.table.render({
+                init: init1,
+                skin: 'row ',
+                toolbar: ['refresh'],
+                cols: [[
+                    {type: 'checkbox'},
+                    {field: 'id', width: 60, title: 'id', search: false},
+                    {field: 'number', width: 180, title: '合同编号'},
+                    {field: 'contractType.name', fieldAlias: 'contractType.id', width: 120, title: '合同类型', search: 'select', selectList: getContractType},
+                    {field: 'hezuofang', minWidth: 300, title: '合作方'},
+                    {field: 'zxq', width: 300, title: '执行期', search: false},
+                    {field: 'date', width: 200, title: '起草日期'},
+                    {field: 'status', width: 80,  title: '状态', search: 'select', selectList: {0: '未生效', 1: '审核中',2: '已生效',3: '已退回'}},
+                    {field: 'isfile', width: 120,  title: '是否归档', search: 'select', selectList: {0: '未归档', 1: '已归档'}},
+                    {field: 'systemAdmin.username', width: 80, title: '起草人', search: false},
+                    {
+                    	width: 150,
+                        title: '操作',
+                        templet: ea.table.tool,
+                        operat: [
+                        	[{
+	                            text: '查看',
+	                            url: init.detail_url,
+	                            method: 'open',
+	                            auth: 'detail',
+	                            class: 'layui-btn layui-btn-xs layui-btn-success',
+	                            extend: 'data-full="true"',
+	                        }]
+                        ]
+                    },
                 ]],
             });
 
@@ -48,7 +168,7 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
             ea.listen(function (data) {
                 return data;
             }, function (res) {
-            	window.location.href = "/"+init.add_url+'?cus_id='+res.data.cus_id+'&draft='+res.data.draft+'&lead='+res.data.lead;
+            	window.location.href = "../"+init.add_url+'?cus_id='+res.data.cus_id+'&draft='+res.data.draft+'&lead='+res.data.lead;
             });
         },
         add: function () {
@@ -427,7 +547,72 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
             })
             ea.listen();
         },
+        detail: function(){
+        	$("body").on("click", ".qualityt", function() {
+        		var index = $(this).data('index');
+        		ea.open("质量奖惩","/contract.info/qualitydetail?index="+index,"80%","600px");
+        	});
+        	ea.listen();
+        },
+        sign: function(){
+        	ea.listen();
+        },
+        file: function(){
+        	ea.listen();
+        },
         quality: function () {
+        	var s = $('input[name="coal['+index+'][json]"]',window.parent.document).val();
+        	var app = new Vue({
+                el: '#app',
+                data: {
+                    data: s!=''?JSON.parse(s):''
+                },
+                updated: function () {
+            		layui.use('form', function () {
+            	        layui.form.render('select');
+            	    })
+            	}
+            });
+        	
+        	layui.form.on('select(qz1)', function (data) {
+        		console.info($(this).parent().parent().parent().find('select').attr('model'));
+        		var name = $(this).parent().parent().parent().find('select').attr('model');
+        		var del = $(this).parent().parent().parent().find('select').attr('del');
+        		app.data[name][del] = data.value;
+            })
+            
+            layui.form.on('select(qz)', function (data) {
+        		var name = $(this).parent().parent().parent().find('select').attr('model');
+        		var del = $(this).parent().parent().parent().find('select').attr('del');
+        		var index = $(this).parent().parent().parent().find('select').attr('index');
+        		var key = $(this).parent().parent().parent().parent().parent().parent().index();
+        		console.info( data.value);
+        		app.data[name][del][key][index] = data.value;
+
+        		console.info(app.data[name][del][key][index]);
+            })
+        	
+        	$("body").on("click", ".addqt", function() {
+        		$(this).parent().html('<i class="layui-icon delqt" style="font-size: 20px;line-height: 38px;"></i>');
+        		var name = $(this).attr('model');
+        		var del = $(this).attr('del');
+        		console.info(del);
+        		app.data[name][del].push(["", "＜", "≤", "", "每升高", "", "加价", ""]);
+            	form.render('select');
+        	})
+        	$("body").on("click", ".delqt", function() {
+        		$(this).parent().parent().parent().remove();
+        	})
+        	ea.listen(function (data) {
+                return data;
+            }, function (res) {
+            	var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                $('input[name="coal['+res.data.index+'][json]"]',window.parent.document).val(JSON.stringify(res.data.data));
+                
+            });
+        },
+        qualitydetail: function () {
         	var s = $('input[name="coal['+index+'][json]"]',window.parent.document).val();
         	var app = new Vue({
                 el: '#app',
@@ -435,17 +620,6 @@ define(["jquery", "easy-admin", "tableSelect", "vue"], function ($, ea, tableSel
                     data: s!=''?JSON.parse(s):'',
                 }
             });
-        	
-        	$("body").on("click", ".addqt", function() {
-        		var html = $(this).parent().parent().parent().prop("outerHTML");
-        		$(this).parent().parent().parent().after(html);
-        		$(this).parent().html('<i class="layui-icon delqt" style="font-size: 20px;line-height: 38px;"></i>');
-
-            	form.render('select');
-        	})
-        	$("body").on("click", ".delqt", function() {
-        		$(this).parent().parent().parent().remove();
-        	})
         	ea.listen(function (data) {
                 return data;
             }, function (res) {

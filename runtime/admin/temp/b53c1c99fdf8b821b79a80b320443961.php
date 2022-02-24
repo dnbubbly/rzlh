@@ -1,4 +1,4 @@
-<?php /*a:2:{s:56:"E:\wamp64\www\rzlh\app\admin\view\contract\info\add.html";i:1645445418;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:56:"E:\wamp64\www\rzlh\app\admin\view\contract\info\add.html";i:1645458760;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +102,7 @@
 		    		<tbody id="td">
 		    			<tr>
 		    				<td style="text-align: center;">1</td>
-		    				<td><select name="coal[0][type]" lay-verify="required" lay-filter="road" lay-search="" data-select="<?php echo url('contract.coaltype/index'); ?>" data-fields="id,name" data-value=""></select></td>
+		    				<td><select name="coal[0][type]" lay-filter="road" lay-search="" data-select="<?php echo url('contract.coaltype/index'); ?>" data-fields="id,name" data-value=""></select></td>
 		    				<td><input class="layui-input" name="coal[0][num]" value=""></td>
 		    				<td><input class="layui-input" name="coal[0][price]" value=""></td>
 		    				<td style="text-align: center;"><i class="layui-icon addt">&#xe61f;</i></td>
@@ -298,9 +298,9 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">谈判纪要</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="file" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="" style="width: calc(100% - 85px);">
+                <input name="confile" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传谈判纪要" value="" style="width: calc(100% - 85px);">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="file" data-upload-number="more" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
+                    <span><a class="layui-btn" data-upload="confile" data-upload-number="more" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign=";"></i> 上传</a></span>
                 </div>
             </div>
         </div>

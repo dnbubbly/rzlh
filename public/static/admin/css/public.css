@@ -47,6 +47,12 @@ html, body {
 }
 
 /**重写layui表格自适应*/
+.layui-form-pane .layui-form-radio, .layui-form-pane .layui-form-switch{
+	margin-top: 6px;
+}
+.layui-disabled, .layui-disabled:hover{
+	color: #000!important;
+}
 .layuimini-container .layui-table-cell {
     height: 100%;
     max-width: 100%;

@@ -768,10 +768,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     var dataField = data.field;
                     var formatFilter = {},
                         formatOp = {};
+                    console.info(dataField);
                     $.each(dataField, function (key, val) {
                         if (val !== '') {
                             formatFilter[key] = val;
-                            var op = $('#c-' + key.replce(/\./g,'-')).attr('data-search-op');
+                            var op = $('[id=\'c-' + key + '\']').attr('data-search-op');
                             op = op || '%*%';
                             formatOp[key] = op;
                         }

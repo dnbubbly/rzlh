@@ -1,4 +1,4 @@
-<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\system\store\detail.html";i:1645080665;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\system\store\detail.html";i:1645501586;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,37 +34,37 @@
         <div class="layui-form-item">
             <label class="layui-form-label">仓库全程</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入仓库全程" value="<?php echo htmlentities((isset($row['name']) && ($row['name'] !== '')?$row['name']:'')); ?>">
+                <input type="text" name="name" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库全程" value="<?php echo htmlentities((isset($row['name']) && ($row['name'] !== '')?$row['name']:'')); ?>">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">仓库编号</label>
             <div class="layui-input-block">
-                <input type="text" name="number" class="layui-input" lay-verify="required" placeholder="请输入仓库编号" value="<?php echo htmlentities((isset($row['number']) && ($row['number'] !== '')?$row['number']:'')); ?>">
+                <input type="text" name="number" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库编号" value="<?php echo htmlentities((isset($row['number']) && ($row['number'] !== '')?$row['number']:'')); ?>">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">仓库地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" class="layui-input" lay-verify="required" placeholder="请输入仓库地址" value="<?php echo htmlentities((isset($row['address']) && ($row['address'] !== '')?$row['address']:'')); ?>">
+                <input type="text" name="address" class="layui-input" readonly lay-verify="required" placeholder="请输入仓库地址" value="<?php echo htmlentities((isset($row['address']) && ($row['address'] !== '')?$row['address']:'')); ?>">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">联系人</label>
             <div class="layui-input-block">
-                <input type="text" name="contacts" class="layui-input" lay-verify="required" placeholder="请输入联系人" value="<?php echo htmlentities((isset($row['contacts']) && ($row['contacts'] !== '')?$row['contacts']:'')); ?>">
+                <input type="text" name="contacts" class="layui-input" readonly lay-verify="required" placeholder="请输入联系人" value="<?php echo htmlentities((isset($row['contacts']) && ($row['contacts'] !== '')?$row['contacts']:'')); ?>">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">联系人电话</label>
             <div class="layui-input-block">
-                <input type="text" name="tel" class="layui-input" lay-verify="required" placeholder="请输入联系人电话" value="<?php echo htmlentities((isset($row['tel']) && ($row['tel'] !== '')?$row['tel']:'')); ?>">
+                <input type="text" name="tel" class="layui-input" readonly lay-verify="required" placeholder="请输入联系人电话" value="<?php echo htmlentities((isset($row['tel']) && ($row['tel'] !== '')?$row['tel']:'')); ?>">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注说明</label>
             <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea"  placeholder="请输入备注说明"><?php echo (isset($row['remark']) && ($row['remark'] !== '')?$row['remark']:''); ?></textarea>
+                <textarea name="remark" class="layui-textarea" readonly placeholder="请输入备注说明"><?php echo (isset($row['remark']) && ($row['remark'] !== '')?$row['remark']:''); ?></textarea>
             </div>
         </div>
         <div class="layui-form-item">

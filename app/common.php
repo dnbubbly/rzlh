@@ -106,6 +106,23 @@ if (!function_exists('parseNodeTuo')) {
     }
 }
 
+if (!function_exists('parseContrlTuo')) {
+    /**
+     * 获取控制类
+     * @param string $node
+     * @return string
+     */
+    function parseContrlTuo($node)
+    {
+        $array = explode('.', $node);
+        foreach ($array as $key => $val) {
+            $val = ucfirst($val);
+            $array[$key] = $val;
+        }
+        return $array;
+    }
+}
+
 if (!function_exists('sysconfig')) {
 
     /**
@@ -324,10 +341,24 @@ if (!function_exists('conditionRe')) {
                         $re = true;
                     }
                 }else{
-                    if($cl->optType==1){
-                        $where[] = [$cl->columnDbname,'=',$cl->zdy1];
-                    }elseif($cl->optType==2){
-                        $where[] = [$cl->columnDbname,'like','%'.$cl->zdy1.'%'];
+                    if($cl->showType==1){
+                        if($cl->optType==4){
+                            $where[] = [$cl->columnDbname,'=',$cl->zdy1];
+                        }elseif ($cl->optType==1){
+                            $where[] = [$cl->columnDbname,'<',$cl->zdy1];
+                        }elseif ($cl->optType==2){
+                            $where[] = [$cl->columnDbname,'>',$cl->zdy1];
+                        }elseif ($cl->optType==3){
+                            $where[] = [$cl->columnDbname,'<=',$cl->zdy1];
+                        }elseif ($cl->optType==5){
+                            $where[] = [$cl->columnDbname,'>=',$cl->zdy1];
+                        }
+                    }elseif ($cl->showType==2){
+                        if($cl->optType==1){
+                            $where[] = [$cl->columnDbname,'=',$cl->zdy1];
+                        }elseif($cl->optType==2){
+                            $where[] = [$cl->columnDbname,'like','%'.$cl->zdy1.'%'];
+                        }
                     }
                 }
             }
@@ -374,6 +405,235 @@ if (!function_exists('havenextflow')) {
     }
 }
 
+if (!function_exists('is_weixin')){
+    function is_weixin(){
+        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+            return true;
+        }
+        return false;
+    }
+}
+if (!function_exists('getfiletype')){
+    /**
+     * 文件类型
+     * @param unknown $url
+     * @return number  */
+    function getfiletype($url){
+        $pic = array('.jpg','.png','.gif','.jpeg','.bmp');
+        $pdf = array('.pdf');
+        $word = array('.doc','.docx');
+        $zip = array('.zip','.rar','.arj');
+        $re = 5;
+        if(strtolower(in_array(strrchr($url, '.'),$pic))){
+            $re = 1;
+        }elseif(strtolower(in_array(strrchr($url, '.'),$pdf))){
+            $re = 2;
+        }elseif(strtolower(in_array(strrchr($url, '.'),$word))){
+            $re = 3;
+        }elseif(strtolower(in_array(strrchr($url, '.'),$zip))){
+            $re = 4;
+        }else{
+            $re = 5;
+        }
+        return $re;
+    }
+}
+if (!function_exists('sendTemplateMessage')){
+    /*  */
+    function sendTemplateMessage($data){
+        $config = [
+            
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => 'wx06d520616f83aa10',         // AppID
+            'secret'  => '872f39f31cfec874c82f1cb13625399f',     // AppSecret
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => ROOT_PATH.'runtime/wechat/wxpay.log',
+            ],
+        ];
+        $wx = Factory::officialAccount($config);
+        $wx->template_message->send($data);
+    }
+}
+if (!function_exists('getopenid')){
+    /**
+     * 获取用户openid
+     * @param unknown $code  */
+    function getopenid($code){
+        $employ = new Employ();
+        $openid = $employ->where('userCode',$code)->find();
+        return $openid->openid;
+    }
+}
+//判断是否图片
+if (!function_exists('isImage')){
+    function isImage($filename){
+        $file  = fopen($filename, "rb");
+        $bin  = fread($file, 2); // 只读2字节
+        fclose($file);
+        $strInfo = @unpack("C2chars", $bin);
+        $typeCode = intval($strInfo['chars1'].$strInfo['chars2']);
+        $fileType = '';
+        if($typeCode == 255216 /*jpg*/ || $typeCode == 7173 /*gif*/ || $typeCode == 13780 /*png*/){
+            return $typeCode;
+        }else{
+            return false;
+            
+        }
+    }
+    
+}
+//获取pdf文件页数
+if (!function_exists('getPdfPages')){
+    function getPdfPages($path){
+        // 打开文件
+        $fp=@fopen($path,"r");
+        if (!$fp) {
+            return array(false,"打开文件\"{$path}\"失败");
+        }else {
+            $max=0;
+            while(!feof($fp)) {
+                $line = fgets($fp,255);
+                if (preg_match('/\/Count [0-9]+/', $line, $matches)){
+                    preg_match('/[0-9]+/',$matches[0], $matches2);
+                    if ($max<$matches2[0]) $max=$matches2[0];
+                }
+            }
+            fclose($fp);
+            // 返回页数
+            return $max;
+        }
+    }
+}
+
+if (!function_exists('getname')){
+    /**
+     * 获取用户openid
+     * @param unknown $code  */
+    function getname($code){
+        $employ = new Employ();
+        $openid = $employ->where('userCode',$code)->find();
+        return $openid->userName;
+    }
+}
+if (!function_exists('encrypt')){
+    /**
+     * 加密函数
+     * @param string $txt 需要加密的字符串
+     * @param string $key 密钥
+     * @return string 返回加密结果
+     */
+    function encrypt($txt, $key = ''){
+        if (empty($txt)) return $txt;
+        if (empty($key)) $key = md5($key);
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.";
+        $ikey ="-x6g6ZWm2G9g_vr0Bo.pOq3kRIxsZ6rm";
+        $nh1 = rand(0,64);
+        $nh2 = rand(0,64);
+        $nh3 = rand(0,64);
+        $ch1 = $chars{$nh1};
+        $ch2 = $chars{$nh2};
+        $ch3 = $chars{$nh3};
+        $nhnum = $nh1 + $nh2 + $nh3;
+        $knum = 0;$i = 0;
+        while(isset($key{$i})) $knum +=ord($key{$i++});
+        $mdKey = substr(md5(md5(md5($key.$ch1).$ch2.$ikey).$ch3),$nhnum%8,$knum%8 + 16);
+        $txt = base64_encode(time().'_'.$txt);
+        $txt = str_replace(array('+','/','='),array('-','_','.'),$txt);
+        $tmp = '';
+        $j=0;$k = 0;
+        $tlen = strlen($txt);
+        $klen = strlen($mdKey);
+        for ($i=0; $i<$tlen; $i++) {
+            $k = $k == $klen ? 0 : $k;
+            $j = ($nhnum+strpos($chars,$txt{$i})+ord($mdKey{$k++}))%64;
+            $tmp .= $chars{$j};
+        }
+        $tmplen = strlen($tmp);
+        $tmp = substr_replace($tmp,$ch3,$nh2 % ++$tmplen,0);
+        $tmp = substr_replace($tmp,$ch2,$nh1 % ++$tmplen,0);
+        $tmp = substr_replace($tmp,$ch1,$knum % ++$tmplen,0);
+        return $tmp;
+    }
+}
+if (!function_exists('decrypt')){
+    /**
+     * 解密函数
+     * @param string $txt 需要解密的字符串
+     * @param string $key 密匙
+     * @return string 字符串类型的返回结果
+     */
+    function decrypt($txt, $key = '', $ttl = 0){
+        if (empty($txt)) return $txt;
+        if (empty($key)) $key = md5($key);
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.";
+        $ikey ="-x6g6ZWm2G9g_vr0Bo.pOq3kRIxsZ6rm";
+        $knum = 0;$i = 0;
+        $tlen = @strlen($txt);
+        while(isset($key{$i})) $knum +=ord($key{$i++});
+        $ch1 = @$txt{$knum % $tlen};
+        $nh1 = strpos($chars,$ch1);
+        $txt = @substr_replace($txt,'',$knum % $tlen--,1);
+        $ch2 = @$txt{$nh1 % $tlen};
+        $nh2 = @strpos($chars,$ch2);
+        $txt = @substr_replace($txt,'',$nh1 % $tlen--,1);
+        $ch3 = @$txt{$nh2 % $tlen};
+        $nh3 = @strpos($chars,$ch3);
+        $txt = @substr_replace($txt,'',$nh2 % $tlen--,1);
+        $nhnum = $nh1 + $nh2 + $nh3;
+        $mdKey = substr(md5(md5(md5($key.$ch1).$ch2.$ikey).$ch3),$nhnum % 8,$knum % 8 + 16);
+        $tmp = '';
+        $j=0; $k = 0;
+        $tlen = @strlen($txt);
+        $klen = @strlen($mdKey);
+        for ($i=0; $i<$tlen; $i++) {
+            $k = $k == $klen ? 0 : $k;
+            $j = strpos($chars,$txt{$i})-$nhnum - ord($mdKey{$k++});
+            while ($j<0) $j+=64;
+            $tmp .= $chars{$j};
+        }
+        $tmp = str_replace(array('-','_','.'),array('+','/','='),$tmp);
+        $tmp = trim(base64_decode($tmp));
+        if (preg_match("/\d{10}_/s",substr($tmp,0,11))){
+            if ($ttl > 0 && (time() - substr($tmp,0,11) > $ttl)){
+                $tmp = null;
+            }else{
+                $tmp = substr($tmp,11);
+            }
+        }
+        return $tmp;
+    }
+}
+if (!function_exists('convertUrlQuery')){
+    /**
+     * 获取url参数
+     */
+    function convertUrlQuery($query){
+        $queryParts = explode('&', $query);
+        $params = array();
+        foreach ($queryParts as $param) {
+            $item = explode('=', $param);
+            $params[$item[0]] = $item[1];
+        }
+        return $params;
+    }
+}
+if (!function_exists('isHttp')){
+    /**
+     * 获取url参数
+     */
+    function isHttp($url){
+        $res = strpos($url, "http://");
+        if($res===false){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
 
 
 

@@ -71,6 +71,14 @@ class AdminController extends BaseController
      * @var array
      */
     protected $selectWhere = [];
+    
+    /**
+     * 下拉选择排序
+     * @var array
+     */
+    protected $selectOrder = [
+        'id' => 'desc',
+    ];
 
     /**
      * 是否关联查询
@@ -215,6 +223,7 @@ class AdminController extends BaseController
         $data = $this->model
             ->where($this->selectWhere)
             ->field($fields)
+            ->order($this->selectOrder)
             ->select();
         $this->success(null, $data);
     }
@@ -265,7 +274,7 @@ class AdminController extends BaseController
         // 验证登录
         if (!in_array($currentController, $adminConfig['no_login_controller']) &&
             !in_array($currentNode, $adminConfig['no_login_node'])) {
-            empty($adminId) && $this->error('请先登录后台', [], __url('admin/login/index'));
+            empty($adminId) && $this->error('请先登录后台1', [], __url('admin/login/index'));
 
             // 判断是否登录过期
             if ($expireTime !== true && time() > $expireTime) {

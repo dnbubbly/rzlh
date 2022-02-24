@@ -1,4 +1,4 @@
-<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\contract\info\index.html";i:1645080665;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\contract\info\index.html";i:1645530531;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +34,15 @@
                data-auth-add="<?php echo auth('contract.info/add'); ?>"
                data-auth-edit="<?php echo auth('contract.info/edit'); ?>"
                data-auth-delete="<?php echo auth('contract.info/delete'); ?>"
+               data-auth-agree="<?php echo auth('contract.info/agree'); ?>"
+               data-auth-sign="<?php echo auth('contract.info/sign'); ?>"
+               data-auth-file="<?php echo auth('contract.info/file'); ?>"
                lay-filter="currentTable">
         </table>
     </div>
 </div>
+<script>
+var getContractType = <?php echo json_encode($getContractType); ?>;
+</script>
 </body>
 </html>

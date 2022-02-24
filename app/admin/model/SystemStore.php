@@ -13,7 +13,7 @@ class SystemStore extends TimeModel
 
     public function getStatusList()
     {
-        return ['0'=>'未生效','1'=>'审核中','2'=>'已生效'];
+        return ['0'=>'未生效','1'=>'审核中','2'=>'已生效','3'=>'已退回'];
     }
     
     public function systemAdmin()

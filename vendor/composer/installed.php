@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'd74b42cd590a4e2643adbaf591a9691811fb5b90',
         'name' => 'zhongshaofa/easyadmin',
         'dev' => true,
     ),
@@ -82,6 +82,15 @@
             'reference' => 'a255daa05feffbf4b88d59897a9470696d2fe259',
             'dev_requirement' => true,
         ),
+        'easywechat-composer/easywechat-composer' => array(
+            'pretty_version' => '1.4.1',
+            'version' => '1.4.1.0',
+            'type' => 'composer-plugin',
+            'install_path' => __DIR__ . '/../easywechat-composer/easywechat-composer',
+            'aliases' => array(),
+            'reference' => '3fc6a7ab6d3853c0f4e2922539b56cc37ef361cd',
+            'dev_requirement' => false,
+        ),
         'guzzlehttp/command' => array(
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
@@ -136,6 +145,24 @@
             'reference' => '5b569e16ba35fa48ff7449a7f593172f8284f66b',
             'dev_requirement' => false,
         ),
+        'laminas/laminas-escaper' => array(
+            'pretty_version' => '2.6.1',
+            'version' => '2.6.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-escaper',
+            'aliases' => array(),
+            'reference' => '25f2a053eadfa92ddacb609dcbbc39362610da70',
+            'dev_requirement' => false,
+        ),
+        'laminas/laminas-zendframework-bridge' => array(
+            'pretty_version' => '1.1.1',
+            'version' => '1.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-zendframework-bridge',
+            'aliases' => array(),
+            'reference' => '6ede70583e101030bcace4dcddd648f760ddf642',
+            'dev_requirement' => false,
+        ),
         'league/flysystem' => array(
             'pretty_version' => '1.0.57',
             'version' => '1.0.57.0',
@@ -172,6 +199,15 @@
             'reference' => '5348c5a67e3b75cd209d70103f916a93b1f1ed21',
             'dev_requirement' => false,
         ),
+        'monolog/monolog' => array(
+            'pretty_version' => '2.3.5',
+            'version' => '2.3.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../monolog/monolog',
+            'aliases' => array(),
+            'reference' => 'fd4380d6fc37626e2f799f29d91195040137eba9',
+            'dev_requirement' => false,
+        ),
         'mtdowling/jmespath.php' => array(
             'pretty_version' => '2.4.0',
             'version' => '2.4.0.0',
@@ -190,6 +226,24 @@
             'reference' => '8c2a18ce3e67c34efc1b29f64fe61304368259a2',
             'dev_requirement' => false,
         ),
+        'overtrue/socialite' => array(
+            'pretty_version' => '2.0.24',
+            'version' => '2.0.24.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../overtrue/socialite',
+            'aliases' => array(),
+            'reference' => 'ee7e7b000ec7d64f2b8aba1f6a2eec5cdf3f8bec',
+            'dev_requirement' => false,
+        ),
+        'overtrue/wechat' => array(
+            'pretty_version' => '4.5.0',
+            'version' => '4.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../overtrue/wechat',
+            'aliases' => array(),
+            'reference' => '04a940f97d6812a67bb8d5f2dbaebf9ad78ae776',
+            'dev_requirement' => false,
+        ),
         'phpoffice/phpspreadsheet' => array(
             'pretty_version' => '1.12.0',
             'version' => '1.12.0.0',
@@ -197,6 +251,24 @@
             'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
             'aliases' => array(),
             'reference' => 'f79611d6dc1f6b7e8e30b738fc371b392001dbfd',
+            'dev_requirement' => false,
+        ),
+        'phpoffice/phpword' => array(
+            'pretty_version' => '0.18.3',
+            'version' => '0.18.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoffice/phpword',
+            'aliases' => array(),
+            'reference' => 'be0190cd5d8f95b4be08d5853b107aa4e352759a',
+            'dev_requirement' => false,
+        ),
+        'pimple/pimple' => array(
+            'pretty_version' => 'v3.3.1',
+            'version' => '3.3.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../pimple/pimple',
+            'aliases' => array(),
+            'reference' => '21e45061c3429b1e06233475cc0e1f6fc774d5b0',
             'dev_requirement' => false,
         ),
         'psr/cache' => array(
@@ -208,6 +280,12 @@
             'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
             'dev_requirement' => false,
         ),
+        'psr/cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
+        ),
         'psr/container' => array(
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
@@ -216,6 +294,21 @@
             'aliases' => array(),
             'reference' => 'b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
             'dev_requirement' => false,
+        ),
+        'psr/event-dispatcher' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/event-dispatcher',
+            'aliases' => array(),
+            'reference' => 'dbefd12671e8a14ec7f180cab83036ed26714bb0',
+            'dev_requirement' => false,
+        ),
+        'psr/event-dispatcher-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
         ),
         'psr/http-message' => array(
             'pretty_version' => '1.0.1',
@@ -241,6 +334,12 @@
             'reference' => '446d54b4cb6bf489fc9d75f55843658e6f25d801',
             'dev_requirement' => false,
         ),
+        'psr/log-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+            ),
+        ),
         'psr/simple-cache' => array(
             'pretty_version' => '1.0.1',
             'version' => '1.0.1.0',
@@ -249,6 +348,12 @@
             'aliases' => array(),
             'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
             'dev_requirement' => false,
+        ),
+        'psr/simple-cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
         ),
         'qcloud/cos-sdk-v5' => array(
             'pretty_version' => 'v2.0.3',
@@ -277,6 +382,39 @@
             'reference' => '120b605dfeb996808c31b6477290a714d356e822',
             'dev_requirement' => false,
         ),
+        'rkorebrits/htmltoopenxml' => array(
+            'pretty_version' => '0.1.9',
+            'version' => '0.1.9.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rkorebrits/htmltoopenxml',
+            'aliases' => array(),
+            'reference' => 'ee2635beb4422f288acdec21f465dfec8ac2d58d',
+            'dev_requirement' => false,
+        ),
+        'symfony/cache' => array(
+            'pretty_version' => 'v4.3.11',
+            'version' => '4.3.11.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache',
+            'aliases' => array(),
+            'reference' => '8794ccf68ac341fc19311919d2287f7557bfccba',
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-contracts' => array(
+            'pretty_version' => 'v1.1.11',
+            'version' => '1.1.11.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache-contracts',
+            'aliases' => array(),
+            'reference' => '41c956506500bea5502022f6be81da96fb9c7626',
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
+        ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v2.5.0',
             'version' => '2.5.0.0',
@@ -284,6 +422,39 @@
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(),
             'reference' => '6f981ee24cf69ee7ce9736146d1c57c2780598a8',
+            'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher' => array(
+            'pretty_version' => 'v5.4.3',
+            'version' => '5.4.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/event-dispatcher',
+            'aliases' => array(),
+            'reference' => 'dec8a9f58d20df252b9cd89f1c6c1530f747685d',
+            'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher-contracts' => array(
+            'pretty_version' => 'v2.5.0',
+            'version' => '2.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/event-dispatcher-contracts',
+            'aliases' => array(),
+            'reference' => '66bea3b09be61613cd3b4043a65a8ec48cfa6d2a',
+            'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '2.0',
+            ),
+        ),
+        'symfony/http-foundation' => array(
+            'pretty_version' => 'v5.4.3',
+            'version' => '5.4.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/http-foundation',
+            'aliases' => array(),
+            'reference' => 'ef409ff341a565a3663157d4324536746d49a0c7',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-mbstring' => array(
@@ -322,6 +493,24 @@
             'reference' => 'a35d6b8f82e2272504f23a267de49b8717ca0028',
             'dev_requirement' => false,
         ),
+        'symfony/psr-http-message-bridge' => array(
+            'pretty_version' => 'v2.1.2',
+            'version' => '2.1.2.0',
+            'type' => 'symfony-bridge',
+            'install_path' => __DIR__ . '/../symfony/psr-http-message-bridge',
+            'aliases' => array(),
+            'reference' => '22b37c8a3f6b5d94e9cdbd88e1270d96e2f97b34',
+            'dev_requirement' => false,
+        ),
+        'symfony/service-contracts' => array(
+            'pretty_version' => 'v1.1.11',
+            'version' => '1.1.11.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/service-contracts',
+            'aliases' => array(),
+            'reference' => '633df678bec3452e04a7b0337c9bcfe7354124b3',
+            'dev_requirement' => false,
+        ),
         'symfony/translation' => array(
             'pretty_version' => 'v5.4.2',
             'version' => '5.4.2.0',
@@ -354,6 +543,15 @@
             'aliases' => array(),
             'reference' => 'ea4940845535c85ff5c505e13b3205b0076d07bf',
             'dev_requirement' => true,
+        ),
+        'symfony/var-exporter' => array(
+            'pretty_version' => 'v4.4.37',
+            'version' => '4.4.37.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-exporter',
+            'aliases' => array(),
+            'reference' => '70efd494974592a6581ad44e962238e3f76baea4',
+            'dev_requirement' => false,
         ),
         'topthink/framework' => array(
             'pretty_version' => 'v6.0.8',
@@ -427,6 +625,12 @@
             'reference' => '90803b73f781db5d42619082c4597afc58b2d4c5',
             'dev_requirement' => false,
         ),
+        'zendframework/zend-escaper' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.6.1',
+            ),
+        ),
         'zhongshaofa/easy-admin' => array(
             'pretty_version' => 'v1.0.2',
             'version' => '1.0.2.0',
@@ -437,12 +641,12 @@
             'dev_requirement' => false,
         ),
         'zhongshaofa/easyadmin' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'd74b42cd590a4e2643adbaf591a9691811fb5b90',
             'dev_requirement' => false,
         ),
         'zhongshaofa/thinkphp-log-trace' => array(

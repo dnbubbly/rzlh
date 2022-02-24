@@ -30,7 +30,10 @@
         "zhongshaofa/easy-admin": "^1.0.2",
         "ext-json": "*",
         "zhongshaofa/thinkphp-log-trace": "^1.0",
-        "topthink/think-queue": "^3.0"
+        "topthink/think-queue": "^3.0",
+        "phpoffice/phpword": "^0.18.3",
+        "rkorebrits/htmltoopenxml": "^0.1.9",
+        "overtrue/wechat": "~4.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

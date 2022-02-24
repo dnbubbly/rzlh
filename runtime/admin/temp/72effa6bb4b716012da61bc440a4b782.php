@@ -1,4 +1,4 @@
-<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\customer\credit\add.html";i:1645080665;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:58:"E:\wamp64\www\rzlh\app\admin\view\customer\credit\add.html";i:1645494310;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +34,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">客户名称</label>
             <div class="layui-input-block">
-                <select name="cus_id" lay-verify="required" lay-filter="cus" lay-search="" data-select="<?php echo url('customer.info/index'); ?>" data-fields="id,name" data-value="">
+                <select name="cus_id" lay-verify="required" lay-filter="cus" lay-search="" data-select="<?php echo url('customer.info/reindex'); ?>" data-fields="id,name" data-value="">
 		        </select>
             </div>
         </div>

@@ -140,4 +140,10 @@ class Store extends AdminController
         $this->assign('row', $row);
         return $this->fetch();
     }
+    
+    //审批通过回调
+    public function useful($id){
+        $up['status'] = 2;
+        $save = $this->model->where('id',$id)->update($up);
+    }
 }

@@ -1,4 +1,4 @@
-<?php /*a:2:{s:61:"E:\wamp64\www\rzlh\app\admin\view\step\flowdetail\reback.html";i:1645080665;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:61:"E:\wamp64\www\rzlh\app\admin\view\step\flowdetail\reback.html";i:1645501439;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +31,12 @@
 <div class="layuimini-container">
 	<form id="app-form" class="layui-form layuimini-form layui-form-pane">
 	  	<div class="layui-field-box">
+	  		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 0;">
+				<legend>审批内容</legend>
+			</fieldset> 
+			<div class="layui-form-item">
+				<iframe src="<?php echo htmlentities($detailurl); ?>" frameborder="0" scrolling="no" style="background: #fff;" width="100%" id="iframepage"></iframe>
+			</div>
 			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 0;">
 				<legend>审批信息</legend>
 			</fieldset> 

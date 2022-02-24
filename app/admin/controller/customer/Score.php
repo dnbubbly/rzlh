@@ -89,13 +89,24 @@ class Score extends AdminController
             $rule = [];
             $this->validate($post, $rule);
             try {
+                $post['date'] = strtotime($post['date']);
                 $save = $row->save($post);
             } catch (\Exception $e) {
-                $this->error('保存失败');
+                $this->error('保存失败'.$e->getMessage());
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
         $row->date = date("Y-m-d",$row->date);
+        $this->assign('row', $row);
+        return $this->fetch();
+    }
+    
+    /**
+     * @NodeAnotation(title="查看")
+     */
+    public function detail($id){
+        $row = $this->model->find($id);
+        empty($row) && $this->error('数据不存在');
         $this->assign('row', $row);
         return $this->fetch();
     }

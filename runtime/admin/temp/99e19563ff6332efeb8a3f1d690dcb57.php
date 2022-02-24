@@ -1,4 +1,4 @@
-<?php /*a:2:{s:60:"E:\wamp64\www\rzlh\app\admin\view\contract\info\quality.html";i:1645433102;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
+<?php /*a:2:{s:60:"E:\wamp64\www\rzlh\app\admin\view\contract\info\quality.html";i:1645614745;s:53:"E:\wamp64\www\rzlh\app\admin\view\layout\default.html";i:1645080665;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +43,11 @@
     				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 			        	<legend>执行标准</legend>
 			        </fieldset>
-			        <div class="layui-form-item">
+					<div class="layui-form-item">
 			        	<div class="layui-col-lg3 layui-col-md3 layui-col-sm3">
 							<span class="layui-form-label"><?php echo htmlentities($v['name']); ?></span>
 								<div class="layui-input-block">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz1]" lay-search="" v-model="data.<?php echo htmlentities($v['name']); ?>.qz1">
+									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz1]" lay-filter="qz1" model="<?php echo htmlentities($v['name']); ?>" del="qz1" lay-search="" v-model="data.<?php echo htmlentities($v['name']); ?>.qz1">
 										<option value=""></option>
 										<?php foreach($v['unit'] as $u): ?>
 										<option  value="<?php echo htmlentities($u['unit']); ?>"><?php echo htmlentities($u['unit']); ?></option>
@@ -65,55 +65,56 @@
 					<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 				        <legend>质量奖惩</legend>
 				    </fieldset>
-    				<div class="layui-form-item" v-for="(value, key) in data.<?php echo htmlentities($v['name']); ?>.qz">
-    					<div class="layui-col-space15 qline">
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-					    		<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz3][]" type="text" class="layui-input" v-model="value[0]"></div>
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6" style="left: -1px">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz4][]" lay-verify="required" lay-search="" v-model="value[1]">
-										<option value=""></option>
-										<option value="＜" selected = "selected" >＜</option>
-										<option value="≤">≤</option>
-									</select>
-	                     		</div>
-	                     			
-							</div>
-							<div style="text-align: center;line-height:38px;float: left">实际值</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-					        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz5][]" lay-verify="required" lay-search="" v-model="value[2]">
-										<option value=""></option>
-										<option value="＜">＜</option>
-										<option value="≤" selected = "selected" >≤</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz6][]" type="text" class="layui-input" v-model="value[3]"></div>
-							</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz7][]" lay-verify="required" lay-search="" v-model="value[4]">
-										<option value=""></option>
-										<option value="每升高" selected = "selected" >每升高</option>
-										<option value="每降低">每降低</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz8][]" type="text" class="layui-input" v-model="value[5]"></div>				
-							</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz9][]" lay-verify="required" lay-search="" v-model="value[6]">
-										<option value=""></option>
-										<option value="加价" selected = "selected" >加价</option>
-										<option value="减价">减价</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz10][]" type="text" class="layui-input" v-model="value[7]"></div>					
-							</div>
-							<div class="layui-col-lg1 layui-col-md1 layui-col-sm1" style="text-align: center;">
-								<i v-if="key !== data.<?php echo htmlentities($v['name']); ?>.qz.length-1" class="layui-icon delqt" style="font-size: 20px;line-height: 38px;"></i>
-					    		<i v-else class="layui-icon addqt" style="font-size: 20px; color: #5FB878;line-height: 38px"></i>
+				    <div>
+	    				<div class="layui-form-item" v-for="(value, key) in data.<?php echo htmlentities($v['name']); ?>.qz">
+	    					<div class="layui-col-space15 qline">
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+						    		<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz3][]" type="text" class="layui-input" v-model="value[0]"></div>
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6" style="left: -1px">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz4][]" lay-filter="qz" model="<?php echo htmlentities($v['name']); ?>" del="qz" index="1" lay-search=""  v-model="value[1]">
+											<option value=""></option>
+											<option value="＜" selected = "selected" >＜</option>
+											<option value="≤">≤</option>
+										</select>
+		                     		</div>
+								</div>
+								<div style="text-align: center;line-height:38px;float: left">实际值</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+						        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz5][]" lay-filter="qz" model="<?php echo htmlentities($v['name']); ?>" del="qz" index="2" lay-search="" v-model="value[2]">
+											<option value=""></option>
+											<option value="＜">＜</option>
+											<option value="≤" selected = "selected" >≤</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz6][]" type="text" class="layui-input" v-model="value[3]"></div>
+								</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz7][]" lay-filter="qz" model="<?php echo htmlentities($v['name']); ?>" del="qz" index="4" lay-search="" v-model="value[4]">
+											<option value=""></option>
+											<option value="每升高" selected = "selected" >每升高</option>
+											<option value="每降低">每降低</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz8][]" type="text" class="layui-input" v-model="value[5]"></div>				
+								</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz9][]" lay-filter="qz" model="<?php echo htmlentities($v['name']); ?>" del="qz" index="6" lay-search="" v-model="value[6]">
+											<option value=""></option>
+											<option value="加价" selected = "selected" >加价</option>
+											<option value="减价">减价</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz10][]" type="text" class="layui-input" v-model="value[7]"></div>					
+								</div>
+								<div class="layui-col-lg1 layui-col-md1 layui-col-sm1" style="text-align: center;">
+									<i v-if="key !== data.<?php echo htmlentities($v['name']); ?>.qz.length-1" class="layui-icon delqt" style="font-size: 20px;line-height: 38px;"></i>
+						    		<i v-else class="layui-icon addqt" model="<?php echo htmlentities($v['name']); ?>" del="qz" style="font-size: 20px; color: #5FB878;line-height: 38px"></i>
+					    		</div>
 				    		</div>
-			    		</div>
+						</div>
 					</div>
     			</div>
     			<div v-else class="layui-tab-item <?php if($k==0): ?>layui-show<?php endif; ?>">
@@ -142,54 +143,56 @@
 					<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 				        <legend>质量奖惩</legend>
 				    </fieldset>
-    				<div class="layui-form-item">
-    					<div class="layui-col-space15 qline">
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-					    		<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz3][]" type="text" class="layui-input"></div>
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6" style="left: -1px">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz4][]" lay-verify="required" lay-search="">
-										<option value=""></option>
-										<option value="＜" selected = "selected" >＜</option>
-										<option value="≤">≤</option>
-									</select>
-	                     		</div>
-	                     			
-							</div>
-							<div style="text-align: center;line-height:38px;float: left">实际值</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-					        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz5][]" lay-verify="required" lay-search="">
-										<option value=""></option>
-										<option value="＜">＜</option>
-										<option value="≤" selected = "selected" >≤</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz6][]" type="text" class="layui-input"></div>
-							</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz7][]" lay-verify="required" lay-search="">
-										<option value=""></option>
-										<option value="每升高" selected = "selected" >每升高</option>
-										<option value="每降低">每降低</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz8][]" type="text" class="layui-input"></div>				
-							</div>
-							<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
-								<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
-									<select name="qz[<?php echo htmlentities($v['name']); ?>][qz9][]" lay-verify="required" lay-search="">
-										<option value=""></option>
-										<option value="加价" selected = "selected" >加价</option>
-										<option value="减价">减价</option>
-									</select>
-	                        	</div>
-	                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz10][]" type="text" class="layui-input"></div>					
-							</div>
-							<div class="layui-col-lg1 layui-col-md1 layui-col-sm1" style="text-align: center;">
-					    		<i class="layui-icon addqt" style="font-size: 20px; color: #5FB878;line-height: 38px"></i>
+				    <div>
+	    				<div class="layui-form-item">
+	    					<div class="layui-col-space15 qline">
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+						    		<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz3][]" type="text" class="layui-input"></div>
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6" style="left: -1px">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz4][]" lay-verify="required" lay-search="">
+											<option value=""></option>
+											<option value="＜" selected = "selected" >＜</option>
+											<option value="≤">≤</option>
+										</select>
+		                     		</div>
+		                     			
+								</div>
+								<div style="text-align: center;line-height:38px;float: left">实际值</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+						        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz5][]" lay-verify="required" lay-search="">
+											<option value=""></option>
+											<option value="＜">＜</option>
+											<option value="≤" selected = "selected" >≤</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz6][]" type="text" class="layui-input"></div>
+								</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz7][]" lay-verify="required" lay-search="">
+											<option value=""></option>
+											<option value="每升高" selected = "selected" >每升高</option>
+											<option value="每降低">每降低</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz8][]" type="text" class="layui-input"></div>				
+								</div>
+								<div class="layui-col-lg2 layui-col-md2 layui-col-sm2">
+									<div class="layui-col-lg6 layui-col-md6 layui-col-sm6">
+										<select name="qz[<?php echo htmlentities($v['name']); ?>][qz9][]" lay-verify="required" lay-search="">
+											<option value=""></option>
+											<option value="加价" selected = "selected" >加价</option>
+											<option value="减价">减价</option>
+										</select>
+		                        	</div>
+		                        	<div class="layui-col-lg6 layui-col-md6 layui-col-sm6"><input name="qz[<?php echo htmlentities($v['name']); ?>][qz10][]" type="text" class="layui-input"></div>					
+								</div>
+								<div class="layui-col-lg1 layui-col-md1 layui-col-sm1" style="text-align: center;">
+						    		<i class="layui-icon addqt" style="font-size: 20px; color: #5FB878;line-height: 38px"></i>
+					    		</div>
 				    		</div>
-			    		</div>
+						</div>
 					</div>
     			</div>
     			<?php endforeach; ?>

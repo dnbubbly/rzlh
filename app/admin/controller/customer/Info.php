@@ -25,6 +25,8 @@ class Info extends AdminController
 
         $this->model = new \app\admin\model\CustomerInfo();
         
+        $this->score= new \app\admin\model\CustomerScore();
+        
         $this->step = new \app\admin\model\SystemStep();
         
         $this->stepflow = new \app\admin\model\StepFlow();
@@ -75,7 +77,6 @@ class Info extends AdminController
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
-            $post['date'] = strtotime($post['date']);
             try {
                 $save = $this->model->save($post);
             } catch (\Exception $e) {
@@ -90,6 +91,28 @@ class Info extends AdminController
     }
     
     /**
+     * @NodeAnotation(title="编辑")
+     */
+    public function edit($id)
+    {
+        $row = $this->model->find($id);
+        empty($row) && $this->error('数据不存在');
+        if ($this->request->isPost()) {
+            $post = $this->request->post();
+            $rule = [];
+            $this->validate($post, $rule);
+            try {
+                $save = $row->save($post);
+            } catch (\Exception $e) {
+                $this->error('保存失败'.$e->getMessage());
+            }
+            $save ? $this->success('保存成功') : $this->error('保存失败');
+        }
+        $this->assign('row', $row);
+        return $this->fetch();
+    }
+    
+    /**
      * @NodeAnotation(title="发起审批")
      */
     public function agree($id)
@@ -97,6 +120,8 @@ class Info extends AdminController
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
         $row['status'] !=1||$row['status'] !=2 && $this->error('审批中或已生效，不需要提交!');
+        $score = $this->score->where('cus_id',$id)->select();
+        count($score)<1 && $this->error('该客户没有准入评分，不能提交!');
         //查询是否设置审批流程
         $request = new Request();
         $currentController = parseNodeStr(Request::controller());
@@ -137,6 +162,8 @@ class Info extends AdminController
     public function detail($id){
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
+        $score = $this->score->where('cus_id',$id)->find();
+        $this->assign('score', $score);
         $this->assign('row', $row);
         return $this->fetch();
     }
@@ -148,6 +175,8 @@ class Info extends AdminController
     {
         if ($this->request->isAjax()) {
             if (input('selectFields')) {
+                $this->selectWhere[] = ['status','=',2];
+                $this->selectOrder = ['name'=>'asc'];
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
@@ -180,7 +209,8 @@ class Info extends AdminController
     {
         if ($this->request->isAjax()) {
             if (input('selectFields')) {
-                $this->selectWhere[] = ['status','=',0];
+                $this->selectWhere[] = ['status','<>',2];
+                $this->selectOrder = ['name'=>'asc'];
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
@@ -204,5 +234,13 @@ class Info extends AdminController
             return json($data);
         }
         return $this->fetch();
+    }
+    
+    //审批通过回调
+    public function useful($id){
+        $up['status'] = 2;
+        $this->model->where('id',$id)->update($up);
+        $sup['status'] = 1;
+        $this->score->where('cus_id',$id)->update($sup);
     }
 }

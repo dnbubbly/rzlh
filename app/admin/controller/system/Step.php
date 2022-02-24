@@ -78,6 +78,7 @@ class Step extends AdminController
         ];
         if ($this->request->isPost()) {
             $post = $this->request->post();
+            $post['data'] = json_decode(htmlspecialchars_decode($post['data']),true);
             $allow = array();
             foreach ($post['data'] as $de){
                 $allow[] = $de['value'];

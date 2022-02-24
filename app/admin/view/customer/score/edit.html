@@ -271,20 +271,18 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">资信审查</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="file1" class="layui-input layui-col-xs6"   placeholder="请上传资信审查" value="">
+                <input name="file1" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传资信审查" value="{$row.file1|default=''}" style="width: calc(100% - 85px);">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="file1" data-upload-number="one" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
-                    <span><a class="layui-btn layui-btn-normal" id="select_file1" data-upload-select="file1" data-upload-number="one" data-upload-mimetype="*"><i class="fa fa-list"></i> 选择</a></span>
+                    <span><a class="layui-btn" data-upload="file1" data-upload-number="one" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">尽职调查</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="file2" class="layui-input layui-col-xs6"   placeholder="请上传尽职调查" value="">
+                <input name="file2" class="layui-input layui-col-xs6"  lay-verify="required" placeholder="请上传尽职调查" value="{$row.file2|default=''}" style="width: calc(100% - 85px);">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="file2" data-upload-number="one" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
-                    <span><a class="layui-btn layui-btn-normal" id="select_file2" data-upload-select="file2" data-upload-number="one" data-upload-mimetype="*"><i class="fa fa-list"></i> 选择</a></span>
+                    <span><a class="layui-btn" data-upload="file2" data-upload-number="one" data-upload-exts="pdf|rar|doc|docx|xls|xlsx|txt" data-upload-icon="file"><i class="fa fa-upload"></i> 上传</a></span>
                 </div>
             </div>
         </div>

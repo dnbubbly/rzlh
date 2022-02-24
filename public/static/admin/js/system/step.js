@@ -86,6 +86,7 @@ define(["jquery", "easy-admin", "vue", "axios", "vuex", "ELEMENT", "autocomplete
         		height: 300,
         		value: JSON.parse(allowcolum)
         	})
+        	
         	var app = new Vue({
                 el: '#app',
                 data: {
@@ -95,6 +96,19 @@ define(["jquery", "easy-admin", "vue", "axios", "vuex", "ELEMENT", "autocomplete
                 	getUrlKey(name,url){
           			　　return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(url) || [, ""])[1].replace(/\+/g, '%20')) || null
                 	},
+                	saveSet() {
+                		var getData = tra.getData('test'); //获取右侧数据
+            			axios.post("../"+init.form_url, {
+            				data: JSON.stringify(getData),
+            				id: this.getUrlKey("id",window.location.href),
+            			}).then(res => {
+            			    if (res.data.code == 1) {
+            			    	ea.msg.success(res.data.msg);
+            			    }else{
+            			    	ea.msg.error(res.data.msg);
+            			    }
+            			})
+            		},
                 }
                 
         	})

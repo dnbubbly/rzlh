@@ -9,6 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'customer.score/delete',
         export_url: 'customer.score/export',
         modify_url: 'customer.score/modify',
+        detail_url: 'customer.score/detail',
     };
     var inputSelect = layui.inputSelect;
     var Controller = {
@@ -39,8 +40,24 @@ define(["jquery", "easy-admin"], function ($, ea) {
                                 auth: 'edit',
                                 class: 'layui-btn layui-btn-xs layui-btn-success',
                                 extend: 'data-full="true"',
-                            }],
-                            'delete'
+                                render: function (d) { return d.status === 0; }
+                            },
+                            {
+	                            text: '删除',
+	                            extra: '确定删除？',
+	                            url: init.delete_url,
+	                            method: 'request',
+	                            auth: 'delete',
+	                            class: 'layui-btn layui-btn-xs layui-btn-danger',
+	                            render: function (d) { return d.status === 0; }
+	                        }, {
+	                            text: '查看',
+	                            url: init.detail_url,
+	                            method: 'open',
+	                            auth: 'detail',
+	                            class: 'layui-btn layui-btn-xs layui-btn-success',
+	                            extend: 'data-full="true"',
+	                        }]
                         ]
                     }
                 ]],

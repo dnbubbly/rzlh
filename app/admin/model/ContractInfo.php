@@ -53,6 +53,11 @@ class ContractInfo extends TimeModel
         return ['1'=>'一票结算','2'=>'二票结算',];
     }
     
+    public function getStatusList()
+    {
+        return ['0'=>'未生效','1'=>'审核中','2'=>'已生效','3'=>'已退回'];
+    }
+    
     public function systemAdmin()
     {
         return $this->belongsTo('\app\admin\model\SystemAdmin', 'add_id', 'id');
@@ -83,9 +88,44 @@ class ContractInfo extends TimeModel
         return $this->belongsTo('\app\admin\model\ContractType', 'type', 'id');
     }
     
+    public function getContractType()
+    {
+        return \app\admin\model\ContractType::column('name', 'id');
+    }
+    
     public function getSystemAdminList()
     {
         return \app\admin\model\SystemAdmin::column('username', 'id');
+    }
+    
+    public function getContractHighwaysiteList()
+    {
+        return \app\admin\model\ContractHighwaysite::column('name', 'id');
+    }
+    
+    public function getContractRailwaysiteList()
+    {
+        return \app\admin\model\ContractRailwaysite::column('name', 'id');
+    }
+    
+    public function getContractDeliveryList()
+    {
+        return \app\admin\model\ContractDelivery::column('name', 'id');
+    }
+    
+    public function getContractCoaltypeList()
+    {
+        return \app\admin\model\ContractCoaltype::column('name', 'id');
+    }
+    
+    public function getContractShipList()
+    {
+        return \app\admin\model\ContractShip::column('name', 'id');
+    }
+    
+    public function getContractAddressList()
+    {
+        return \app\admin\model\ContractAddress::column('name', 'id');
     }
 
 }
