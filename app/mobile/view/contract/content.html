@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/content.css?v={:time()}" >
+</head>
+<body style="margin: 0 auto;">
+	<div style="width: 940px;margin: 0 auto;font-weight: normal;font-size: 12px;">
+		<h1 style="font-size: 30px;text-align: center;">日照兰花冶电能源有限公司</h1>
+		<h1 style="font-size: 30px;text-align: center;">合同会审会签表</h1>
+		
+		<p style="display: flex;align-items: center;justify-content: space-between;font-size: 20px;"><span>合同编号：{$contract.cCode}</span><span>日期：{$contract.cDate}</span></p>
+		<table border="1" style="table-layout-alt: fixed;border-collapse: collapse;border-spacing: 0;" class="layui-table">
+			<colgroup style="width: 500px;">
+				<col width="100">
+				<col width="150">
+				<col width="100">
+				<col width="150">
+			</colgroup>
+		    <tbody>
+		    	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">合同名称<br>及编号</td>
+		        	<td style="width: 150px;font-size: 18px;">{$contract.cSeller}<br>{$contract.cCode}</td>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">合同金额</td>
+		        	<td style="width: 150px;font-size: 18px;">{$contract.cCoalType},{$contract.cCount}吨,{$contract.cPrice}元/吨</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">签约单位<br>（名称）</td>
+		        	<td style="width: 150px;font-size: 18px;">{if $contract.cType==1}{$contract.cBuyer}{elseif $contract.cType==2}{$contract.cSeller}{/if}</td>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">签约法人代表或授权代表</td>
+		        	<td style="width: 150px;font-size: 18px;">{$department.SdContact}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">合同分数</td>
+		        	<td style="width: 150px;font-size: 18px;">4</td>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;">经办部门</td>
+		        	<td style="width: 150px;font-size: 18px;">{$edpart.DepName}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">违约责任</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">按《中华人民共和国民法典》合同编有关规定执行。</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">付款方式</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">详见合同</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">经办部门意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon1}【{$contract.checkCon1}】  [{$contract.checkPeo1}&nbsp;{$contract.checkDate1|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">分管领导意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon2}【{$contract.checkCon2}】  [{$contract.checkPeo2}&nbsp;{$contract.checkDate2|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">财务部门意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon3}【{$contract.checkCon3}】  [{$contract.checkPeo3}&nbsp;{$contract.checkDate3|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">信息中心意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon4}【{$contract.checkCon4}】  [{$contract.checkPeo4}&nbsp;{$contract.checkDate4|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">风控质价部意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon5}【{$contract.checkCon5}】  [{$contract.checkPeo5}&nbsp;{$contract.checkDate5|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		        	<td style="width: 100px;font-size: 20px;font-weight: bold;height:100px">董事长意见</td>
+		        	<td style="width: 150px;font-size: 18px;" colspan="3">{if $contract.checkCon6}【{$contract.checkCon6}】  [{$contract.checkPeo6}&nbsp;{$contract.checkDate6|strtotime|date="Y-m-d H:i:s"}]{/if}</td>
+		      	</tr>
+		      	<tr>
+		      		<td style="width: 150px;font-size: 18px;text-align: left;padding: 9px 15px;" colspan="4">备注：合同文本内容涉及关联部门具体执行或相互约束的，应在合同会审会签时，由合同承办部门和关联部门共同根据各自的职责对合同内容进行审查。</td>
+		      	</tr>
+		    </tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/Mdate/iScroll.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/Mdate/Mdate.js?v={:time()}"></script>
+<body>
+	<div class="head fc">
+		<a href="javascript:window.history.go(-1);" class="back"><i class="layui-icon">&#xe603;</i></a>
+		{$title}
+	</div>
+	<div class="railwayloading">
+		<div class="tip">请上传电子版铁路货运单</div>
+		<div class="up">
+			<div class="layui-upload-drag" id="office">
+				<i class="layui-icon"></i>
+				<p>点击上传</p>
+			</div>
+		</div>
+	</div>
+	<div class="form layui-form-pane">
+		<form id="app-form" class="layui-form layuimini-form">
+			<input type="hidden" name="ScID" value="{$row.ScID}">
+			<input type="hidden" name="cFile" value="{$row.cFile}">
+			<input type="hidden" name="cFilename" value="{$row.cFilename}">
+			<div class="layui-form-item">
+	            <label class="layui-form-label required">需求号</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScPlan" placeholder="请上传铁路货运单" class="layui-input"  value="{$row.ScPlan}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">发运类型</label>
+	            <div class="layui-input-block">
+	            	<select name="iszc">
+	            		<option value="">请选择</option>
+	            		<option {if $row.iszc==3} selected="" {/if} value="3">仓库现货发运</option>
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">出库仓库</label>
+	            <div class="layui-input-block">
+	            	<select name="ScN">
+	            		<option value="">请选择</option>
+	            		{foreach $stocks as $k=>$v}
+	            		<option {if $row.ScN==$v.CskTypeName} selected="" {/if} value="{$v.CskTypeName}">{$v.CskTypeName}</option>
+	            		{/foreach}
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">定车日期</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScCityOwned" autocomplete="off" class="layui-input" data-year="{:date('Y')}" data-month="{:date('m')}" data-day="{:date('d')}" id="ScCityOwned" placeholder="" value="{:date('Y-m-d',strtotime($row.ScCityOwned))}">
+	            </div>
+	        </div>
+			<div class="layui-form-item">
+	            <label class="layui-form-label required">装车日期</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScDate" autocomplete="off" class="layui-input" data-year="{:date('Y',strtotime($row.ScDate))}" data-month="{:date('m',strtotime($row.ScDate))}" data-day="{:date('d',strtotime($row.ScDate))}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d',strtotime($row.ScDate))}">
+	            </div>
+	        </div>
+	        <!-- <div class="layui-form-item">
+	            <label class="layui-form-label required">矿(库)点</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="scZhuangH" class="layui-input" placeholder="请上传铁路货运单" value="{$row.scZhuangH}">
+	            </div>
+	        </div> -->
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">发站</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScStarName" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScStarName}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">到站</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScStopName" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScStopName}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">收货单位</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScDepartment" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScDepartment}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">品种</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScCoalType" class="layui-input" placeholder="请上传铁路货运单" value="{$row.ScCoalType}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">物流方式</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="YsType" class="layui-input" placeholder="请上传铁路货运单" value="{$row.YsType}">
+	            </div>
+	        </div>
+	        <div style="overflow-x: auto;">
+				<table class="layui-table" style="width:100%;text-align: center;margin: 0;table-layout: fixed;">
+				    <thead>
+				    	<tr>
+				        	<th width="8%" style="text-align: center;">序号</th>
+				        	<th width="38%" style="text-align: center;">需求号</th>
+				        	<th width="10%" style="text-align: center;">车种</th>
+				        	<th width="15%" style="text-align: center;">车号</th>
+				        	<th width="10%" style="text-align: center;">起票吨数</th>
+				        	<th width="10%" style="text-align: center;">实装吨数</th>
+				      	</tr> 
+				    </thead>
+		    		<tbody id="td">
+		    			{foreach $saleCoalDetail as $k=>$v}
+		    				<tr>
+		    					<td>{$k+1}<input type="hidden" name="sale[{$k}][ScdID]" value="{$v.ScdID}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdDep]" value="{$v.ScdDep}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdCarType]" value="{$v.ScdCarType}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdCarCode]" value="{$v.ScdCarCode}"></td>
+		    					<td><input class="layui-input layui-table-edit" oninput="count1(this)" name="sale[{$k}][ScdWeight]" value="{:floatval($v.ScdWeight)}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdWeight2]" value="{:floatval($v.ScdWeight2)}"></td>
+		    				</tr>
+		    			{/foreach}
+		    			<tr>
+		    				<td><span style="color: red">合计</span></td>
+		    				<td></td>
+		    				<td></td>
+		    				<td></td>
+		    				<td><span style="color: red" id="TotalSou1">{$count1}</span></td>
+		    				<td><span style="color: red" id="TotalSou2">{$count2}</span></td>
+		    			</tr>
+		      		</tbody>
+		      	</table>
+		    </div>
+	        <div class="layui-form-item text-center" style="margin-top: 0.2rem;margin-bottom: 0;">
+	            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">确认</button>
+	        </div>
+		</form>
+	</div>
+	<script>
+	totalSouFund();
+	function count1(obj){
+		$(obj).val($(obj).val());
+		$("#td").find("tr:not(:last) input").keyup(function(){
+			totalSouFund();
+		})
+	}
+	function totalSouFund() {
+		totalSou1 = 0;
+		totalSou2 = 0;
+		$("#td tr:not(:last)").each(function () {
+			$(this).find("td:eq(4) input").each(function () {
+				totalSou1 += getNumValue($(this)) ;
+				$("#TotalSou1").html(Number(totalSou1.toFixed(4)));
+			});
+			$(this).find("td:eq(5) input").each(function () {
+				totalSou2 += getNumValue($(this)) ;
+				$("#TotalSou2").html(Number(totalSou2.toFixed(4)));
+			});
+		})
+	}
+	function getNumValue(controlid) {
+		var num = controlid.val();
+		if (validateInput(num)) {
+			num = parseFloat(num);
+		}else {
+			controlid.val("");
+			num = 0;
+		}
+		return num;
+	}
+	function validateInput(inputstr) {
+		flag = false;
+		if (inputstr != "") {
+			if (isNaN(inputstr)) {
+		  		flag = false; //如果输入字符不是数字
+			}else{
+				if (parseFloat(inputstr) < 0){
+					flag = false;
+				}else{
+		  			flag = true;
+				}
+		  	}
+		}
+		return flag;
+	}
+	new Mdate("dateSelectorOne",{
+		beginYear: "2002",
+	    beginMonth: "10",
+	    beginDay: "24",
+		endYear: "2050",
+	    endMonth: "12",
+	    endDay: "31",
+		format: "-"
+	});
+	new Mdate("ScCityOwned",{
+		beginYear: "2002",
+	    beginMonth: "10",
+	    beginDay: "24",
+		endYear: "2050",
+	    endMonth: "12",
+	    endDay: "31",
+		format: "-"
+	});
+	function showimg(){
+		layer.open({
+	        type: 1,
+	        title: false,
+	        closeBtn: false,
+	        area: '300px;',
+	        shade: 0.8,
+	        shadeClose: true,
+	        id: 'LAY_layuipro',
+	        btnAlign: 'c',
+	        content: '<img src="__STATIC__/mobile/images/example.png">',
+		});
+	}
+	layui.use(['form','upload'], function() {
+	    var $ = layui.jquery;
+	    var upload = layui.upload;
+	    var form = layui.form;
+	    var tishi;
+	    upload.render({
+	        elem: '#office',
+	        url: '/Railwayloadingsale/upload',
+	        accept: 'file', //普通文件
+	        exts: 'pdf', //只允许上传压缩文件
+	        before: function(obj){
+	        	$("#td").html('');
+	        	tishi = layer.msg('文档识别中..', {
+	        	    icon: 16
+	        	    ,shade: 0.3
+	        	    ,time: false
+	        	});
+	        },
+	        done: function(res){
+	        	layer.close(tishi);
+	        	if(res.code==1){
+		        	$("input[name='ScPlan']").val(res.data[0].words);
+			        $("input[name='ScStarName']").val(res.data[1].words);
+			        $("input[name='ScStopName']").val(res.data[2].words);
+		        	$("input[name='ScDepartment']").val(res.data[3].words);
+		        	$("input[name='ScCoalType']").val(res.data[4].words)
+		        	$("input[name='YsType']").val("铁路");
+		        	$("input[name='cFile']").val(res.file);
+		        	$("input[name='cFilename']").val(res.filename);
+		        	if(res.cg){
+		        		$("#cgname").val(res.cg.sPlace);
+		        		$("input[name='sid']").val(res.cg.sid);
+		        		
+		        	}
+		        	layui.each(res.rel, function(index, item){
+		        		$("#td").append('<tr><td>'+item[0]+'<input type="hidden" name="sale['+(item[0]-1)+'][ScdID]" value="'+item[0]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdDep]" value="'+item[1]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdCarType]" value="'+item[2]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdCarCode]" value="'+item[3]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdWeight]" value="'+item[4]+'"></td>'
+		        		+'<td><input class="layui-input layui-table-edit" name="sale['+(item[0]-1)+'][ScdWeight2]" value="'+item[5]+'"></td></tr>');
+		        	})
+		        	$("#td").append('<tr>'
+		    				+'<td><span style="color: red">合计</span></td>'
+		    				+'<td></td>'
+		    				+'<td></td>'
+		    				+'<td></td>'
+		    				+'<td><span style="color: red">'+res.count1+'</span></td>'
+		    				+'<td><span style="color: red">'+res.count2+'</span></td></tr>');
+	        	}else{
+	        		layer.msg(res.msg);
+	        	}
+	        },
+	        error: function(res, index, upload){
+	        	layer.close(tishi);
+	        	layer.msg(res.msg);
+	        }
+		});
+	    form.on('submit(demo1)', function(data){
+	    	if(!$("input[name='cFile']").val()){
+	    		layer.msg("请先上传铁路货运单！");
+	    		return false;
+	    	}
+	    	if(!$("input[name='ScCityOwned']").val()){
+	    		layer.msg("请选择定车日期！");
+	    		return false;
+	    	}
+	    	if(!$("select[name='iszc']").val()){
+	    		layer.msg("请选择发运类型！");
+	    		return false;
+	    	}
+	    	$.ajax({
+                url:"/Railwayloadingsale/edit/",
+                dataType:'json',
+                type:'post',
+                before: function(obj){
+    	        	tishi = layer.msg('保存中..', {
+    	        	    icon: 16
+    	        	    ,shade: 0.3
+    	        	    ,time: false
+    	        	});
+    	        },
+                data: data.field,
+                success:function(t){
+                	if(t.code==1){
+                		window.location = '/Railwayloadingsale';
+                	}else{
+                		layer.msg(t.msg);
+                	}
+                },
+                error: function () {
+                	layer.msg('网络繁忙,请重试');
+                }
+            })
+	        return false;
+	    });
+	})
+	</script>
+	{include file="common/bot" /}
+</body>
+</html>

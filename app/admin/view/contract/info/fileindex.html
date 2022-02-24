@@ -1,0 +1,16 @@
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <table id="currentTablefile" class="layui-table layui-hide"
+               data-auth-add="{:auth('contract.info/add')}"
+               data-auth-edit="{:auth('contract.info/edit')}"
+               data-auth-delete="{:auth('contract.info/delete')}"
+               data-auth-agree="{:auth('contract.info/agree')}"
+               data-auth-sign="{:auth('contract.info/sign')}"
+               data-auth-file="{:auth('contract.info/file')}"
+               lay-filter="currentTablefile">
+        </table>
+    </div>
+</div>
+<script>
+var getContractType = {:json_encode($getContractType)};
+</script>

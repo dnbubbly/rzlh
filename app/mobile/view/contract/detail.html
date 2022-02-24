@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__//plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<body>
+<div class="contract">
+	<div class="contract_head">
+		{if $contract.ischeck==0}
+		<div class="no"><img src="__STATIC__/mobile/images/wraming.png">{$contract['processCtrl']['ProcessCtrl_Name']}</div>
+		{elseif $contract.ischeck==1}
+		<div class="no"><img src="__STATIC__/mobile/images/success.png">已生效</div>
+		{else}
+		<div class="no"><img src="__STATIC__/mobile/images/wraming.png">已回退</div>
+		{/if}
+	</div>
+	<div class="contract_detail">
+		<div style="width: 94%;padding: 3%;margin-top: 3%;">
+		    <div class="box">
+		   		<iframe id="iframe" class="ifr"  frameborder="0" src="/Contract/content?id={$Request.param.id}"></iframe>
+			</div>
+		</div>
+	</div>
+<script>
+//放入电脑端iframe缩放显示
+$(document).ready(function(){
+	var ifr = document.getElementById('iframe')
+	var b = $('.box').width()-1;
+	ifr.onload = function(){
+	    var wd = ifr.contentWindow.document.documentElement.scrollWidth;
+	    var ht = ifr.contentWindow.document.documentElement.scrollHeight;
+	    var x = b / wd;
+	    ifr.style.width = wd +'px';
+	    ifr.style.height = ht +'px';
+	    ifr.style.transform = `scale(${x})`;
+	    ifr.style.transformOrigin='0 0';
+	    
+	    $('.box').css("height",ht*x + 'px');
+	 
+	}
+})
+</script>
+	<div class="contract_detail" style="margin-top: 0.2rem;">
+		<div class="title">附件</div>
+		<div class="con">
+			<div class="file"><a href="http://yc.rizhaolanhua.com/OAFile/{$contract.cFile}" ><img src="__STATIC__/mobile/images/type{$contract.filetype}.png"><span>{$contract.cFile}</a></div>
+			<div class="file"><a href="http://yc.rizhaolanhua.com/OAFile/{$contract.cFile2}"><img src="__STATIC__/mobile/images/type{$contract.filetype2}.png"><span>{$contract.cFile2}</span></a></div>
+		</div>
+	</div>
+	<!-- <div class="contract_detail" style="margin-top: 0.2rem;">
+		<div class="title">质量及验收标准</div>
+		<div class="layui-tab layui-tab-brief" style="margin: 0 0.3rem;">
+  			<ul class="layui-tab-title">
+    			<li class="layui-this">发热量</li>
+    			<li>硫分S</li>
+    			<li>灰分A</li>
+    			<li>挥发分V</li>
+    			<li>可磨指数HGI</li>
+    			<li>水分M</li>
+  			</ul>
+  			<div class="layui-tab-content" style="padding: 0.2rem 0;">
+    			<div class="layui-tab-item layui-show">
+					{if $frl}
+					{foreach $frl as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+    			<div class="layui-tab-item">
+    				{if $lf}
+					{foreach $lf as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+    			<div class="layui-tab-item">
+    				{if $hf}
+					{foreach $hf as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+    			<div class="layui-tab-item">
+    				{if $hff}
+					{foreach $hff as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+    			<div class="layui-tab-item">
+    				{if $kmzs}
+					{foreach $kmzs as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+    			<div class="layui-tab-item">
+    				{if $sf}
+					{foreach $sf as $k=>$v}
+					{if $v.csAddOrJ==1}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每升高{$v.csJianG|floatval}，扣价{$v.csResault|floatval}元/吨</p>
+					{else}
+					<p>（{$k+1}）{$v.csBegin|floatval}>实际值>={$v.csEnd|floatval},每降低{$v.csJianG|floatval}，加价{$v.csResault|floatval}元/吨</p>
+					{/if}
+					{/foreach}
+					{/if}
+    			</div>
+  			</div>
+		</div>
+		
+	</div> -->
+	{if $contract.step}
+	<div class="contract_detail" style="margin-top: 0.2rem;">
+		<div class="title">审批历史</div>
+		<div class="con">
+			{:html_entity_decode($contract.step)}
+		</div>
+	</div>
+	{/if}
+	<div class="splc">
+		{if $contract.cType==1}
+		<a href="/Process/detail?id=7">
+		{elseif $contract.cType==2}
+		<a href="/Process/detail?id=27">
+		{/if}
+			<img src="__STATIC__/mobile/images/liuc.png" class="icon">
+            <h4 class="left">审批流程查看</h4>
+            <p class="right"><span></span><img src="__STATIC__/mobile/images/next1.png" class="next"></p>
+        </a>
+    </div>
+</div>
+{if $contract.ischeck==0}
+<div style="height:1.3rem"></div>
+<div class="contract_bot">
+	<a href="javascript:agree({$contract.cid})" style="width:50%">通过</a>
+	<a href="javascript:refund({$contract.cid})" style="width:50%">退回</a>
+</div>
+{/if}
+<script type="text/javascript">
+layui.use('element', function(){
+	  var $ = layui.jquery,element = layui.element;
+})
+function agree(id){
+	layer.open({
+		  content: '<textarea id="yj" class="layui-textarea" placeholder="请输入审批意见"></textarea>',
+		  btn: ['确定', '取消'],
+		  skin: 'footer',
+		  shade: 0.6,
+		  yes: function(index){
+			  var yj=$("#yj").val();
+			  if(yj.length==0){
+				  yj = "同意";
+			  }
+			  $.ajax({
+					url : '/Contract/detail/',
+					type: "post",
+					dataType: "json",
+					data:{'id':id,'yj': yj},
+					success:function(data){
+						if(data.code==1){
+							layer.open({content: data.msg,skin: 'msg',time: 2,end:function(){
+	    						window.location.href="/Contract/";
+	    					}});
+						}else{
+							layer.open({content: data.msg,skin: 'msg',time: 2,end:function(){
+	    						window.location.href="/Contract/";
+	    					}});
+						}
+					},
+					error: function(xhr, type){
+				        layer.open({content: '网络错误！',skin: 'msg',time: 2});
+				    }
+				});	
+		  }
+	});
+	
+}
+function refund(id){
+	layer.open({
+		  content: '<textarea id="yj" class="layui-textarea" placeholder="请输入审批意见"></textarea>',
+		  btn: ['确定', '取消'],
+		  skin: 'footer',
+		  shade: 0.6,
+		  yes: function(index){
+			  var yj=$("#yj").val();
+			  if(yj.length==0){
+				  yj = "同意";
+			  }
+			  $.ajax({
+					url : '/Contract/refund/',
+					type: "post",
+					dataType: "json",
+					data:{'id':id,'yj': yj},
+					success:function(data){
+						if(data.code==1){
+							layer.open({content: data.msg,skin: 'msg',time: 2,end:function(){
+	    						window.location.href="/Contract/";
+	    					}});
+						}else{
+							layer.open({content: data.msg,skin: 'msg',time: 2,end:function(){
+	    						window.location.href="/Contract/";
+	    					}});
+						}
+					},
+					error: function(xhr, type){
+				        layer.open({content: '网络错误！',skin: 'msg',time: 2});
+				    }
+				});	
+		  }
+	});
+}
+</script>
+</body>
+</html>

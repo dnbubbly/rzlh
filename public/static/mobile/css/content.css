@@ -1,0 +1,60 @@
+.layui-table {
+	width: 100%;
+	background-color: #fff;
+	color: #000
+}
+
+.layui-table tr {
+	transition: all .3s;
+	-webkit-transition: all .3s
+}
+
+.layui-table th {
+	text-align: left;
+	font-weight: 400
+}
+
+.layui-table tbody tr:hover,.layui-table thead tr,.layui-table-click,.layui-table-header,.layui-table-hover,.layui-table-mend,.layui-table-patch,.layui-table-tool,.layui-table-total,.layui-table-total tr,.layui-table[lay-even] tr:nth-child(even) {
+	background-color: #fff
+}
+
+.layui-table td,.layui-table th,.layui-table-col-set,.layui-table-fixed-r,.layui-table-grid-down,.layui-table-header,.layui-table-page,.layui-table-tips-main,.layui-table-tool,.layui-table-total,.layui-table-view,.layui-table[lay-skin=line],.layui-table[lay-skin=row] {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000
+}
+
+.layui-table th {
+	position: relative;
+	padding: 9px 5px;
+	min-height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 3;
+}
+.layui-table td{
+	position: relative;
+	padding: 9px 5px;
+	min-height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	text-align: center;
+	line-height: 2;
+}
+
+.layui-table[lay-skin=line] td,.layui-table[lay-skin=line] th {
+	border-width: 1px
+}
+
+.layui-table[lay-skin=row] td,.layui-table[lay-skin=row] th {
+	border-width: 0 1px 0 0
+}
+
+.layui-table[lay-skin=nob] td,.layui-table[lay-skin=nob] th {
+	border: none
+}
+
+.layui-table img {
+	max-width: 100px
+}

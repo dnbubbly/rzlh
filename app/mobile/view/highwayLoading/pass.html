@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/jquery.PrintArea.min.js?v={:time()}"></script>
+<body>
+	<div class="form" style="font-weight: normal;font-size: 12px;">
+		{foreach $saleCoalDetail as $k=>$v}
+		<div style="{if $k==0}display: block;{else}display: none;{/if}">
+			<div id="nextprintArea{$k}" class="nextprint" style="margin-bottom: 0.15rem;">
+				<h1 style="font-size: 24px;text-align: center;line-height: 2;">日照兰花公路入库单</h1>
+				<div style="margin: 10px 0;line-height: 1.5;border-top: 1px dashed #000;border-bottom: 1px dashed #000;padding: 10px 0;">
+					<p>承运结算人：<span>{$row.ScDepartment}</span></p>
+					<p>入库单号：<span>{$row.ScPlan}</span></p>
+					<p>装车日期：<span>{$row.ScDate}</span></p>
+					<p>发站：<span>{$row.ScStarName}</span></p>
+					<p>到站：<span>{$row.ScStopName}</span></p>
+					<p>品种：<span>{$row.ScCoalType}</span></p>
+					<p>车牌号：<span>{$v.ScdDep}</span></p>
+					<p>矿发数（吨）：<span>{$v.ScdWeight}</span></p>
+					<p>入库数（吨）：<span>{$v.ScdWeight2}</span></p>
+				</div>
+			</div>
+			<div class="nextpage layui-btn" onclick="prevCar({$k-1})" style="width: 49%;">上一车</div><div class="nextpage layui-btn" onclick="nextCar({$k+1})" style="width: 49%;margin-left: 2%;">下一车</div>
+		</div>
+		{/foreach}
+		
+	</div>
+	<div class="form" style="font-weight: normal;font-size: 12px;">
+		<div id="printArea" style="margin-bottom: 0.15rem">
+			<h1 style="font-size: 24px;text-align: center;line-height: 2;">日照兰花公路入库单</h1>
+			<div style="margin: 10px 0;line-height: 1.5;border-top: 1px dashed #000;border-bottom: 1px dashed #000;padding: 10px 0;">
+				<p>承运结算人：<span>{$row.ScDepartment}</span></p>
+				<p>入库单号：<span>{$row.ScPlan}</span></p>
+				<p>装车日期：<span>{$row.ScDate}</span></p>
+				<p>发站：<span>{$row.ScStarName}</span></p>
+				<p>到站：<span>{$row.ScStopName}</span></p>
+				<p>品种：<span>{$row.ScCoalType}</span></p>
+			</div>
+			<table border="1" style="width: 100%;table-layout-alt: fixed;border-collapse: collapse;border-spacing: 0;text-align: center;line-height: 2;">
+				<colgroup>
+					<col width="30%">
+					<col width="35%">
+					<col width="35%">
+				</colgroup>
+				<thead>
+			    	<tr>
+			        	<th>车牌号</th>
+			        	<th>矿发数（吨）</th>
+			        	<th>入库数（吨）</th>
+			      </tr> 
+			    </thead>
+			    <tbody>
+			    	{foreach $saleCoalDetail as $k=>$v}
+			    	<tr>
+			        	<td>{$v.ScdDep}</td>
+			        	<td>{:floatval($v.ScdWeight)}</td>
+			        	<td>{:floatval($v.ScdWeight2)}</td>
+			        </tr>
+			        {/foreach}
+			    </tbody>
+			</table>
+		</div>
+		<button type="submit" class="layui-btn" id="btnPrint">打印</button>
+	</div>
+	<script>
+	$("#btnPrint").click(function(){  
+		$("#printArea").printArea(); 
+	});
+	$("#btnPrint1").click(function(){  
+		$("#printArea1").printArea(); 
+	});
+	function nextCar(obj){
+		$("#nextprintArea"+obj).parent().siblings().hide();
+		$("#nextprintArea"+obj).parent().show();
+	}
+	function prevCar(obj){
+		$("#nextprintArea"+obj).parent().siblings().hide();
+		$("#nextprintArea"+obj).parent().show();
+	}
+	function nextbtnPrint(obj){
+		$("#nextprintArea"+obj).printArea(); 
+	}; 
+	</script>
+</body>
+</html>

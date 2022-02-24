@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/content.css?v={:time()}" >
+</head>
+<body style="margin: 0 auto;">
+	<div style="width: 940px;margin: 0 auto;font-weight: normal;font-size: 12px;">
+		<h1 style="font-size: 30px;text-align: center;">日照兰花冶电能源有限公司销售通知单</h1>
+		<p style="width: 80%;margin: 1em auto;"><span>根据</span><span>{$saledpt[0]['sCode']}</span>合同，我公司拟购入以下煤炭，请各部门相互协调配合：</p>
+		<p style="width: 80%;margin: 1em auto;display: flex;align-items: center;justify-content: space-between;"><span>供货单位：{$saledpt[0]['ghdw']}</span><span>合同编号：{$saledpt[0]['sCode']}</span><span>通知单编号：{$saledpt[0]['sPlace']}</span></p>
+		<table border="1" style="table-layout-alt: fixed;border-collapse: collapse;border-spacing: 0;" class="layui-table">
+			<colgroup>
+				<col width="40">
+				<col width="80">
+				<col width="90">
+				<col width="80">
+				<col width="50">
+				<col width="50">
+				<col width="50">
+				<col width="50">
+				<col width="65">
+				<col width="70">
+				<col width="80">
+				<col width="120">
+			</colgroup>
+			<thead>
+		    	<tr>
+		        	<th>序号</th>
+		        	<th>供货周期</th>
+		        	<th>需求号</th>
+		        	<th>物流方式</th>
+		        	<th>矿点</th>
+		        	<th>起运地</th>
+		        	<th>运达地</th>
+		        	<th>品种</th>
+		        	<th>数量</th>
+		        	<th>销售单价</th>
+		        	<th>运费单价</th>
+		        	<th>收货单位</th>
+		      </tr> 
+		    </thead>
+		    <tbody>
+		    	{foreach $saledpt as $k=>$v}
+		    	<tr>
+		        	<td>{$k+1}</td>
+		        	<td>{$v.ghzq}</td>
+		        	<td>{$v.ghjhh}</td>
+		        	<td>{$v.sYsType}</td>
+		        	<td>{$v.ghkd}</td>
+		        	<td>{$v.SnMocoal}</td>
+		        	<td>{$v.SnStopName}</td>
+		        	<td>{$v.sCoalType}</td>
+		        	<td>{$v.sCount}</td>
+		        	<td>{$v.sPrice}</td>
+		        	<td>{$v.syf}</td>
+		        	<td>{$v.sShdep}</td>
+		      	</tr>
+		      	{/foreach}
+		    </tbody>
+		</table>
+		<p style="display: flex;align-items: center;justify-content: space-around;"><span>财务部部长：{$saledpt[0]['checkCon1']}</span><span>风控质价部部长：{$saledpt[0]['checkCon2']}</span><span>分管领导：{$saledpt[0]['checkCon3']}</span><span>部门负责人：{$saledpt[0]['checkCon4']}</span><span>制单人：{$saledpt[0]['checkCon5']}</span></p>
+	</div>
+</body>
+</html>

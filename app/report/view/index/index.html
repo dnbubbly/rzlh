@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/report/css/index.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/report/js/echarts-4.2.1.min.js?v={:time()}"></script>
+<body>
+	<header>
+    	<h1>日照兰花交易总览</h1>
+    	<div class="showTime">当前时间：<span></span></div>
+  	</header>
+  	<section class="mainbox">
+    	<div class="column">
+      		<div class="panel bar">
+        		<h2>年度发运数（吨） <a href="javascript:void(0);">{$year}</a><a href="javascript:void(0);">{$preyear}</a></h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+      		<div class="panel line">
+        		<h2>客户年度发运数（吨）排行</h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+      		<div class="panel pie">
+        		<h2>年度发货吨数运输方式对比</h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+      		<div class="panel bar1">
+        		<h2>品种发运数占比</h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+    	</div>
+    	<div class="column">
+      		<div class="no">
+        		<div class="no-hd">
+          			<ul>
+            			<li>{$yue}</li>
+            			<li>{$nian}</li>
+						<li>{$lei}</li>
+          			</ul>
+        		</div>
+        		<div class="no-bd">
+	          		<ul>
+	            		<li>当月交易额（万元）</li>
+	            		<li>当年交易额（万元）</li>
+						<li>累计交易额（万元）</li>
+	          		</ul>
+        		</div>
+      		</div>
+      		<div class="map">
+        		<div class="chart"></div>
+        		<div class="map1"></div>
+        		<div class="map2"></div>
+        		<div class="map3"></div>
+      		</div>
+    	</div>
+    	<div class="column">
+      		<div class="panel bar2" style="height: 460px;">
+        		<h2>库存明细</h2>
+        		<div class="table" style="height: 390px">
+        			<div class="biaoge biaoge_list" style="width:100%; height:390px">
+	                	<div class="biaoge_listIn">
+	                    	<ul class="ul_title">
+	                        	<li>仓库名称</li>
+	                            <li>矿点</li>
+	                            <li>品种</li>
+	                            <li>上月结存数</li>
+	                            <li>当月入库数</li>
+	                            <li>当月出库数</li>
+	                            <li>当前结存数</li>
+	                        </ul>
+	                        <div class="ul_list">
+	                        	<div class="ul_listIn">
+	                                
+	                            </div>
+	                       </div>
+	                   </div>
+        			</div>
+        			<div class="panel-footer"></div>
+      			</div>
+      		</div>
+      		<div class="panel line2">
+        		<h2>各仓库库存数（吨）</h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+      		<div class="panel pie2">
+        		<h2>库存品种占比</h2>
+        		<div class="chart"></div>
+        		<div class="panel-footer"></div>
+      		</div>
+    	</div>
+    	<div class="column">
+      		<div class="panel bar3" style="height: 460px;">
+        		<h2 class="tiao">合同兑现率<span>已完结<i>150</i>单</span></h2>
+        		<div class="table" style="height: 390px;">
+        			<div class="biaoge biaoge_list" style="width:100%; height:390px">
+	                	<div class="biaoge_listIn">
+	                    	<ul class="ul_title">
+	                        	<li style="width: 20%">合同编号</li>
+	                            <li style="width: 35%">购方</li>
+	                            <li style="width: 10%">数量</li>
+	                            <li style="width: 10%">基价</li>
+	                            <li style="width: 10%">履约数量</li>
+	                            <li style="width: 15%">百分比</li>
+	                        </ul>
+	                        <div class="ul_list">
+	                        	<div class="ul_listIn">
+	                                
+	                            </div>
+	                       </div>
+	                   </div>
+        			</div>
+        		</div>
+        		<div class="panel-footer"></div>
+      		</div>
+      		<div class="panel line3" style="height: 470px;">
+        		<h2 class="tiao">竞拍动态<span>已发布<i>3999</i>单</span></h2>
+        		<div class="table" style="height: 400px;">
+        			<div class="biaoge biaoge_list" style="width:100%; height:390px">
+	                	<div class="biaoge_listIn">
+	                    	<ul class="ul_title">
+	                        	<li style="width: 35%">标题</li>
+	                            <li style="width: 30%">发布方</li>
+	                            <li style="width: 20%">发布日期</li>
+	                            <li style="width: 15%">状态</li>
+	                        </ul>
+	                        <div class="ul_list">
+	                        	<div class="ul_listIn">
+	                        	
+	                            </div>
+	                       </div>
+	                   </div>
+        			</div>
+        		</div>
+        		<div class="panel-footer"></div>
+      		</div>
+    	</div>
+  	</section>
+
+<script type="text/javascript" src="__STATIC__/report/js/index.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/report/js/china.js?v={:time()}"></script>
+<script>
+(function (fn) {
+    fn();
+    setInterval(fn, 1000);
+  })(function () {
+   var dt = new Date();
+    document.querySelector(".showTime span").innerHTML =
+		dt.getFullYear() + "年-" +
+		dt.getMonth()+1 + "月-" +
+      dt.getDate() + "日-" +
+      dt.getHours() + "时" +
+      dt.getMinutes() + "分" +
+      dt.getSeconds() + "秒";
+});
+var myChart1 = echarts.init(document.querySelector(".bar .chart"));
+var myChart2 = echarts.init(document.querySelector(".line .chart"));
+var myChart3 = echarts.init(document.querySelector(".pie .chart"));
+var myChart4 = echarts.init(document.querySelector(".bar1 .chart"));
+var myChart5 = echarts.init(document.querySelector(".map .chart"));
+var myChart6 = echarts.init(document.querySelector(".line2 .chart"));
+var myChart7 = echarts.init(document.querySelector(".pie2 .chart"));
+var dataAll1 = [];
+var dataAll2 = [];
+$(".bar h2").click(function (e) {
+    var i = e.target == this.children[0] ? 0 : 1;
+    option1.series[0].data = dataAll[i].data;
+    myChart1.setOption(option1);
+});
+//重置页面
+window.addEventListener("resize", function () {
+	myChart1.resize();
+	myChart2.resize();
+	myChart3.resize();
+	myChart4.resize();
+});
+
+
+//间隔获取数据
+function funcTest(){
+    window.setInterval("timelyFun()",60000*5);
+}
+timelyFun();
+window.onload = funcTest;
+function timelyFun(){
+	$.ajax({
+		url:"/report/Index",
+        type:'get',
+        dataType:'json',
+        success:function(t){
+        	//年度发运数
+        	dataAll1 = t.data.option1.dataAll;
+        	var series1 = [{
+                name: "吨数",
+                type: "bar",
+                barWidth: "35%",
+                data: dataAll1[0].data,
+                itemStyle: {
+                    barBorderRadius: 5
+                }
+            }]
+        	option1.series = series1;
+        	myChart1.setOption(option1);
+        	//合作方
+        	var series2 = [{
+                name: "吨数",
+                type: "bar",
+                barWidth: "35%",
+                data: t.data.option2.series,
+                itemStyle: {
+                    barBorderRadius: 5
+                }
+            }]
+        	option2.series = series2;
+        	option2.xAxis[0].data = t.data.option2.xAxis;
+        	myChart2.setOption(option2);
+        	//运输方式对比
+        	dataAll2 = t.data.option3.dataAll2;
+        	var series3 = [{
+        		name: "铁路",
+        		type: "line",
+        		smooth: true,
+        		data: dataAll2.year[0]
+        	},{
+        		name: "公路",
+        		type: "line",
+        		smooth: true,
+        		data: dataAll2.year[1]
+        	}];
+        	option3.series = series3;
+        	myChart3.setOption(option3);
+        	//品种占比
+        	option4.legend.data = t.data.option4.ccoalType;
+        	option4.series[0].data = t.data.option4.dataAll4;
+        	myChart4.setOption(option4);
+        	//地图
+        	var series5 = [];
+        	t.data.option5.forEach(function(item, i) {
+	        	series5.push({
+	        		name: item.SdName,
+	        		type: "effectScatter",
+	        		coordinateSystem: "geo",
+	        		zlevel: 2,
+	        		rippleEffect: {
+	        			brushType: "stroke"
+	        		},
+	        		label: {
+		        		normal: {
+		        			show: true,
+		        			position: "right",
+		        			formatter: "{b}"
+		        		}
+	        		},
+	        		symbolSize: function(val) {
+	        			return val[2] / 1200;
+	        		},
+	        		itemStyle: {
+	        			normal: {
+	        		    	color: "#fff"
+	        		    },
+	        		    emphasis: {
+	        		    	areaColor: "#15b8f5"
+	        		    }
+	        		 },
+	        		 data: [{
+		        	     	name: item.SdName,
+		        	     	value: geoCoordMap[item.SdName].concat([item.count])
+		        	     }]
+	        	});
+        	})
+        	option5.series = series5;
+        	myChart5.setOption(option5);
+        	var jcslpre = 'JCSL'+t.data.kc.stockpreyear;
+        	var rkslcur = 'RKSL'+t.data.kc.stockyear;
+        	var ckslcur = 'CKSL'+t.data.kc.stockyear;
+        	var jcslcur = 'JCSL'+t.data.kc.stockyear;
+        	for(var i=0;i<t.data.kc.stock.length;i++){
+        		$(".bar2 .ul_listIn").append('<ul class="ul_con"><li>'+t.data.kc.stock[i]['CsGangkou']+'</li><li>'+t.data.kc.stock[i]['CsKuangdian']+'</li><li>'+t.data.kc.stock[i]['CsTypeName']+'</li><li>'+t.data.kc.stock[i][jcslpre]+'</li><li>'+t.data.kc.stock[i][rkslcur]+'</li><li>'+t.data.kc.stock[i][ckslcur]+'</li><li>'+t.data.kc.stock[i][jcslcur]+'</li></ul>')
+        	}
+        	//库存按库点
+        	var series2 = [{
+                name: "吨数",
+                type: "bar",
+                barWidth: "35%",
+                data: t.data.option6.series,
+                itemStyle: {
+                    barBorderRadius: 5
+                }
+            }]
+        	option6.series = series2;
+        	option6.xAxis[0].data = t.data.option6.xAxis;
+        	myChart6.setOption(option6);
+        	//库存按品种
+        	option7.series[0].data = t.data.option7;
+        	myChart7.setOption(option7);
+        	//合同兑现率
+        	for(var i=0;i<t.data.lvyue.length;i++){
+        		$(".bar3 .ul_listIn").append('<ul class="ul_con"><li style="width: 20%">'+t.data.lvyue[i]['cCode']+'</li><li style="width: 35%">'+t.data.lvyue[i]['cBuyer']+'</li><li style="width: 10%">'+t.data.lvyue[i]['cCount']+'</li><li style="width: 10%">'+t.data.lvyue[i]['cPrice']+'</li><li style="width: 10%">'+t.data.lvyue[i]['complete']+'</li><li style="width: 15%">'+t.data.lvyue[i]['bi']+'</li></ul>')
+        	}
+        	for(var i=0;i<t.data.lvyue.length;i++){
+        		$(".bar3 .ul_listIn").append('<ul class="ul_con"><li style="width: 20%">'+t.data.lvyue[i]['cCode']+'</li><li style="width: 35%">'+t.data.lvyue[i]['cBuyer']+'</li><li style="width: 10%">'+t.data.lvyue[i]['cCount']+'</li><li style="width: 10%">'+t.data.lvyue[i]['cPrice']+'</li><li style="width: 10%">'+t.data.lvyue[i]['complete']+'</li><li style="width: 15%">'+t.data.lvyue[i]['bi']+'</li></ul>')
+        	}
+        	//竞标
+        	for(var i=0;i<30;i++){
+        		$(".line3 .ul_listIn").append('<ul class="ul_con"><li style="width: 35%">唐安煤矿20000吨精煤</li><li style="width: 30%">华凌钢铁</li><li style="width: 20%">20220102</li><li style="width: 15%">未开始</li></ul>');
+        	}
+        	//累计交易额
+        	$('.no-hd li:nth-child(1)').html(t.data.yue);
+        	$('.no-hd li:nth-child(2)').html(t.data.nian);
+        	$('.no-hd li:nth-child(3)').html(t.data.lei);
+        }
+	})
+}
+</script>
+</body>
+</html>

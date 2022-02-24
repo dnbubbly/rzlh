@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__//plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<body>
+	{include file="common/head" /}
+	
+	<div class="list">
+		<ul>
+		</ul>
+	</div>
+	<script>
+	layui.use('flow', function() {
+	    var $ = layui.jquery;
+	    var flow = layui.flow;
+	    flow.load({
+	        elem: '.list ul' //流加载容器
+	        ,isAuto:true
+	        ,isLazyimg:true
+	        ,done: function(page, next){ //执行下一页的回调
+	            var lis = [];
+	            $.ajax({
+	                url:"/Saleorder",
+	                dataType:'json',
+	                type:'post',
+	                data:{'page':page,'limit':5},
+	                success:function(t){
+	                    layui.each(t.data, function(index, item){
+	                    	lis.push('<li><div class="tit"  onclick="toindex(this)" data-id="'+item.ids+'">通知单编号：'+item.sPlace+'<p><span>合同编号：'+item.sCode+'</span></p></div>'
+	                				+'<div class="line"></div><div class="listcar"  onclick="toindex(this)" data-id="'+item.ids+'"><div class="ctop"><div>'
+	                				+'<p>供货单位：<span>'+item.ghdw+'</span></p><p>收货单位：<span>'+item.sShdep+'</span></p></div></div></div>'
+	                				+'<div class="line"></div><div class="btn"><a href="/Saleorder/detail?id='+item.ids+'" class="fc">审批</a><a href="/Saleorder/detail?id='+item.ids+'" class="fc">查看</a></div></li>'
+	                		);
+	
+	                    });
+	                    next(lis.join(''), page < t.pages);
+	                },
+	                error: function () {
+	                    layer.open({content:'网络繁忙,请重试',skin:'msg',time:2});
+	                }
+	            })
+	        }
+	    });
+	})
+	function toindex(obj){
+		var id = $(obj).data("id");
+		window.location.href='/Saleorder/detail?id='+id;
+	}
+	</script>
+	{include file="common/bot" /}
+</body>
+</html>

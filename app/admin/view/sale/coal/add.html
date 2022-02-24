@@ -1,0 +1,125 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">装车类型  （1:'销售';2:'采购'）</label>
+            <div class="layui-input-block">
+                <select name="typez" lay-verify="required">
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货单位</label>
+            <div class="layui-input-block">
+                <input type="text" name="cusname" class="layui-input" lay-verify="required" placeholder="请输入收货单位" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发站</label>
+            <div class="layui-input-block">
+                <input type="text" name="start_station" class="layui-input" lay-verify="required" placeholder="请输入发站" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">到站</label>
+            <div class="layui-input-block">
+                <input type="text" name="end_station" class="layui-input" lay-verify="required" placeholder="请输入到站" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">矿点</label>
+            <div class="layui-input-block">
+                <input type="text" name="mini" class="layui-input" lay-verify="required" placeholder="请输入矿点" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">定车日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="setdate" class="layui-input" lay-verify="required" placeholder="请输入定车日期" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">需求号</label>
+            <div class="layui-input-block">
+                <input type="text" name="plan" class="layui-input" lay-verify="required" placeholder="请输入需求号" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">物流方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="road" class="layui-input" lay-verify="required" placeholder="请输入物流方式" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">装车日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="loaddate" class="layui-input"  placeholder="请输入装车日期" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">品种规格</label>
+            <div class="layui-input-block">
+                <input type="text" name="coaltype" class="layui-input" lay-verify="required" placeholder="请输入品种规格" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">运类型   （1: '销售', 2: '采购'）</label>
+            <div class="layui-input-block">
+                <select name="loadtype" >
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">仓库</label>
+            <div class="layui-input-block">
+                <input type="text" name="store" class="layui-input"  placeholder="请输入仓库" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发运类型   （1: '采购直发', 2: '采购转存',3: '仓库现货发运'）</label>
+            <div class="layui-input-block">
+                <select name="trans_type" >
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态  （0: '未到货', 1: '已到货',2: '已结算'）</label>
+            <div class="layui-input-block">
+                <select name="status" >
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea"  placeholder="请输入备注"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">附件</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="cfile" class="layui-input layui-col-xs6"   placeholder="请上传附件" value="">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="cfile" data-upload-number="more" data-upload-exts="*" data-upload-icon="file"><i class="fa fa-upload" data-upload-sign="|"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_cfile" data-upload-select="cfile" data-upload-number="more" data-upload-mimetype="*" data-upload-sign="|"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加人</label>
+            <div class="layui-input-block">
+                <input type="text" name="add_id" class="layui-input"  placeholder="请输入添加人" value="">
+            </div>
+        </div>
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/Mdate/iScroll.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/Mdate/Mdate.js?v={:time()}"></script>
+<body>
+<style>
+.layui-form-select dl {
+	max-height: 200px;
+}
+#biaoform{font-size: 0.24rem;padding: 0.4rem;width: 6rem;}
+#biaoform .layui-input{width: 100%;margin-bottom: 0.2rem;}
+.layui-layer-btn .layui-layer-btn0{font-size: 0.24rem;width: 50%;margin: 0;height: 48px;line-height: 48px;}
+.layui-layer-btn .layui-layer-btn1{font-size: 0.24rem;width: 50%;margin: 0;height: 48px;line-height: 48px;background:#f1f1f1;}
+.layui-layer-btn{text-align: center;padding: 0;}
+.layui-layer-btn a{border: none;}
+.layui-layer-btn{background-color: #F8F8F8;padding-top: 0!important;}
+.layui-form-select dl{width: 100%;}
+.layui-form-select .layui-edge{z-index: 3;}
+</style>
+	<div class="head fc">
+		<a href="javascript:window.history.go(-1);" class="back"><i class="layui-icon">&#xe603;</i></a>
+		{$title}
+	</div>
+	<form id="app-form" class="layui-form layuimini-form">
+		<div class="form layui-form-pane">
+			<div class="tit">装车信息</div>
+			<input type="hidden" name="ScID" value="{$row.ScID}">
+			<input type="hidden" name="cFile" value="{$row.cFile}">
+			<input type="hidden" name="cFilename" value="{$row.cFilename}">
+			<div class="layui-form-item">
+	            <label class="layui-form-label">提货单号</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScPlan" class="layui-input"  value="{$row.ScPlan}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">发运类型</label>
+	            <div class="layui-input-block">
+	            	<select name="iszc">
+	            		<option value="">请选择发运类型</option>
+	            		<option {if $row.iszc==3} selected="" {/if} value="3">仓库现货发运</option>
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">出库仓库</label>
+	            <div class="layui-input-block">
+	            	<select name="ScN">
+	            		<option value="">请选择</option>
+	            		{foreach $stocks as $k=>$v}
+	            		<option {if $row.ScN==$v.CskTypeName} selected="" {/if} value="{$v.CskTypeName}">{$v.CskTypeName}</option>
+	            		{/foreach}
+	            	</select>
+	            </div>
+	        </div>
+			<div class="layui-form-item">
+	            <label class="layui-form-label">装车日期</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScDate" autocomplete="off" class="layui-input" data-year="{:date('Y')}" data-month="{:date('m')}" data-day="{:date('d')}" id="dateSelectorOne" placeholder="" value="{:date('Y-m-d')}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">起运地</label>
+	            <div class="layui-input-block">
+	            	<input type="text" id="ScStarName" name="ScStarName" class="layui-input" placeholder="直接选择或搜索选择" value="{$row.ScStarName}" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show()" onkeyup="search()" autocomplete="off">
+	            	<select id="ScStarName_select" lay-filter="ScStarName_select" autocomplete="off" lay-search="">
+	            		<option value="">直接选择或搜索选择</option>
+	            		{foreach $cstarz as $v}
+          				<option value="{$v.mname}">{$v.mname}</option>
+          				{/foreach}
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">运达地</label>
+	            <div class="layui-input-block">
+	            	<input type="text" id="ScStopName" name="ScStopName" class="layui-input" placeholder="直接选择或搜索选择" value="{$row.ScStopName}" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show1()" onkeyup="search1()" autocomplete="off">
+	            	<select id="ScStopName_select" lay-filter="ScStopName_select" autocomplete="off" lay-search="">
+	            		<option value="">直接选择或搜索选择</option>
+	            		{foreach $cstopz as $v}
+          				<option value="{$v.mname}">{$v.mname}</option>
+          				{/foreach}
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">承运人</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="ScDepartment" class="layui-input" placeholder="请填写承运人" value="{$row.ScDepartment}">
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label">品种</label>
+	            <div class="layui-input-block">
+	            	<input type="text" id="ScCoalType" name="ScCoalType" class="layui-input" placeholder="直接选择或搜索选择" value="{$row.ScCoalType}" style="position:absolute;z-index:2;width:100%;padding-right: 30px;box-sizing: border-box;" onclick="show2()" onkeyup="search2()" autocomplete="off">
+	            	<select id="ScCoalType_select" lay-filter="ScCoalType_select" autocomplete="off" lay-search="">
+	            		<option value="">直接选择或搜索选择</option>
+	            		{foreach $ccoalType as $v}
+          				<option value="{$v.mname}">{$v.mname}</option>
+          				{/foreach}
+	            	</select>
+	            </div>
+	        </div>
+	        <div class="layui-form-item">
+	            <label class="layui-form-label required">物流方式</label>
+	            <div class="layui-input-block">
+	                <input type="text" name="YsType" class="layui-input" placeholder="请上传铁路货运单" value="公路">
+	            </div>
+	        </div>
+		</div>
+		<div class="form layui-form-pane">
+			<div class="tit">装车明细</div>
+			<div class="layui-form-item text-center">
+				<table class="layui-table" style="width:100%;text-align: center;margin: 0;table-layout: fixed;">
+				    <thead>
+				    	<tr>
+				        	<th width="10%" style="text-align: center;">序号</th>
+				        	<th width="30%" style="text-align: center;">车牌号</th>
+				        	<th width="20%" style="text-align: center;">矿发吨数</th>
+				        	<th width="20%" style="text-align: center;">净重</th>
+				        	<th width="20%" style="text-align: center;">操作</th>
+				      	</tr> 
+				    </thead>
+		    		<tbody id="td">
+		    			{foreach $saleCoalDetail as $k=>$v}
+		    				<tr>
+		    					<td>{$k+1}<input type="hidden" name="sale[0][ScdID]" value="{$v.ScdID}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdDep]" value="{$v.ScdDep}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdWeight]" value="{:floatval($v.ScdWeight)}"></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$k}][ScdWeight2]" value="{:floatval($v.ScdWeight2)}"></td>
+		    					<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td>
+		    				</tr>
+		    			{/foreach}
+		    				<tr>	
+		    					<td>{$cou+1}<input type="hidden" name="sale[{$cou}][ScdID]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$cou}][ScdDep]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$cou}][ScdWeight]" value=""></td>
+		    					<td><input class="layui-input layui-table-edit" name="sale[{$cou}][ScdWeight2]" value=""></td>
+		    					<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td>
+		    				</tr>
+		    			<tr>
+		    				<td><span style="color: red">合计</span></td>
+		    				<td></td>
+		    				<td><span style="color: red" id="TotalSou1"></span></td>
+		    				<td><span style="color: red" id="TotalSou2"></span></td>
+		    				<td></td>
+		    			</tr>
+		      		</tbody>
+		      	</table>
+		    </div>
+		    <div class="layui-form-item">
+				<div class="tip">请上传公路货运单货运单，可多张上传。</div>
+				<div class="up">
+					<div class="layui-upload-drag" id="office">
+						<i class="layui-icon"></i>
+						<p>点击上传</p>
+					</div>
+					<span style="height: 120px;width: 40px;position: absolute;left: 120px;top: 0;display: flex;align-items: center;justify-content: center;font-size: 0.28em;">或</span>
+					<div class="layui-upload-drag" id="biao" style="left: 160px;">
+						<i class="layui-icon">&#xe629;</i>
+						<p>表单添加</p>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item text-center">
+	            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">确认</button>
+	        </div>
+	    </div>
+	</form>
+	<div class="biaoform" id="biaoform" style="display: none;">
+		<input type="text" name="ScdDep" class="layui-input" autocomplete="off" placeholder="请填写车牌号" value="">
+		<input type="text" name="ScdWeight" class="layui-input" autocomplete="off" placeholder="请填写矿发吨数" value="">
+		<input type="text" name="ScdWeight2" class="layui-input" autocomplete="off" placeholder="请填写净重" value="" style="margin-bottom: 0;">
+	</div>
+	<script>
+	totalSouFund();
+	function count1(obj){
+		$(obj).val($(obj).val());
+		$("#td").find("tr:not(:last) input").keyup(function(){
+			totalSouFund();
+		})
+	}
+	function totalSouFund() {
+		totalSou1 = 0;
+		totalSou2 = 0;
+		$("#td tr:not(:last)").each(function () {
+			$(this).find("td:eq(2) input").each(function () {
+				totalSou1 += getNumValue($(this)) ;
+				$("#TotalSou1").html(Number(totalSou1.toFixed(4)));
+			});
+			$(this).find("td:eq(3) input").each(function () {
+				totalSou2 += getNumValue($(this)) ;
+				$("#TotalSou2").html(Number(totalSou2.toFixed(4)));
+			});
+		})
+	}
+	function getNumValue(controlid) {
+		var num = controlid.val();
+		if (validateInput(num)) {
+			num = parseFloat(num);
+		}else {
+			controlid.val("");
+			num = 0;
+		}
+		return num;
+	}
+	function validateInput(inputstr) {
+		flag = false;
+		if (inputstr != "") {
+			if (isNaN(inputstr)) {
+		  		flag = false; //如果输入字符不是数字
+			}else{
+				if (parseFloat(inputstr) < 0){
+					flag = false;
+				}else{
+		  			flag = true;
+				}
+		  	}
+		}
+		return flag;
+	}
+	new Mdate("dateSelectorOne",{
+		beginYear: "2002",
+	    beginMonth: "10",
+	    beginDay: "24",
+		endYear: "2050",
+	    endMonth: "12",
+	    endDay: "31",
+		format: "-"
+	});
+	function del(obj){
+		console.info($(obj).parent().find("input[name='ScdDep']").val());
+		console.info($(obj).parent().find("td").eq(1).find("input").val()!='');
+		if($(obj).parent().find("td").eq(1).find("input").val()!=''){
+			$(obj).parent().remove();
+		}
+		totalSouFund();
+	}
+	$("#biao").click(function(){
+		layer.open({
+		    type: 1,
+		    title: false,
+		    shadeClose: true,
+		    closeBtn: 0,
+		    content: $("#biaoform"),
+		    btn: ['确定', '不要'],
+		    yes: function(index,layero){
+		    	var ScdDep = layero.find("input[name='ScdDep']").val()
+		    	var ScdWeight = layero.find("input[name='ScdWeight']").val()
+		    	var ScdWeight2 = layero.find("input[name='ScdWeight2']").val()
+		    	if(!ScdDep){
+		    		layer.msg("请填写车牌号！");
+		    		return false;
+		    	}
+		    	if(!ScdWeight2){
+		    		layer.msg("请填写净重！");
+		    		return false;
+		    	}
+		    	if(ScdWeight==''){
+		    		ScdWeight = 0;
+		    	}
+		    	var i = $("#td tr").length;
+		    	$("#td tr").eq(-2).find("td:eq(1) input").val(ScdDep);
+		    	$("#td tr").eq(-2).find("td:eq(2) input").val(ScdWeight);
+		    	$("#td tr").eq(-2).find("td:eq(3) input").val(ScdWeight2);
+		    	layero.find("input[name='ScdDep']").val('');
+		    	layero.find("input[name='ScdWeight']").val('');
+		    	layero.find("input[name='ScdWeight2']").val('');
+		    	$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][ScdID]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdDep]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdWeight]" value=""></td>'
+    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdWeight2]" value=""></td>'
+    					+'<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td></tr>')
+    			totalSouFund();
+		    	layer.close(index);
+	    	}
+		})
+	})
+	layui.use(['form','upload'], function() {
+	    var $ = layui.jquery;
+	    var upload = layui.upload;
+	    var form = layui.form;
+	    var tishi;
+	    upload.render({
+	        elem: '#office',
+	        url: '/Highwayloadingsale/upload',
+	        multiple: true,
+	        before: function(obj){
+	        	tishi = layer.msg('文档识别中..', {
+	        	    icon: 16
+	        	    ,shade: 0.3
+	        	    ,time: false
+	        	});
+	        },
+	        done: function(res){
+	        	layer.close(tishi);
+	        	if(res.code==1){
+	        		var i = $("#td tr").length;
+	        		$("#td tr").eq(-2).find("td:eq(1) input").val(res.data[0].words);
+			    	$("#td tr").eq(-2).find("td:eq(3) input").val(res.data[1].words);
+	        		if(res.data[2]==undefined){
+	        			$("#td tr").eq(-2).find("td:eq(2) input").val(0);
+	        		}else{
+	        			$("#td tr").eq(-2).find("td:eq(2) input").val(res.data[2].words);
+	        		}
+	        		$("#td tr").eq(-2).after('<tr><td>'+i+'<input type="hidden" name="sale['+(i-1)+'][ScdID]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdDep]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdWeight]" value=""></td>'
+	    					+'<td><input class="layui-input layui-table-edit" name="sale['+(i-1)+'][ScdWeight2]" value=""></td>'
+	    					+'<td onclick="del(this)"><i class="layui-icon">&#xe640;</i></td></tr>')
+	    			totalSouFund();
+	        	}else{
+	        		layer.msg(res.msg);
+	        	}
+	        	
+	        },
+	        error: function(res, index, upload){
+	        	layer.close(tishi);
+	        	layer.msg(res.msg);
+	        }
+		});
+	    //起运地
+        var flag = false;
+	    form.on('select(ScStarName_select)', function (data) {   //选择移交单位 赋值给input框
+	    	console.info(data.value);
+	    	flag = false;
+            $("#ScStarName").val(data.value);
+            $("#ScStarName_select").next().find("dl").css({ "display": "none" });
+            form.render();
+        });
+        window.search = function () {
+            var value = $("#ScStarName").val();
+            $("#ScStarName_select").val(value);
+            form.render();
+            $("#ScStarName_select").next().find("dl").css({ "display": "block" });
+            var dl = $("#ScStarName_select").next().find("dl").children();
+            var j = -1;
+            for (var i = 0; i < dl.length; i++) {
+                if (dl[i].innerHTML.indexOf(value) <= -1) {
+                    dl[i].style.display = "none";
+                    j++;
+                }
+                if (j == dl.length-1) {
+                    $("#ScStarName_select").next().find("dl").css({ "display": "none" });
+                }
+            }
+            
+        }
+        window.show = function () {
+        	if(flag1){
+        		flag1 = false;
+        		$("#ScStopName_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag2){
+        		flag2 = false;
+        		$("#ScCoalType_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag){
+        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
+        		$("#ScStarName_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
+        		flag = false;
+        	}else{
+        		$("#ScStarName_select").next().find("dl").css({ "display": "block" });
+        		$("#ScStarName_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
+        		flag = true;
+        	}
+        	
+        }
+        //运达地
+        var flag1 = false;
+        form.on('select(ScStopName_select)', function (data) {   //选择移交单位 赋值给input框
+        	flag1 = false;
+            $("#ScStopName").val(data.value);
+            $("#ScStopName_select").next().find("dl").css({ "display": "none" });
+            form.render();
+        });
+        window.search1 = function () {
+            var value = $("#ScStopName").val();
+            $("#ScStopName_select").val(value);
+            form.render();
+            $("#ScStopName_select").next().find("dl").css({ "display": "block" });
+            var dl = $("#ScStopName_select").next().find("dl").children();
+            var j = -1;
+            for (var i = 0; i < dl.length; i++) {
+                if (dl[i].innerHTML.indexOf(value) <= -1) {
+                    dl[i].style.display = "none";
+                    j++;
+                }
+                if (j == dl.length-1) {
+                    $("#ScStopName_select").next().find("dl").css({ "display": "none" });
+                }
+            }
+            
+        }
+        window.show1 = function () {
+        	if(flag){
+        		flag = false;
+        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag2){
+        		flag2 = false;
+        		$("#ScCoalType_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag1){
+        		$("#ScStopName_select").next().find("dl").css({ "display": "none" });
+        		$("#ScStopName_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
+        		flag1 = false;
+        	}else{
+        		$("#ScStopName_select").next().find("dl").css({ "display": "block" });
+        		$("#ScStopName_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
+        		flag1 = true;
+        	}
+        	
+        }
+        //品种
+        var flag2 = false;
+        form.on('select(ScCoalType_select)', function (data) {   //选择移交单位 赋值给input框
+        	flag2 = false;
+            $("#ScCoalType").val(data.value);
+            $("#ScCoalType_select").next().find("dl").css({ "display": "none" });
+            form.render();
+        });
+        window.search2 = function () {
+            var value = $("#ScCoalType").val();
+            $("#ScCoalType_select").val(value);
+            form.render();
+            $("#ScCoalType_select").next().find("dl").css({ "display": "block" });
+            var dl = $("#ScCoalType_select").next().find("dl").children();
+            var j = -1;
+            for (var i = 0; i < dl.length; i++) {
+                if (dl[i].innerHTML.indexOf(value) <= -1) {
+                    dl[i].style.display = "none";
+                    j++;
+                }
+                if (j == dl.length-1) {
+                    $("#ScCoalType_select").next().find("dl").css({ "display": "none" });
+                }
+            }
+            
+        }
+        window.show2 = function () {
+        	if(flag){
+        		flag = false;
+        		$("#ScStopName_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag1){
+        		flag1 = false;
+        		$("#ScStarName_select").next().find("dl").css({ "display": "none" });
+        	}
+        	if(flag2){
+        		$("#ScCoalType_select").next().find("dl").css({ "display": "none" });
+        		$("#ScCoalType_select").next().find(".layui-edge").css({"transform":"rotate(0deg)","margin-top":"-3px"})
+        		flag2 = false;
+        	}else{
+        		$("#ScCoalType_select").next().find("dl").css({ "display": "block" });
+        		$("#ScCoalType_select").next().find(".layui-edge").css({"transform":"rotate(180deg)","margin-top":"-9px"})
+        		flag2 = true;
+        	}
+        	
+        }
+        //表单提交
+	    form.on('submit(demo1)', function(data){
+	    	if(!$("input[name='ScPlan']").val()){
+	    		layer.msg("请填写提货单号！");
+	    		return false;
+	    	}
+	    	if(!$("select[name='iszc']").val()){
+	    		layer.msg("请选择发运类型！");
+	    		return false;
+	    	}
+	    	if(!$("input[name='ScStarName']").val()){
+	    		layer.msg("请填写或选择起运地！");
+	    		return false;
+	    	}
+	    	if(!$("input[name='ScStopName']").val()){
+	    		layer.msg("请填写或选择运达地！");
+	    		return false;
+	    	}
+	    	if(!$("input[name='ScDepartment']").val()){
+	    		layer.msg("请填写承运人！");
+	    		return false;
+	    	}
+	    	if(!$("input[name='ScCoalType']").val()){
+	    		layer.msg("请选择品种！");
+	    		return false;
+	    	}
+	    	$.ajax({
+                url:"/Highwayloadingsale/edit/",
+                dataType:'json',
+                type:'post',
+                beforeSend: function(obj){
+    	        	tishi = layer.msg('修改中..', {
+    	        	    icon: 16
+    	        	    ,shade: 0.3
+    	        	    ,time: false
+    	        	});
+    	        },
+                data: data.field,
+                success:function(t){
+                	layer.close(tishi);
+                	if(t.code==1){
+                		window.location = '/Highwayloadingsale/edit?ScID='+t.data;
+                	}else{
+                		layer.msg(t.msg);
+                	}
+                },
+                error: function () {
+                    layer.open({content:'网络繁忙,请重试',skin:'msg',time:2});
+                }
+            })
+	        return false;
+	    });
+	})
+	</script>
+	{include file="common/bot" /}
+</body>
+</html>

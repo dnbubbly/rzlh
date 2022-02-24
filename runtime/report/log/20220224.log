@@ -1,0 +1,7 @@
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"CONNECT:[ UseTime:0.022328s ] mysql:host=127.0.0.1;port=3306;dbname=rlzy;charset=utf8"}
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_admin` [ RunTime:0.000833s ]"}
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000491s ]"}
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"SHOW FULL COLUMNS FROM `ea_system_node` [ RunTime:0.000851s ]"}
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"SELECT `node`,`id`,`node`,`title`,`type`,`is_auth` FROM `ea_system_node` [ RunTime:0.000630s ]"}
+{"time":"2022-02-24 09:41:40","type":"sql","msg":"SELECT * FROM `ea_system_admin` WHERE  `id` IS NULL  AND `status` = 1 LIMIT 1 [ RunTime:0.000752s ]"}
+{"time":"2022-02-24 09:41:40","type":"error","msg":"[8]未定义数组索引: no_login_controller[E:\\wamp64\\www\\rzlh\\app\\common\\controller\\AdminController.php:275]"}

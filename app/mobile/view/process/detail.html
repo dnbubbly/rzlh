@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__//plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<body style="background: #fff;">
+	{include file="common/head" /}
+	<div class="start"><div class="pic fc"><img src="__STATIC__/mobile/images/step1.png"></div><p>发起者</p></div>
+	{foreach $step as $k=>$v}
+	<div class="guo"></div>
+	<div class="process">
+		<div class="pic fc">
+			{if $v.ProcessCtrl_Name=='部门复核'}
+			<img src="__STATIC__/mobile/images/step2.png">
+			{elseif $v.ProcessCtrl_Name=='财务部审批'}
+			<img src="__STATIC__/mobile/images/step3.png">
+			{elseif $v.ProcessCtrl_Name=='董事长审批'}
+			<img src="__STATIC__/mobile/images/step4.png">
+			{elseif $v.ProcessCtrl_Name=='风控经历审批'}
+			<img src="__STATIC__/mobile/images/step5.png">
+			{else}
+			<img src="__STATIC__/mobile/images/step1.png">
+			{/if}
+		</div>
+		<p>{$v.ProcessCtrl_Name}</p>
+	</div>
+	{/foreach}
+	<div class="guo"></div>
+	<div class="end fc">END</div>
+	{include file="common/bot" /}
+
+</body>
+</html>

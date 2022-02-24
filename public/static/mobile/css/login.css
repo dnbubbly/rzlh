@@ -1,0 +1,76 @@
+*{margin: 0;padding: 0;border: 0;list-style: none;text-decoration: none;color: inherit;font-weight: normal;font-family: "微软雅黑";box-sizing: border-box;font-style: normal;}
+body{width: 100%;overflow-x: hidden;background: url(../images/top_bg.png) top left no-repeat;background-size: 100%;}
+/*头像*/
+.head .img{width: 1.45rem;height: 1.45rem;background: #FFFFFF;border-radius: 50%;margin: 0 auto;margin-top: 1.05rem;text-align: center;overflow: hidden;}
+.head img{width: 1.45rem;}
+.head p{text-align: center;color: #FFFFFF;font-size: .3rem;padding-top: .15rem;text-shadow: #333 0.1em 0.1em 0.1em;}
+/*登陆表单*/
+form {width: 100%;height: auto;overflow: hidden;padding: 1.85rem .45rem .45rem .45rem;}
+form .item{display: flex;align-items: center;height: .85rem;margin-bottom: .35rem;font-size: .30rem;color: #333333;}
+form .item input{width: 100%;height: 100%;display: inline-block;border: .01rem solid #ebebeb;border-radius: .85rem;box-shadow: 0px 0px 10px rgba(200,200,200,.1);padding-left: .8rem;outline: none;}
+form .item input.name{background: url(../images/icon-phone.png) left .3rem center no-repeat;background-size: .23rem .35rem;}
+form .item input.vcode{background: url(../images/icon-verify.png) left .3rem center no-repeat;background-size: .33rem .33rem;}
+form .item input.password{background: url(../images/icon-lock.png) left .3rem center no-repeat;background-size: .22rem .32rem;}
+form .item span{flex-shrink: 0;display: inline-block;width: 2.6rem;margin-left: .2rem;height: 100%;}
+form .item span img{width: 100%;height: 100%;}
+form .item span.disabled{background: #808080;}
+form p{text-align: center;color: #333333;font-size: .24rem;padding-top: .2rem;}
+form .submit{padding: .2rem 0;}
+form .submit button{height: .85rem;line-height: .85rem;text-align: center;font-size: .34rem;color: #FFFFFF;border-radius: .85rem;outline: none;box-shadow: 0 .15rem .15rem rgba(31,110,207,.2);display: inline-block;width: 100%;background: #1f6ecf;}
+/*第三方登陆*/
+.other-login p{text-align: center;position: relative;display: flex;align-items: center;justify-content: center;width: 3.7rem;margin: 0 auto;}
+.other-login p:after{content: "";height: .01rem;width: 100%;background: #808080;top: 50%;transform: translateY(-50%);position: absolute;}
+.other-login p span{display: inline-block;padding: .1rem .3rem;background: #FFFFFF;color: #808080;font-size: .22rem;z-index: 2;}
+.other-login .third ul{display: flex;align-items: center;justify-content: center;}
+.other-login .third ul li img{width: .66rem;height: .66rem;margin: 0 .25rem;}
+/*尾部*/
+.footer{text-align: center;padding-top: .3rem;}
+.footer {
+    left: 0;
+    bottom: 0;
+    color: #333;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+.footer p{font-size: .20rem;color: #666666;text-align: center;padding: .1rem 0 .4rem 0;letter-spacing: .01rem;}
+.footer p a{color: #078dda;}
+
+form .tip {
+    clear: both;
+    height: 16px;
+    line-height: 16px;
+    width: 100%;
+    margin: 0 auto;margin-bottom: .35rem;
+}
+form .tip .icon-nocheck {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: solid 1px #9abcda;
+    position: relative;
+    top: 2px;
+    margin: 1px 8px 1px 1px;
+    cursor: pointer;
+}
+
+form .tip .icon-check {
+    margin: 0 7px 0 0;
+    width: 14px;
+    height: 14px;
+    border: none;
+    background: url(../images/icon-login.png) no-repeat -111px -48px;
+}
+form .tip .login-tip {
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    font-weight: 400;
+    font-stretch: normal;
+    letter-spacing: 0;
+    color: #9abcda;
+    cursor: pointer;
+}

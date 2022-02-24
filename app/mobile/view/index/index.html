@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/default.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/swiper.min.css?v={:time()}" media="all">
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/css/layer.css?v={:time()}" >
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/mobile/js/rem.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/layer.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/mobile/js/swiper.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<style id="layuimini-bg-color">
+</style>
+<body>
+	{include file="common/head" /}
+	<div class="indexlist">
+		<div class="title">我的待办<img src="__STATIC__/mobile/pic/to.png"></div>
+		{if count($contract)>0}
+		<div class="ptit">合同审批</div>
+		<ul class="ht">
+			{foreach $contract as $k=>$v}
+			<li {if $v.ischeck==1} class="success" {elseif $v.ischeck==0} class="in" {elseif $v.ischeck==2} class="fail" {/if}>
+				<div class="tit" onclick="toContract(this)" data-id="{$v.cid}">{if $v.cType==1}销售合同{else}采购合同{/if}<span>&nbsp;&nbsp;&nbsp;({$v.cCode})</span></div>
+				<div class="line"></div>
+				<div class="listcar" onclick="toContract(this)" data-id="{$v.cid}">
+					<div class="ctop"><div><p>销方：<span>{$v.cSeller}</span></p><p>购方：<span>{$v.cBuyer}</span></p><p><span>{$v.cName}</span></p></div></div>
+					<div class="des"><img src="/static/mobile/images/time.png">{$v.cDate}</div>
+				</div>
+				<div class="line"></div>
+				<div class="btn"><div class="price fc">{$v.cCount}吨（基价{$v.cPrice}元）</div><a href="/Contract/detail?id={$v.cid}" class="fc">审批</a><a href="/Contract/detail?id={$v.cid}" class="fc">查看</a></div>
+			</li>
+			{/foreach}
+		</ul>
+		{/if}
+		{if count($saleDepartment)>0}
+		<div class="ptit">客户准入审批</div>
+		<ul class="ht">
+			{foreach $saleDepartment as $k=>$v}
+			<li {if $v.ischeck==1} class="success" {elseif $v.ischeck==0} class="in" {elseif $v.ischeck==2} class="fail" {/if}>
+				<div class="tit" onclick="toSaleDepartment(this)" data-id="{$v.SdID}">{$v.SdName}<p><span>{if $v.lcType==1}销售客户{else}采购客户{/if}</span></p></div>
+				<div class="line"></div>
+				<div class="listcar" onclick="toSaleDepartment(this)" data-id="{$v.SdID}">
+					<div class="ctop"><div><p>联系人：<span>{$v.SdContact}</span></p><p>手机：<span>{$v.SdPhone}</span></p></div></div>
+				</div>
+				<div class="line"></div>
+				<div class="btn"><a href="/Saledepartment/detail?id={$v.SdID}" class="fc">审批</a><a href="/Saledepartment/detail?id={$v.SdID}" class="fc">查看</a></div>
+			</li>
+			{/foreach}
+		</ul>
+		{/if}
+		{if count($sale)>0}
+		<div class="ptit">销售通知审批</div>
+		<ul class="ht">
+			{foreach $sale as $k=>$v}
+			<li {if $v.ischeck==1} class="success" {elseif $v.ischeck==0} class="in" {elseif $v.ischeck==2} class="fail" {/if}>
+				<div class="tit" onclick="toSale(this)" data-id="{$v.ids}">通知单编号：{$v.sPlace}<p><span>合同编号：{$v.sCode}</span></p></div>
+				<div class="line"></div>
+				<div class="listcar" onclick="toSale(this)" data-id="120,121,122">
+					<div class="ctop"><div><p>供货单位：<span>{$v.ghdw}</span></p><p>收货单位：<span>{$v.sShdep}</span></p></div></div>
+				</div>
+				<div class="line"></div>
+				<div class="btn"><a href="/Saleorder/detail?id={$v.ids}" class="fc">审批</a><a href="/Saleorder/detail?id={$v.ids}" class="fc">查看</a></div>
+			</li>
+			{/foreach}
+		</ul>
+		{/if}
+		{if count($cgsale)>0}
+		<div class="ptit">采购开单审批</div>
+		<ul class="ht">
+			{foreach $cgsale as $k=>$v}
+			<li {if $v.ischeck==1} class="success" {elseif $v.ischeck==0} class="in" {elseif $v.ischeck==2} class="fail" {/if}>
+				<div class="tit" onclick="toCgsale(this)" data-id="{$v.ids}">通知单编号：{$v.sPlace}<p><span>合同编号：{$v.sCode}</span></p></div>
+				<div class="line"></div>
+				<div class="listcar" onclick="toSale(this)" data-id="120,121,122">
+					<div class="ctop"><div><p>供货单位：<span>{$v.ghdw}</span></p><p>收货单位：<span>{$v.sShdep}</span></p></div></div>
+				</div>
+				<div class="line"></div>
+				<div class="btn"><a href="/Saleorder/cgdetail?id={$v.ids}" class="fc">审批</a><a href="/Saleorder/cgdetail?id={$v.ids}" class="fc">查看</a></div>
+			</li>
+			{/foreach}
+		</ul>
+		{/if}
+	</div>
+	<script>
+	function toContract(obj){
+		var id = $(obj).data("id");
+		window.location.href='/Contract/detail?id='+id;
+	}
+	function toSaleDepartment(obj){
+		var id = $(obj).data("id");
+		window.location.href='/Saledepartment/detail?id='+id;
+	}
+	function toSale(obj){
+		var id = $(obj).data("id");
+		window.location.href='/Saleorder/detail?id='+id;
+	}
+	function toCgsale(obj){
+		var id = $(obj).data("id");
+		window.location.href='/Saleorder/cgdetail?id='+id;
+	}
+	</script>
+	{include file="common/bot" /}
+</body>
+</html>

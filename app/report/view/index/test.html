@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>日照兰花业财一体化系统</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugs/layui-v2.5.6/css/layui.css?v={:time()}" >
+<script type="text/javascript" src="__STATIC__/plugs/jquery-3.4.1/jquery-3.4.1.min.js?v={:time()}"></script>
+<script type="text/javascript" src="__STATIC__/plugs/layui-v2.5.6/layui.js?v={:time()}"></script>
+<style>
+body{background: #f3f3f3;}
+.layui-fluid{padding: 5px;}
+.custom{width: 100%;line-height: 40px;margin: 15px 0;}
+.custom li{font-size: 16px;}
+.custom li .layui-icon{float: left;}
+.layui-col-space20 >*{background: #fff;}
+.layui-tab{margin: 0;}
+.layui-col-space20{margin: 0;}
+</style>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space10">
+			<div class="layui-col-lg3 layui-col-space20">
+				<div>
+					<input type="text" placeholder="搜索公司名称" value="" class="layui-input" onkeyup="search()" autocomplete="off" id="key">
+					<ul class="custom" id="list">
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>安钢集团信阳钢铁有限责任公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>安徽青龙钙业有限责任公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>赤峰正峰物资有限责任公司大石桥分公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>丰县沃安能源有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平坤鑫德工贸有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市安顺达贸易有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市福达储运有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市和顺达工贸有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市金景坤工贸有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市金牛物资贸易有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市晋昌洗煤有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市天鑫源煤炭销售有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市望源煤业福利有限责任公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>高平市晔芳贸易有限公司</span></li>
+						<li><div class="layui-icon">&#xe658;&nbsp;</div><span>贵州乌江水电开发有限责任公司燃料分公司</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="layui-col-lg9 layui-col-space20">
+				<div class="layui-tab">
+					<ul class="layui-tab-title">
+				    	<li class="layui-this">基本信息</li>
+				    	<li>账户往来</li>
+				  	</ul>
+				  	<div class="layui-tab-content" style="border: 1px solid #e6e6e6;border-top: 0;">
+				    	<div class="layui-tab-item layui-show" style="height: 800px;">内容1</div>
+				    	<div class="layui-tab-item" style="height: 800px;">内容2</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	window.search = function () {
+        var value = $("#key").val();
+        var dl = $("#list").find("li");
+        var j = -1;
+        for (var i = 0; i < dl.length; i++) {
+        	console.info($(dl[i]).find('span').html().indexOf(value));
+            if ($(dl[i]).find('span').html().indexOf(value) <= -1) {
+                dl[i].style.display = "none";
+                j++;
+            }else{
+            	dl[i].style.display = "block";
+            }
+            if (j == dl.length-1) {
+                $("#list").find("li").css({ "display": "none" });
+            }
+        }
+        
+    }
+	layui.use('element', function(){
+	  var element = layui.element;
+	  
+	});
+	</script>
+</body>
+</html>
